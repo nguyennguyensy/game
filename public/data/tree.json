@@ -1,0 +1,39 @@
+{
+  "id": "root",
+  "type": "folder",
+  "name": "Tất cả chủ đề",
+  "icon": "✦",
+  "children": [
+    {
+      "id": "space",
+      "type": "folder",
+      "name": "Vũ trụ & khoa học",
+      "icon": "✺",
+      "children": [
+        {
+          "id": "space-basics",
+          "type": "file",
+          "name": "Space basics",
+          "description": "Những từ đầu tiên để đọc về vũ trụ.",
+          "icon": "☄",
+          "cards": [
+            { "id": "c1", "front": { "text": "quỹ đạo" }, "back": { "text": "orbit" } },
+            { "id": "c2", "front": { "text": "hành tinh" }, "back": { "text": "planet" } },
+            { "id": "c3", "front": { "text": "phi hành gia" }, "back": { "text": "astronaut" } }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "starter",
+      "type": "file",
+      "name": "Starter pack",
+      "description": "Bộ thẻ khởi động ngắn gọn.",
+      "icon": "◈",
+      "cards": [
+        { "id": "c9", "front": { "text": "tập trung" }, "back": { "text": "focus" } },
+        { "id": "c10", "front": { "text": "tiến bộ" }, "back": { "text": "progress" } }
+      ]
+    }
+  ]
+}
