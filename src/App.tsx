@@ -372,15 +372,18 @@ function FileChoice({ file }: { file: FileNode }) {
 }
 function AudioButton({ src }: { src?: string }) {
   return (
-    <span
+    <button
+      type="button"
       className={`audio-button ${src ? "" : "muted-audio"}`}
       onClick={(event) => {
         event.stopPropagation();
-        if (src) new Audio(src).play();
+        if (src) new Audio(src).play().catch(() => {});
       }}
+      disabled={!src}
+      aria-label={src ? "Nghe âm thanh" : "Chưa có âm thanh"}
     >
       ◖
-    </span>
+    </button>
   );
 }
 function Learn({ file }: { file: FileNode }) {
@@ -532,14 +535,8 @@ function Game({ file }: { file: FileNode }) {
   const focusInput = () => {
     const input = inputRef.current;
     if (!input) return;
-    const scrollY = window.scrollY;
     input.focus({ preventScroll: true });
-    window.scrollTo(0, scrollY);
-    requestAnimationFrame(() => window.scrollTo(0, scrollY));
   };
-  useEffect(() => {
-    focusInput();
-  }, []);
   const keyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (done || !current || event.key.length !== 1) return;
     const expected = current.back.text[current.typed];
@@ -886,6 +883,112 @@ function AdminTree({
     </div>
   );
 }
+
+function AudioEditor({
+  src,
+  onChange,
+  toast,
+}: {
+  src?: string;
+  onChange: (audio?: string) => void;
+  toast: (message: string) => void;
+}) {
+  const uploadRef = useRef<HTMLInputElement>(null);
+  const recorderRef = useRef<MediaRecorder | null>(null);
+  const streamRef = useRef<MediaStream | null>(null);
+  const [recording, setRecording] = useState(false);
+
+  useEffect(
+    () => () => {
+      recorderRef.current?.stop();
+      streamRef.current?.getTracks().forEach((track) => track.stop());
+    },
+    [],
+  );
+
+  const startRecording = async () => {
+    if (!navigator.mediaDevices?.getUserMedia || !window.MediaRecorder) {
+      toast("Trình duyệt này không hỗ trợ ghi âm");
+      return;
+    }
+    try {
+      const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+      const recorder = new MediaRecorder(stream);
+      const chunks: Blob[] = [];
+      recorder.ondataavailable = (event) => {
+        if (event.data.size) chunks.push(event.data);
+      };
+      recorder.onstop = () => {
+        const reader = new FileReader();
+        reader.onload = () => onChange(String(reader.result));
+        reader.readAsDataURL(new Blob(chunks, { type: recorder.mimeType }));
+        stream.getTracks().forEach((track) => track.stop());
+        streamRef.current = null;
+        recorderRef.current = null;
+        setRecording(false);
+      };
+      streamRef.current = stream;
+      recorderRef.current = recorder;
+      recorder.start();
+      setRecording(true);
+    } catch {
+      toast("Không thể truy cập microphone");
+    }
+  };
+
+  const stopRecording = () => recorderRef.current?.stop();
+
+  const upload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    if (!file.type.startsWith("audio/")) {
+      toast("Hãy chọn một file audio");
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = () => onChange(String(reader.result));
+    reader.readAsDataURL(file);
+    event.target.value = "";
+  };
+
+  return (
+    <div className="audio-editor">
+      <AudioButton src={src} />
+      <button
+        type="button"
+        className="audio-action"
+        onClick={recording ? stopRecording : startRecording}
+      >
+        {recording ? "Dừng" : "Ghi mic"}
+      </button>
+      <button
+        type="button"
+        className="audio-action"
+        onClick={() => uploadRef.current?.click()}
+      >
+        Tải lên
+      </button>
+      {src && (
+        <button
+          type="button"
+          className="audio-remove"
+          onClick={() => onChange(undefined)}
+          aria-label="Xóa âm thanh"
+        >
+          ×
+        </button>
+      )}
+      <input
+        ref={uploadRef}
+        className="audio-upload"
+        type="file"
+        accept="audio/*"
+        onChange={upload}
+      />
+    </div>
+  );
+}
+
 function FolderEditor({
   folder,
   onSelect,
@@ -985,6 +1088,18 @@ function FileEditor({
         card.id === id ? { ...card, [side]: { ...card[side], text } } : card,
       ),
     );
+  const changeAudio = (
+    id: string,
+    side: "front" | "back",
+    audio?: string,
+  ) =>
+    setCards(
+      cards.map((card) =>
+        card.id === id
+          ? { ...card, [side]: { ...card[side], audio } }
+          : card,
+      ),
+    );
   return (
     <div className="editor">
       <div className="editor-heading">
@@ -1026,13 +1141,21 @@ function FileEditor({
               placeholder="Nhập từ gợi ý..."
               onChange={(event) => change(card.id, "front", event.target.value)}
             />
-            <AudioButton src={card.front.audio} />
+            <AudioEditor
+              src={card.front.audio}
+              toast={toast}
+              onChange={(audio) => changeAudio(card.id, "front", audio)}
+            />
             <input
               value={card.back.text}
               placeholder="Nhập định nghĩa..."
               onChange={(event) => change(card.id, "back", event.target.value)}
             />
-            <AudioButton src={card.back.audio} />
+            <AudioEditor
+              src={card.back.audio}
+              toast={toast}
+              onChange={(audio) => changeAudio(card.id, "back", audio)}
+            />
             <button
               className="delete-button"
               onClick={() =>
