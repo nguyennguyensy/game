@@ -149,9 +149,18 @@ const removeNode = (node: FolderNode, id: string): FolderNode => ({
     .filter((item) => item.id !== id)
     .map((item) => (item.type === "folder" ? removeNode(item, id) : item)),
 });
+const loadInitialTree = (): Tree => {
+  const saved = localStorage.getItem("vocab-tree");
+  if (!saved) return sampleTree;
+  try {
+    return JSON.parse(saved) as Tree;
+  } catch {
+    return sampleTree;
+  }
+};
 
 function App() {
-  const [tree, setTree] = useState<Tree>(sampleTree);
+  const [tree, setTree] = useState<Tree>(loadInitialTree);
   const [route, setRoute] = useState(
     window.location.hash.slice(1) || "/browse/root",
   );
@@ -161,15 +170,6 @@ function App() {
       setRoute(window.location.hash.slice(1) || "/browse/root");
     window.addEventListener("hashchange", listener);
     return () => window.removeEventListener("hashchange", listener);
-  }, []);
-  useEffect(() => {
-    const saved = localStorage.getItem("vocab-tree");
-    if (saved)
-      try {
-        setTree(JSON.parse(saved));
-      } catch {
-        /* sample remains */
-      }
   }, []);
   useEffect(() => {
     if (toast) {
@@ -786,6 +786,7 @@ function Admin({
           />
         ) : (
           <FolderEditor
+            key={selected.id}
             folder={selected}
             onSelect={setSelected}
             onRename={(nextName) => {
@@ -887,7 +888,6 @@ function FolderEditor({
   onDelete: () => void;
 }) {
   const [name, setName] = useState(folder.name);
-  useEffect(() => setName(folder.name), [folder.id, folder.name]);
   return (
     <div className="editor folder-editor">
       <div className="editor-heading">
