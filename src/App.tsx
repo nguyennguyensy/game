@@ -782,6 +782,7 @@ function Admin({
             file={selected}
             updateTree={updateTree}
             toast={toast}
+            onDelete={() => deleteNode(selected)}
           />
         ) : (
           <FolderEditor
@@ -940,10 +941,12 @@ function FileEditor({
   file,
   updateTree,
   toast,
+  onDelete,
 }: {
   file: FileNode;
   updateTree: (tree: Tree) => void;
   toast: (message: string) => void;
+  onDelete: () => void;
 }) {
   const [name, setName] = useState(file.name);
   const [description, setDescription] = useState(file.description || "");
@@ -988,9 +991,14 @@ function FileEditor({
             onChange={(event) => setDescription(event.target.value)}
           />
         </div>
-        <button className="primary-button" onClick={save}>
-          Lưu thay đổi
-        </button>
+        <div className="admin-actions">
+          <button className="primary-button" onClick={save}>
+            Lưu thay đổi
+          </button>
+          <button className="delete-button" onClick={onDelete}>
+            Xóa file
+          </button>
+        </div>
       </div>
       <div className="card-table-head">
         <span>01 / TỪ GỢI Ý</span>
