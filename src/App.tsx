@@ -474,6 +474,8 @@ function Game({ file }: { file: FileNode }) {
   const hasSpawnedRef = useRef(false);
   const FALL_SPEED = 0.44;
   const SPAWN_INTERVAL_MS = 3500;
+  const totalCards = file.cards.length * 3;
+  const won = completed >= totalCards;
   const speed = FALL_SPEED + Math.floor(combo / 5) * 0.07;
   useEffect(() => {
     if (done) return;
@@ -535,6 +537,7 @@ function Game({ file }: { file: FileNode }) {
         setScore((v) => v + 100 + combo * 15);
         setCombo((v) => v + 1);
         setCompleted((v) => v + 1);
+        if (completed + 1 >= totalCards) setDone(true);
         const remaining = active.filter((item) => item.id !== current.id);
         setActive(remaining);
         setActiveId(remaining[0]?.id ?? null);
@@ -634,8 +637,8 @@ function Game({ file }: { file: FileNode }) {
       {done && (
         <div className="game-result">
           <span className="result-icon">✦</span>
-          <p className="eyebrow">GAME OVER</p>
-          <h2>Lần sau sẽ nhanh hơn.</h2>
+          <p className="eyebrow">{won ? "HOÀN THÀNH" : "GAME OVER"}</p>
+          <h2>{won ? "Bạn đã phá tan cơn mưa từ." : "Lần sau sẽ nhanh hơn."}</h2>
           <p>
             {completed} từ đã phá · {score} điểm
           </p>
