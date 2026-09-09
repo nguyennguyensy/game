@@ -471,6 +471,7 @@ function Game({ file }: { file: FileNode }) {
   const [completed, setCompleted] = useState(0);
   const [wrong, setWrong] = useState(false);
   const [runId, setRunId] = useState(0);
+  const inputRef = useRef<HTMLInputElement>(null);
   const hasSpawnedRef = useRef(false);
   const FALL_SPEED = 0.44;
   const SPAWN_INTERVAL_MS = 3500;
@@ -517,7 +518,7 @@ function Game({ file }: { file: FileNode }) {
         {
           ...card,
           id: spawnedId,
-          x: 7 + Math.random() * 82,
+          x: 24 + Math.random() * 52,
           progress: -4,
           typed: 0,
           born: now,
@@ -528,6 +529,17 @@ function Game({ file }: { file: FileNode }) {
     return () => window.clearTimeout(spawnTimer);
   }, [deck, done, runId]);
   const current = active.find((item) => item.id === activeId) ?? active[0];
+  const focusInput = () => {
+    const input = inputRef.current;
+    if (!input) return;
+    const scrollY = window.scrollY;
+    input.focus({ preventScroll: true });
+    window.scrollTo(0, scrollY);
+    requestAnimationFrame(() => window.scrollTo(0, scrollY));
+  };
+  useEffect(() => {
+    focusInput();
+  }, []);
   const keyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (done || !current || event.key.length !== 1) return;
     const expected = current.back.text[current.typed];
@@ -595,11 +607,7 @@ function Game({ file }: { file: FileNode }) {
       </div>
       <div
         className={`rain-arena ${wrong ? "shake" : ""}`}
-        onClick={(event) =>
-          (
-            event.currentTarget.querySelector("input") as HTMLInputElement
-          )?.focus()
-        }
+        onClick={focusInput}
       >
         {active.map((item) => (
           <button
@@ -610,9 +618,7 @@ function Game({ file }: { file: FileNode }) {
             onClick={(event) => {
               event.stopPropagation();
               setActiveId(item.id);
-              (event.currentTarget.closest(".rain-arena")?.querySelector(
-                "input",
-              ) as HTMLInputElement | null)?.focus();
+              focusInput();
             }}
           >
             <span>{item.front.text}</span>
@@ -626,7 +632,7 @@ function Game({ file }: { file: FileNode }) {
           </button>
         ))}
         <div className="player">⌁</div>
-        <input autoFocus aria-label="Gõ đáp án" onKeyDown={keyDown} />
+        <input ref={inputRef} aria-label="Gõ đáp án" onKeyDown={keyDown} />
       </div>
       <div className="game-tip">
         Đang chọn: <strong>{current?.front.text || "chờ box tiếp theo"}</strong>
@@ -638,6 +644,7 @@ function Game({ file }: { file: FileNode }) {
         <div className="game-result">
           <span className="result-icon">✦</span>
           <p className="eyebrow">{won ? "HOÀN THÀNH" : "GAME OVER"}</p>
+          {won && <p className="result-set-name">{file.name}</p>}
           <h2>{won ? "Bạn đã phá tan cơn mưa từ." : "Lần sau sẽ nhanh hơn."}</h2>
           <p>
             {completed} từ đã phá · {score} điểm
