@@ -607,6 +607,16 @@ function Game({ file }: { file: FileNode }) {
     }, hasSpawnedRef.current ? SPAWN_INTERVAL_MS : 0);
     return () => window.clearTimeout(spawnTimer);
   }, [deck, done, runId]);
+  useEffect(() => {
+    if (
+      !done &&
+      !deck.length &&
+      !active.length &&
+      completedRef.current >= totalCards
+    ) {
+      finish("won");
+    }
+  }, [active.length, deck.length, done, totalCards]);
   const current = active.find((item) => item.id === activeId) ?? active[0];
   const focusInput = () => {
     const input = inputRef.current;
