@@ -423,8 +423,10 @@ function AudioButton({ src }: { src?: string }) {
 function Learn({ file }: { file: FileNode }) {
   const [index, setIndex] = useState(0);
   const [flipped, setFlipped] = useState(false);
+  const [initialSide, setInitialSide] = useState<"front" | "back">("front");
   const [cards, setCards] = useState(file.cards);
   const card = cards[index];
+  const showBack = initialSide === "back" ? !flipped : flipped;
   const next = (delta: number) => {
     setIndex((index + delta + cards.length) % cards.length);
     setFlipped(false);
@@ -452,6 +454,27 @@ function Learn({ file }: { file: FileNode }) {
           ⤨ Xáo trộn
         </button>
       </div>
+      <div className="card-side-picker" aria-label="Chọn mặt flashcard bắt đầu">
+        <span>MẶT BẮT ĐẦU</span>
+        <button
+          className={initialSide === "front" ? "selected" : ""}
+          onClick={() => {
+            setInitialSide("front");
+            setFlipped(false);
+          }}
+        >
+          Gợi ý
+        </button>
+        <button
+          className={initialSide === "back" ? "selected" : ""}
+          onClick={() => {
+            setInitialSide("back");
+            setFlipped(false);
+          }}
+        >
+          Đáp án
+        </button>
+      </div>
       <div className="progress-row">
         <span>
           {String(index + 1).padStart(2, "0")} /{" "}
@@ -463,7 +486,7 @@ function Learn({ file }: { file: FileNode }) {
         <span>{Math.round(((index + 1) / cards.length) * 100)}%</span>
       </div>
       <button
-        className={`flashcard ${flipped ? "is-flipped" : ""}`}
+        className={`flashcard ${showBack ? "is-flipped" : ""}`}
         onClick={() => setFlipped(!flipped)}
       >
         <div className="card-face front">
@@ -675,7 +698,7 @@ function Game({ file }: { file: FileNode }) {
         <div className="game-result">
           <span className="result-icon">✦</span>
           <p className="eyebrow">{won ? "HOÀN THÀNH" : "GAME OVER"}</p>
-          {won && <p className="result-set-name">{file.name}</p>}
+          <p className="result-set-name">{file.name}</p>
           <h2>{won ? "Bạn đã phá tan cơn mưa từ." : "Lần sau sẽ nhanh hơn."}</h2>
           <p>
             {completed} từ đã phá · {score} điểm
