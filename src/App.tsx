@@ -518,6 +518,7 @@ type Falling = Card & {
   born: number;
 };
 function Game({ file }: { file: FileNode }) {
+  type GameResult = "won" | "lost";
   const [active, setActive] = useState<Falling[]>([]);
   const [activeId, setActiveId] = useState<string | null>(null);
   const [deck, setDeck] = useState<Card[]>(() =>
@@ -527,18 +528,26 @@ function Game({ file }: { file: FileNode }) {
   const [combo, setCombo] = useState(0);
   const INITIAL_LIVES = Math.max(1, Math.floor((file.cards.length * 3) / 10));
   const [lives, setLives] = useState(INITIAL_LIVES);
-  const [result, setResult] = useState<"won" | "lost" | null>(null);
+  const [result, setResult] = useState<GameResult | null>(null);
   const [completed, setCompleted] = useState(0);
   const [wrong, setWrong] = useState(false);
   const [runId, setRunId] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
   const hasSpawnedRef = useRef(false);
+  const resultRef = useRef<GameResult | null>(null);
+  const completedRef = useRef(0);
+  const livesRef = useRef(INITIAL_LIVES);
   const FALL_SPEED = 0.44;
   const SPAWN_INTERVAL_MS = 3500;
   const totalCards = file.cards.length * 3;
   const done = result !== null;
   const won = result === "won";
   const speed = FALL_SPEED + Math.floor(combo / 5) * 0.07;
+  const finish = (nextResult: GameResult) => {
+    if (resultRef.current) return;
+    resultRef.current = nextResult;
+    setResult(nextResult);
+  };
   useEffect(() => {
     if (done) return;
     const timer = setInterval(
@@ -552,11 +561,10 @@ function Game({ file }: { file: FileNode }) {
           const fallen = moved.filter((item) => item.progress >= 100);
           if (fallen.length) {
             const fallenCount = new Set(fallen.map((item) => item.id)).size;
-            setLives((life) => {
-              const next = life - fallenCount;
-              if (next <= 0) setResult("lost");
-              return Math.max(0, next);
-            });
+            const nextLives = Math.max(0, livesRef.current - fallenCount);
+            livesRef.current = nextLives;
+            setLives(nextLives);
+            if (nextLives <= 0) finish("lost");
             setCombo(0);
           }
           return moved.filter((item) => item.progress < 100);
@@ -603,8 +611,10 @@ function Game({ file }: { file: FileNode }) {
       if (updated.typed === updated.back.text.length) {
         setScore((v) => v + 100 + combo * 15);
         setCombo((v) => v + 1);
-        setCompleted((v) => v + 1);
-        if (completed + 1 >= totalCards) setResult("won");
+        const nextCompleted = completedRef.current + 1;
+        completedRef.current = nextCompleted;
+        setCompleted(nextCompleted);
+        if (nextCompleted >= totalCards) finish("won");
         const remaining = active.filter((item) => item.id !== current.id);
         setActive(remaining);
         setActiveId(remaining[0]?.id ?? null);
@@ -628,6 +638,9 @@ function Game({ file }: { file: FileNode }) {
     setDeck(shuffled([...file.cards, ...file.cards, ...file.cards]));
     setScore(0);
     setCombo(0);
+    livesRef.current = INITIAL_LIVES;
+    completedRef.current = 0;
+    resultRef.current = null;
     setLives(INITIAL_LIVES);
     setCompleted(0);
     setResult(null);
