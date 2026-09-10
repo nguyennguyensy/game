@@ -697,6 +697,8 @@ function Admin({
     sessionStorage.getItem("vocab-github-repo") || githubConfig.repo,
   );
   const [copySource, setCopySource] = useState<FileNode | null>(null);
+  const [githubError, setGithubError] = useState("");
+  const [checkingGithub, setCheckingGithub] = useState(false);
   const create = (type: "folder" | "file") => {
     const parent = selected.type === "folder" ? selected : tree;
     const id = `${type}-${Date.now()}`;
@@ -733,13 +735,13 @@ function Admin({
     const cleanToken = token.trim();
     const cleanOwner = githubOwner.trim();
     const cleanRepo = githubRepo.trim();
+    setGithubError("");
     if (!cleanToken || !cleanOwner || !cleanRepo) {
       setTokenOpen(true);
+      setGithubError("Hãy nhập PAT, GitHub owner và repository.");
       return;
     }
-    sessionStorage.setItem("vocab-pat", cleanToken);
-    sessionStorage.setItem("vocab-github-owner", cleanOwner);
-    sessionStorage.setItem("vocab-github-repo", cleanRepo);
+    setCheckingGithub(true);
     const headers = {
       Authorization: `Bearer ${cleanToken}`,
       Accept: "application/vnd.github+json",
@@ -747,6 +749,16 @@ function Admin({
     };
     const base = `https://api.github.com/repos/${cleanOwner}/${cleanRepo}/contents/${githubConfig.treePath}`;
     try {
+      const identity = await fetch("https://api.github.com/user", { headers });
+      if (!identity.ok) {
+        setTokenOpen(true);
+        setGithubError(
+          identity.status === 401
+            ? "PAT không đúng hoặc đã hết hạn."
+            : "Không thể xác thực PAT với GitHub.",
+        );
+        return;
+      }
       const current = await fetch(`${base}?ref=${githubConfig.branch}`, { headers });
       const info = await current.json();
       if (!current.ok || !info.sha) {
@@ -766,14 +778,25 @@ function Admin({
         const error = await result.json().catch(() => null);
         throw Error(error?.message || "GitHub từ chối commit");
       }
+      sessionStorage.setItem("vocab-pat", cleanToken);
+      sessionStorage.setItem("vocab-github-owner", cleanOwner);
+      sessionStorage.setItem("vocab-github-repo", cleanRepo);
       setTokenOpen(false);
       toast("Đã commit lên GitHub. Pages sẽ cập nhật sau ít phút.");
     } catch (error) {
+      setTokenOpen(true);
+      setGithubError(
+        error instanceof Error
+          ? error.message
+          : "Không thể lưu GitHub. Kiểm tra PAT và quyền contents: write.",
+      );
       toast(
         error instanceof Error
           ? `Không thể lưu GitHub: ${error.message}`
           : "Không thể lưu GitHub. Kiểm tra PAT và quyền contents: write.",
       );
+    } finally {
+      setCheckingGithub(false);
     }
   };
   const copyFile = (destinationId: string) => {
@@ -851,9 +874,13 @@ function Admin({
               <input
                 type="password"
                 value={token}
-                onChange={(event) => setToken(event.target.value)}
+                onChange={(event) => {
+                  setToken(event.target.value);
+                  setGithubError("");
+                }}
                 placeholder="github_pat_..."
               />
+              {githubError && <p className="github-error">{githubError}</p>}
               <input
                 value={githubOwner}
                 onChange={(event) => setGithubOwner(event.target.value)}
@@ -864,8 +891,12 @@ function Admin({
                 onChange={(event) => setGithubRepo(event.target.value)}
                 placeholder="GitHub repository"
               />
-              <button className="primary-button" onClick={saveGithub}>
-                Xác nhận & lưu
+              <button
+                className="primary-button"
+                onClick={saveGithub}
+                disabled={checkingGithub}
+              >
+                {checkingGithub ? "Đang kiểm tra..." : "Xác nhận & lưu"}
               </button>
               <button
                 className="text-button"
