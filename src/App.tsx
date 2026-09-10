@@ -527,7 +527,7 @@ function Game({ file }: { file: FileNode }) {
   const [combo, setCombo] = useState(0);
   const INITIAL_LIVES = Math.max(1, Math.floor((file.cards.length * 3) / 10));
   const [lives, setLives] = useState(INITIAL_LIVES);
-  const [done, setDone] = useState(false);
+  const [result, setResult] = useState<"won" | "lost" | null>(null);
   const [completed, setCompleted] = useState(0);
   const [wrong, setWrong] = useState(false);
   const [runId, setRunId] = useState(0);
@@ -536,7 +536,8 @@ function Game({ file }: { file: FileNode }) {
   const FALL_SPEED = 0.44;
   const SPAWN_INTERVAL_MS = 3500;
   const totalCards = file.cards.length * 3;
-  const won = completed >= totalCards;
+  const done = result !== null;
+  const won = result === "won";
   const speed = FALL_SPEED + Math.floor(combo / 5) * 0.07;
   useEffect(() => {
     if (done) return;
@@ -553,7 +554,7 @@ function Game({ file }: { file: FileNode }) {
             const fallenCount = new Set(fallen.map((item) => item.id)).size;
             setLives((life) => {
               const next = life - fallenCount;
-              if (next <= 0) setDone(true);
+              if (next <= 0) setResult("lost");
               return Math.max(0, next);
             });
             setCombo(0);
@@ -603,7 +604,7 @@ function Game({ file }: { file: FileNode }) {
         setScore((v) => v + 100 + combo * 15);
         setCombo((v) => v + 1);
         setCompleted((v) => v + 1);
-        if (completed + 1 >= totalCards) setDone(true);
+        if (completed + 1 >= totalCards) setResult("won");
         const remaining = active.filter((item) => item.id !== current.id);
         setActive(remaining);
         setActiveId(remaining[0]?.id ?? null);
@@ -629,7 +630,7 @@ function Game({ file }: { file: FileNode }) {
     setCombo(0);
     setLives(INITIAL_LIVES);
     setCompleted(0);
-    setDone(false);
+    setResult(null);
   };
   return (
     <section className="game-page">
