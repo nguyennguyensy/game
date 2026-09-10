@@ -537,6 +537,7 @@ function Game({ file }: { file: FileNode }) {
   const resultRef = useRef<GameResult | null>(null);
   const completedRef = useRef(0);
   const missedLivesRef = useRef(0);
+  const missedBoxIdsRef = useRef(new Set<string>());
   const FALL_SPEED = 0.44;
   const SPAWN_INTERVAL_MS = 3500;
   const totalCards = file.cards.length * 3;
@@ -560,7 +561,12 @@ function Game({ file }: { file: FileNode }) {
           }));
           const fallen = moved.filter((item) => item.progress >= 100);
           if (fallen.length) {
-            const fallenCount = new Set(fallen.map((item) => item.id)).size;
+            const newFallen = fallen.filter(
+              (item) => !missedBoxIdsRef.current.has(item.id),
+            );
+            newFallen.forEach((item) => missedBoxIdsRef.current.add(item.id));
+            const fallenCount = newFallen.length;
+            if (!fallenCount) return moved.filter((item) => item.progress < 100);
             const missedLives = Math.min(
               INITIAL_LIVES,
               missedLivesRef.current + fallenCount,
@@ -609,9 +615,15 @@ function Game({ file }: { file: FileNode }) {
   };
   const keyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (done || !current || event.key.length !== 1) return;
-    const expected = current.back.text[current.typed];
+    let typed = current.typed;
+    while (typed < current.back.text.length && /\s/.test(current.back.text[typed]))
+      typed += 1;
+    const expected = current.back.text[typed];
     if (event.key.toLowerCase() === expected.toLowerCase()) {
-      const updated = { ...current, typed: current.typed + 1 };
+      typed += 1;
+      while (typed < current.back.text.length && /\s/.test(current.back.text[typed]))
+        typed += 1;
+      const updated = { ...current, typed };
       if (updated.typed === updated.back.text.length) {
         setScore((v) => v + 100 + combo * 15);
         setCombo((v) => v + 1);
@@ -643,6 +655,7 @@ function Game({ file }: { file: FileNode }) {
     setScore(0);
     setCombo(0);
     missedLivesRef.current = 0;
+    missedBoxIdsRef.current.clear();
     completedRef.current = 0;
     resultRef.current = null;
     setLives(INITIAL_LIVES);
