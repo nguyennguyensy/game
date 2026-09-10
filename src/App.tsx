@@ -536,7 +536,7 @@ function Game({ file }: { file: FileNode }) {
   const hasSpawnedRef = useRef(false);
   const resultRef = useRef<GameResult | null>(null);
   const completedRef = useRef(0);
-  const livesRef = useRef(INITIAL_LIVES);
+  const missedLivesRef = useRef(0);
   const FALL_SPEED = 0.44;
   const SPAWN_INTERVAL_MS = 3500;
   const totalCards = file.cards.length * 3;
@@ -561,10 +561,14 @@ function Game({ file }: { file: FileNode }) {
           const fallen = moved.filter((item) => item.progress >= 100);
           if (fallen.length) {
             const fallenCount = new Set(fallen.map((item) => item.id)).size;
-            const nextLives = Math.max(0, livesRef.current - fallenCount);
-            livesRef.current = nextLives;
+            const missedLives = Math.min(
+              INITIAL_LIVES,
+              missedLivesRef.current + fallenCount,
+            );
+            missedLivesRef.current = missedLives;
+            const nextLives = INITIAL_LIVES - missedLives;
             setLives(nextLives);
-            if (nextLives <= 0) finish("lost");
+            if (missedLives >= INITIAL_LIVES) finish("lost");
             setCombo(0);
           }
           return moved.filter((item) => item.progress < 100);
@@ -572,7 +576,7 @@ function Game({ file }: { file: FileNode }) {
       120,
     );
     return () => clearInterval(timer);
-  }, [done, speed]);
+  }, [INITIAL_LIVES, done, speed]);
   useEffect(() => {
     if (done || !deck.length) return;
     const spawnTimer = window.setTimeout(() => {
@@ -638,7 +642,7 @@ function Game({ file }: { file: FileNode }) {
     setDeck(shuffled([...file.cards, ...file.cards, ...file.cards]));
     setScore(0);
     setCombo(0);
-    livesRef.current = INITIAL_LIVES;
+    missedLivesRef.current = 0;
     completedRef.current = 0;
     resultRef.current = null;
     setLives(INITIAL_LIVES);
