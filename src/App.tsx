@@ -612,11 +612,11 @@ function Game({ file }: { file: FileNode }) {
       !done &&
       !deck.length &&
       !active.length &&
-      completedRef.current >= totalCards
+      missedLivesRef.current < INITIAL_LIVES
     ) {
       finish("won");
     }
-  }, [active.length, deck.length, done, totalCards]);
+  }, [INITIAL_LIVES, active.length, deck.length, done]);
   const current = active.find((item) => item.id === activeId) ?? active[0];
   const focusInput = () => {
     const input = inputRef.current;
