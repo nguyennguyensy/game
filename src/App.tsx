@@ -111,6 +111,8 @@ const findNode = (tree: Tree, id: string) =>
   flatNodes(tree).find((node) => node.id === id);
 const allFiles = (tree: Tree) =>
   flatNodes(tree).filter((node): node is FileNode => node.type === "file");
+const allFolders = (tree: Tree) =>
+  flatNodes(tree).filter((node): node is FolderNode => node.type === "folder");
 const go = (path: string) => {
   window.location.hash = path;
 };
@@ -149,6 +151,19 @@ const removeNode = (node: FolderNode, id: string): FolderNode => ({
     .filter((item) => item.id !== id)
     .map((item) => (item.type === "folder" ? removeNode(item, id) : item)),
 });
+const cloneFile = (file: FileNode): FileNode => {
+  const id = `file-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
+  return {
+    ...file,
+    id,
+    cards: file.cards.map((card) => ({
+      ...card,
+      id: `${id}-${Math.random().toString(36).slice(2, 8)}`,
+      front: { ...card.front },
+      back: { ...card.back },
+    })),
+  };
+};
 const loadInitialTree = (): Tree => {
   const saved = localStorage.getItem("vocab-tree");
   if (!saved) return sampleTree;
@@ -675,6 +690,13 @@ function Admin({
   const [selected, setSelected] = useState<Node>(tree);
   const [tokenOpen, setTokenOpen] = useState(false);
   const [token, setToken] = useState(sessionStorage.getItem("vocab-pat") || "");
+  const [githubOwner, setGithubOwner] = useState(
+    sessionStorage.getItem("vocab-github-owner") || githubConfig.owner,
+  );
+  const [githubRepo, setGithubRepo] = useState(
+    sessionStorage.getItem("vocab-github-repo") || githubConfig.repo,
+  );
+  const [copySource, setCopySource] = useState<FileNode | null>(null);
   const create = (type: "folder" | "file") => {
     const parent = selected.type === "folder" ? selected : tree;
     const id = `${type}-${Date.now()}`;
@@ -708,44 +730,59 @@ function Admin({
     setSelected(tree);
   };
   const saveGithub = async () => {
-    if (!token) {
+    const cleanToken = token.trim();
+    const cleanOwner = githubOwner.trim();
+    const cleanRepo = githubRepo.trim();
+    if (!cleanToken || !cleanOwner || !cleanRepo) {
       setTokenOpen(true);
       return;
     }
-    if (!githubConfig.owner || !githubConfig.repo) {
-      toast("Hãy điền owner/repo trong src/config.ts trước");
-      return;
-    }
-    sessionStorage.setItem("vocab-pat", token);
+    sessionStorage.setItem("vocab-pat", cleanToken);
+    sessionStorage.setItem("vocab-github-owner", cleanOwner);
+    sessionStorage.setItem("vocab-github-repo", cleanRepo);
     const headers = {
-      Authorization: `Bearer ${token}`,
+      Authorization: `Bearer ${cleanToken}`,
       Accept: "application/vnd.github+json",
       "Content-Type": "application/json",
     };
-    const base = `https://api.github.com/repos/${githubConfig.owner}/${githubConfig.repo}/contents/${githubConfig.treePath}`;
+    const base = `https://api.github.com/repos/${cleanOwner}/${cleanRepo}/contents/${githubConfig.treePath}`;
     try {
-      const current = await fetch(`${base}?ref=${githubConfig.branch}`, {
-        headers,
-      });
+      const current = await fetch(`${base}?ref=${githubConfig.branch}`, { headers });
       const info = await current.json();
+      if (!current.ok || !info.sha) {
+        throw Error(info.message || "Không đọc được file trên GitHub");
+      }
       const result = await fetch(base, {
         method: "PUT",
         headers,
         body: JSON.stringify({
           message: "Update vocabulary tree",
-          content: btoa(
-            unescape(encodeURIComponent(JSON.stringify(tree, null, 2))),
-          ),
+          content: btoa(unescape(encodeURIComponent(JSON.stringify(tree, null, 2)))),
           sha: info.sha,
           branch: githubConfig.branch,
         }),
       });
-      if (!result.ok) throw Error();
+      if (!result.ok) {
+        const error = await result.json().catch(() => null);
+        throw Error(error?.message || "GitHub từ chối commit");
+      }
       setTokenOpen(false);
       toast("Đã commit lên GitHub. Pages sẽ cập nhật sau ít phút.");
-    } catch {
-      toast("Không thể lưu GitHub. Kiểm tra PAT và quyền contents: write.");
+    } catch (error) {
+      toast(
+        error instanceof Error
+          ? `Không thể lưu GitHub: ${error.message}`
+          : "Không thể lưu GitHub. Kiểm tra PAT và quyền contents: write.",
+      );
     }
+  };
+  const copyFile = (destinationId: string) => {
+    if (!copySource) return;
+    const copied = cloneFile(copySource);
+    updateTree(addChild(tree, destinationId, copied));
+    setSelected(copied);
+    setCopySource(null);
+    toast(`Đã copy "${copied.name}" vào folder đã chọn`);
   };
   return (
     <div className="admin-shell">
@@ -790,6 +827,7 @@ function Admin({
             updateTree={updateTree}
             toast={toast}
             onDelete={() => deleteNode(selected)}
+            onCopy={() => setCopySource(selected)}
           />
         ) : (
           <FolderEditor
@@ -816,6 +854,16 @@ function Admin({
                 onChange={(event) => setToken(event.target.value)}
                 placeholder="github_pat_..."
               />
+              <input
+                value={githubOwner}
+                onChange={(event) => setGithubOwner(event.target.value)}
+                placeholder="GitHub owner"
+              />
+              <input
+                value={githubRepo}
+                onChange={(event) => setGithubRepo(event.target.value)}
+                placeholder="GitHub repository"
+              />
               <button className="primary-button" onClick={saveGithub}>
                 Xác nhận & lưu
               </button>
@@ -823,6 +871,31 @@ function Admin({
                 className="text-button"
                 onClick={() => setTokenOpen(false)}
               >
+                Hủy
+              </button>
+            </div>
+          </div>
+        )}
+        {copySource && (
+          <div className="edit-modal">
+            <div className="modal-card">
+              <p className="eyebrow">COPY FILE</p>
+              <h2>Chọn folder đích</h2>
+              <p className="muted">
+                File giữ nguyên tên, kể cả khi folder đích đã có file cùng tên.
+              </p>
+              <div className="copy-folder-list">
+                {allFolders(tree).map((folder) => (
+                  <button
+                    key={folder.id}
+                    className="outline-button"
+                    onClick={() => copyFile(folder.id)}
+                  >
+                    ◇ {folder.name}
+                  </button>
+                ))}
+              </div>
+              <button className="text-button" onClick={() => setCopySource(null)}>
                 Hủy
               </button>
             </div>
@@ -1055,11 +1128,13 @@ function FileEditor({
   updateTree,
   toast,
   onDelete,
+  onCopy,
 }: {
   file: FileNode;
   updateTree: (tree: Tree) => void;
   toast: (message: string) => void;
   onDelete: () => void;
+  onCopy: () => void;
 }) {
   const [name, setName] = useState(file.name);
   const [description, setDescription] = useState(file.description || "");
@@ -1117,6 +1192,9 @@ function FileEditor({
           />
         </div>
         <div className="admin-actions">
+          <button className="outline-button" onClick={onCopy}>
+            ⧉ Copy file
+          </button>
           <button className="primary-button" onClick={save}>
             Lưu thay đổi
           </button>
