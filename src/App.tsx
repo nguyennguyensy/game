@@ -625,6 +625,7 @@ function Game({ file }: { file: FileNode }) {
   };
   const keyDown = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (done || !current || event.key.length !== 1) return;
+    event.preventDefault();
     let typed = current.typed;
     while (typed < current.back.text.length && /\s/.test(current.back.text[typed]))
       typed += 1;
@@ -652,7 +653,9 @@ function Game({ file }: { file: FileNode }) {
         );
       }
     } else {
+      const scrollY = window.scrollY;
       setWrong(true);
+      window.requestAnimationFrame(() => window.scrollTo(0, scrollY));
       setTimeout(() => setWrong(false), 180);
     }
   };
