@@ -1,38 +1,183 @@
 {
   "id": "root",
   "type": "folder",
-  "name": "Tất cả chủ đề",
+  "name": "All Classes",
   "icon": "✦",
   "children": [
     {
-      "id": "space",
+      "id": "folder-1789038258766",
       "type": "folder",
-      "name": "Vũ trụ & khoa học",
-      "icon": "✺",
+      "name": "English Files",
+      "icon": "◇",
       "children": [
         {
-          "id": "space-basics",
-          "type": "file",
-          "name": "Space basics",
-          "description": "Những từ đầu tiên để đọc về vũ trụ.",
-          "icon": "☄",
-          "cards": [
-            { "id": "c1", "front": { "text": "quỹ đạo" }, "back": { "text": "orbit" } },
-            { "id": "c2", "front": { "text": "hành tinh" }, "back": { "text": "planet" } },
-            { "id": "c3", "front": { "text": "phi hành gia" }, "back": { "text": "astronaut" } }
+          "id": "folder-1789038293365",
+          "type": "folder",
+          "name": "Vocabulary",
+          "icon": "◇",
+          "children": [
+            {
+              "id": "file-1789038321448",
+              "type": "file",
+              "name": "Countries",
+              "description": "Mô tả bộ từ",
+              "icon": "▤",
+              "cards": [
+                {
+                  "id": "file-1789038321448-card",
+                  "front": {
+                    "text": "Mỹ"
+                  },
+                  "back": {
+                    "text": "The United States"
+                  }
+                },
+                {
+                  "id": "card-1789038345848",
+                  "front": {
+                    "text": "Anh"
+                  },
+                  "back": {
+                    "text": "England"
+                  }
+                },
+                {
+                  "id": "card-1789038351132",
+                  "front": {
+                    "text": "Vương quốc Anh"
+                  },
+                  "back": {
+                    "text": "The UK"
+                  }
+                },
+                {
+                  "id": "card-1789038361782",
+                  "front": {
+                    "text": "Bra-xin"
+                  },
+                  "back": {
+                    "text": "Brazil "
+                  }
+                },
+                {
+                  "id": "card-1789038423164",
+                  "front": {
+                    "text": "Trung Quốc"
+                  },
+                  "back": {
+                    "text": "China"
+                  }
+                },
+                {
+                  "id": "card-1789038433515",
+                  "front": {
+                    "text": "Egypt"
+                  },
+                  "back": {
+                    "text": "Ai Cập"
+                  }
+                },
+                {
+                  "id": "card-1789038447614",
+                  "front": {
+                    "text": "Pháp"
+                  },
+                  "back": {
+                    "text": "France"
+                  }
+                },
+                {
+                  "id": "card-1789038458098",
+                  "front": {
+                    "text": "Đức"
+                  },
+                  "back": {
+                    "text": "Germany"
+                  }
+                },
+                {
+                  "id": "card-1789038464981",
+                  "front": {
+                    "text": "Ý"
+                  },
+                  "back": {
+                    "text": "Italy"
+                  }
+                },
+                {
+                  "id": "card-1789038474265",
+                  "front": {
+                    "text": "Nhật"
+                  },
+                  "back": {
+                    "text": "Japan"
+                  }
+                },
+                {
+                  "id": "card-1789038486381",
+                  "front": {
+                    "text": "Mexico "
+                  },
+                  "back": {
+                    "text": "Mexico"
+                  }
+                },
+                {
+                  "id": "card-1789038499848",
+                  "front": {
+                    "text": "Ba Lan"
+                  },
+                  "back": {
+                    "text": "Poland"
+                  }
+                },
+                {
+                  "id": "card-1789038512814",
+                  "front": {
+                    "text": "Nga"
+                  },
+                  "back": {
+                    "text": "Russia"
+                  }
+                },
+                {
+                  "id": "card-1789038526247",
+                  "front": {
+                    "text": "Tây Ban Nha"
+                  },
+                  "back": {
+                    "text": "Spain"
+                  }
+                },
+                {
+                  "id": "card-1789038533114",
+                  "front": {
+                    "text": "Thuỵ Sĩ"
+                  },
+                  "back": {
+                    "text": "Switzerland"
+                  }
+                },
+                {
+                  "id": "card-1789038548881",
+                  "front": {
+                    "text": "Thổ Nhĩ Kì"
+                  },
+                  "back": {
+                    "text": "Turkey"
+                  }
+                }
+              ]
+            }
           ]
+        },
+        {
+          "id": "folder-1789038306048",
+          "type": "folder",
+          "name": "Useful Phrases",
+          "icon": "◇",
+          "children": []
         }
-      ]
-    },
-    {
-      "id": "starter",
-      "type": "file",
-      "name": "Starter pack",
-      "description": "Bộ thẻ khởi động ngắn gọn.",
-      "icon": "◈",
-      "cards": [
-        { "id": "c9", "front": { "text": "tập trung" }, "back": { "text": "focus" } },
-        { "id": "c10", "front": { "text": "tiến bộ" }, "back": { "text": "progress" } }
       ]
     }
   ]
