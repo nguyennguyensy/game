@@ -1,1 +1,6 @@
-export const githubConfig = { owner: '', repo: '', branch: 'main', treePath: 'public/data/tree.json' }
+export const githubConfig = {
+	owner: 'nguyennguyensy',
+	repo: 'game',
+	branch: 'main',
+	treePath: 'public/data/tree.json',
+};

@@ -173,6 +173,18 @@ const loadInitialTree = (): Tree => {
     return sampleTree;
   }
 };
+const loadPublishedTree = async (): Promise<Tree | null> => {
+  try {
+    const response = await fetch(
+      `${import.meta.env.BASE_URL}data/tree.json?v=${Date.now()}`,
+      { cache: "no-store" },
+    );
+    if (!response.ok) return null;
+    return (await response.json()) as Tree;
+  } catch {
+    return null;
+  }
+};
 
 function App() {
   const [tree, setTree] = useState<Tree>(loadInitialTree);
@@ -185,6 +197,13 @@ function App() {
       setRoute(window.location.hash.slice(1) || "/browse/root");
     window.addEventListener("hashchange", listener);
     return () => window.removeEventListener("hashchange", listener);
+  }, []);
+  useEffect(() => {
+    loadPublishedTree().then((publishedTree) => {
+      if (!publishedTree) return;
+      setTree(publishedTree);
+      localStorage.setItem("vocab-tree", JSON.stringify(publishedTree));
+    });
   }, []);
   useEffect(() => {
     if (toast) {
@@ -690,12 +709,6 @@ function Admin({
   const [selected, setSelected] = useState<Node>(tree);
   const [tokenOpen, setTokenOpen] = useState(false);
   const [token, setToken] = useState(sessionStorage.getItem("vocab-pat") || "");
-  const [githubOwner, setGithubOwner] = useState(
-    sessionStorage.getItem("vocab-github-owner") || githubConfig.owner,
-  );
-  const [githubRepo, setGithubRepo] = useState(
-    sessionStorage.getItem("vocab-github-repo") || githubConfig.repo,
-  );
   const [copySource, setCopySource] = useState<FileNode | null>(null);
   const [githubError, setGithubError] = useState("");
   const [checkingGithub, setCheckingGithub] = useState(false);
@@ -733,12 +746,10 @@ function Admin({
   };
   const saveGithub = async () => {
     const cleanToken = token.trim();
-    const cleanOwner = githubOwner.trim();
-    const cleanRepo = githubRepo.trim();
     setGithubError("");
-    if (!cleanToken || !cleanOwner || !cleanRepo) {
+    if (!cleanToken) {
       setTokenOpen(true);
-      setGithubError("Hãy nhập PAT, GitHub owner và repository.");
+      setGithubError("Hãy nhập PAT.");
       return;
     }
     setCheckingGithub(true);
@@ -747,7 +758,7 @@ function Admin({
       Accept: "application/vnd.github+json",
       "Content-Type": "application/json",
     };
-    const base = `https://api.github.com/repos/${cleanOwner}/${cleanRepo}/contents/${githubConfig.treePath}`;
+    const base = `https://api.github.com/repos/${githubConfig.owner}/${githubConfig.repo}/contents/${githubConfig.treePath}`;
     try {
       const identity = await fetch("https://api.github.com/user", { headers });
       if (!identity.ok) {
@@ -779,8 +790,6 @@ function Admin({
         throw Error(error?.message || "GitHub từ chối commit");
       }
       sessionStorage.setItem("vocab-pat", cleanToken);
-      sessionStorage.setItem("vocab-github-owner", cleanOwner);
-      sessionStorage.setItem("vocab-github-repo", cleanRepo);
       setTokenOpen(false);
       toast("Đã commit lên GitHub. Pages sẽ cập nhật sau ít phút.");
     } catch (error) {
@@ -881,16 +890,6 @@ function Admin({
                 placeholder="github_pat_..."
               />
               {githubError && <p className="github-error">{githubError}</p>}
-              <input
-                value={githubOwner}
-                onChange={(event) => setGithubOwner(event.target.value)}
-                placeholder="GitHub owner"
-              />
-              <input
-                value={githubRepo}
-                onChange={(event) => setGithubRepo(event.target.value)}
-                placeholder="GitHub repository"
-              />
               <button
                 className="primary-button"
                 onClick={saveGithub}
