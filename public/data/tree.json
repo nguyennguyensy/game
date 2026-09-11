@@ -29,7 +29,8 @@
                     "text": "Mỹ"
                   },
                   "back": {
-                    "text": "The United States"
+                    "text": "The United States",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/e17e79d85b4add97f031945c4d2078075f43c9de/public/audio/file-1789038321448/file-1789038321448-card/back-1789168564955-37oanl.webm"
                   }
                 },
                 {
@@ -38,7 +39,8 @@
                     "text": "Anh"
                   },
                   "back": {
-                    "text": "England"
+                    "text": "England",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/020c8aebcf60ab243188723531d9dcf8f85db7db/public/audio/file-1789038321448/card-1789038345848/back-1789168566819-hh55hc.webm"
                   }
                 },
                 {
@@ -47,7 +49,8 @@
                     "text": "Vương quốc Anh"
                   },
                   "back": {
-                    "text": "The UK"
+                    "text": "The UK",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/86a56ebdd78f3de86a0703a01563488d17ef77ea/public/audio/file-1789038321448/card-1789038351132/back-1789168568616-jmt6cn.webm"
                   }
                 },
                 {
@@ -56,7 +59,8 @@
                     "text": "Bra-xin"
                   },
                   "back": {
-                    "text": "Brazil "
+                    "text": "Brazil ",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/1568631b7d3939fc50873b991690f492e4c335d9/public/audio/file-1789038321448/card-1789038361782/back-1789168570469-amo51y.webm"
                   }
                 },
                 {
@@ -65,7 +69,8 @@
                     "text": "Trung Quốc"
                   },
                   "back": {
-                    "text": "China"
+                    "text": "China",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/c13241b37e025f952c8be9019adca0bbfca396b3/public/audio/file-1789038321448/card-1789038423164/back-1789168572059-ossfir.webm"
                   }
                 },
                 {
@@ -74,7 +79,8 @@
                     "text": "Ai Cập "
                   },
                   "back": {
-                    "text": "Egypt"
+                    "text": "Egypt",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/87b5587520fb3537bbdefd38d9f3066413cd8e9e/public/audio/file-1789038321448/card-1789038433515/back-1789168573749-wskq4w.webm"
                   }
                 },
                 {
@@ -83,7 +89,8 @@
                     "text": "Pháp"
                   },
                   "back": {
-                    "text": "France"
+                    "text": "France",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/25f5dd0b7980c34f5f00819540d3e10950de48bc/public/audio/file-1789038321448/card-1789038447614/back-1789168575505-mru3ii.webm"
                   }
                 },
                 {
@@ -92,7 +99,8 @@
                     "text": "Đức"
                   },
                   "back": {
-                    "text": "Germany"
+                    "text": "Germany",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/3ff11b7c2976824bd66b2af072882a102df9efad/public/audio/file-1789038321448/card-1789038458098/back-1789168577131-fjn3x1.webm"
                   }
                 },
                 {
@@ -101,7 +109,8 @@
                     "text": "Ý"
                   },
                   "back": {
-                    "text": "Italy"
+                    "text": "Italy",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/ae877d23b544a41e3e8af202bcb9f0feb383850e/public/audio/file-1789038321448/card-1789038464981/back-1789168578908-8161ac.webm"
                   }
                 },
                 {
@@ -110,7 +119,8 @@
                     "text": "Nhật"
                   },
                   "back": {
-                    "text": "Japan"
+                    "text": "Japan",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/7b9a4896be23d066301fce6ffa554f6794b32b05/public/audio/file-1789038321448/card-1789038474265/back-1789168580658-exj49v.webm"
                   }
                 },
                 {
@@ -119,7 +129,8 @@
                     "text": "Mexico "
                   },
                   "back": {
-                    "text": "Mexico"
+                    "text": "Mexico",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/24e29ccd026fba2fe6d568ad5b638cdb1a453bbd/public/audio/file-1789038321448/card-1789038486381/back-1789168582297-9rrh5t.webm"
                   }
                 },
                 {
@@ -128,7 +139,8 @@
                     "text": "Ba Lan"
                   },
                   "back": {
-                    "text": "Poland"
+                    "text": "Poland",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/b7d50e9eb2cc4887779c98805ba302854841a7ba/public/audio/file-1789038321448/card-1789038499848/back-1789168583917-ls0qlv.webm"
                   }
                 },
                 {
@@ -137,7 +149,8 @@
                     "text": "Tây Ban Nha"
                   },
                   "back": {
-                    "text": "Spain"
+                    "text": "Spain",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/21c856c290abb0fab91dae2061bf681b9c328e77/public/audio/file-1789038321448/card-1789038526247/back-1789168586025-8ep842.webm"
                   }
                 },
                 {
@@ -146,7 +159,8 @@
                     "text": "Thuỵ Sĩ"
                   },
                   "back": {
-                    "text": "Switzerland"
+                    "text": "Switzerland",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/95a0a53e7908c0b942845e030d0689ad009c044e/public/audio/file-1789038321448/card-1789038533114/back-1789168587654-k7c6j4.webm"
                   }
                 },
                 {
@@ -155,7 +169,8 @@
                     "text": "Thổ Nhĩ Kì"
                   },
                   "back": {
-                    "text": "Turkey"
+                    "text": "Turkey",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/24900afd259ba7d588fa97844111e9813f6895ca/public/audio/file-1789038321448/card-1789038548881/back-1789168589245-3c3iqn.webm"
                   }
                 },
                 {
@@ -164,7 +179,8 @@
                     "text": "Nga"
                   },
                   "back": {
-                    "text": "Russia"
+                    "text": "Russia",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/e6f50a6701226cdd2b2d9097ecce5a0ba88240c1/public/audio/file-1789038321448/card-1789085043969/back-1789168590922-qinj2s.webm"
                   }
                 }
               ]
@@ -182,7 +198,8 @@
                     "text": "Người Brazil "
                   },
                   "back": {
-                    "text": "Brazilian"
+                    "text": "Brazilian",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/4e51540503e2e537decb414f03cb5d20f81f974d/public/audio/file-1789084568485/file-1789084568485-card/back-1789168592495-lpeqsk.webm"
                   }
                 },
                 {
@@ -191,7 +208,8 @@
                     "text": "Người Trung"
                   },
                   "back": {
-                    "text": "Chinese"
+                    "text": "Chinese",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/f2744a59581293787f2aafd95b3bbfeaa49087aa/public/audio/file-1789084568485/card-1789084570933/back-1789168594147-6t6gop.webm"
                   }
                 },
                 {
@@ -200,7 +218,8 @@
                     "text": "Người Anh "
                   },
                   "back": {
-                    "text": "English"
+                    "text": "English",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/87379947bf1e483897f532bc6169234fad29ae17/public/audio/file-1789084568485/card-1789084572233/back-1789168595948-j91o3d.webm"
                   }
                 },
                 {
@@ -209,7 +228,8 @@
                     "text": "Người Mỹ "
                   },
                   "back": {
-                    "text": "American"
+                    "text": "American",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/5f8022a80927149721f1eac4bd137139df2c2cf2/public/audio/file-1789084568485/card-1789084573066/back-1789168598002-u1vk7j.webm"
                   }
                 },
                 {
@@ -218,7 +238,8 @@
                     "text": "Người Ai Cập "
                   },
                   "back": {
-                    "text": "Egyptian"
+                    "text": "Egyptian",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/9836464705e1457f40f882639b3a4e197a6fdb5c/public/audio/file-1789084568485/card-1789084573883/back-1789168599740-joqxt9.webm"
                   }
                 },
                 {
@@ -227,7 +248,8 @@
                     "text": "Người Pháp "
                   },
                   "back": {
-                    "text": "French"
+                    "text": "French",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/f7adfa9620a153acc4352ce29286b1a53fe7fd12/public/audio/file-1789084568485/card-1789084574666/back-1789168601728-poadl2.webm"
                   }
                 },
                 {
@@ -236,7 +258,8 @@
                     "text": "Người Đức"
                   },
                   "back": {
-                    "text": "German"
+                    "text": "German",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/68a863bdd50a50b0c03f30d57e7710c1055f9d73/public/audio/file-1789084568485/card-1789084575417/back-1789168603540-32yhjr.webm"
                   }
                 },
                 {
@@ -245,7 +268,8 @@
                     "text": "Người Ý "
                   },
                   "back": {
-                    "text": "Italian"
+                    "text": "Italian",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/ffe5573fb3eb13ec968e7622d9cac7b68a6f4642/public/audio/file-1789084568485/card-1789084576000/back-1789168605002-z2fk8n.webm"
                   }
                 },
                 {
@@ -254,7 +278,8 @@
                     "text": "Người Nhật"
                   },
                   "back": {
-                    "text": "Japanese"
+                    "text": "Japanese",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/b3e877c2744bfb9b200e98b249732ac4b47305c6/public/audio/file-1789084568485/card-1789084576633/back-1789168606741-47jq6t.webm"
                   }
                 },
                 {
@@ -263,7 +288,8 @@
                     "text": "Người Mexico"
                   },
                   "back": {
-                    "text": "Mexican"
+                    "text": "Mexican",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/0b5ce6dc99ab9b7a60b83adc84d16b178368cfa5/public/audio/file-1789084568485/card-1789084577516/back-1789168609514-l7dxxt.webm"
                   }
                 },
                 {
@@ -272,7 +298,8 @@
                     "text": "Người Ba Lan "
                   },
                   "back": {
-                    "text": "Polish"
+                    "text": "Polish",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/9c70588b503087b7dc312a1fd840c2888d583509/public/audio/file-1789084568485/card-1789084579383/back-1789168610917-ft1k6x.webm"
                   }
                 },
                 {
@@ -281,7 +308,8 @@
                     "text": "Người Nga "
                   },
                   "back": {
-                    "text": "Russian"
+                    "text": "Russian",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/157f3c7f9c6d6c93c12285afae4d550274106f9c/public/audio/file-1789084568485/card-1789084579950/back-1789168612861-88irgz.webm"
                   }
                 },
                 {
@@ -290,7 +318,8 @@
                     "text": "Người Tây Ban Nha"
                   },
                   "back": {
-                    "text": "Spanish"
+                    "text": "Spanish",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/3efd6e67df806ed5710836189d79707501bff60f/public/audio/file-1789084568485/card-1789084581366/back-1789168614544-tnwnue.webm"
                   }
                 },
                 {
@@ -299,7 +328,8 @@
                     "text": "Người Thuỵ Sĩ"
                   },
                   "back": {
-                    "text": "Swiss"
+                    "text": "Swiss",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/ffb158eb026c5ad64668a66572e3fe8c06ffc80f/public/audio/file-1789084568485/card-1789084582716/back-1789168616618-1bcviw.webm"
                   }
                 },
                 {
@@ -308,7 +338,8 @@
                     "text": "Người Thổ Nhĩ Kì"
                   },
                   "back": {
-                    "text": "Turkish"
+                    "text": "Turkish",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/42c69a9361136e3b9107ace112286b2488b80ff3/public/audio/file-1789084568485/card-1789084585700/back-1789168618322-yltpx2.webm"
                   }
                 }
               ]
@@ -326,7 +357,8 @@
                     "text": "Cái bảng"
                   },
                   "back": {
-                    "text": "the board"
+                    "text": "the board",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/941bfb73c4e22a12a5727f63fa49ea7f6a69ad76/public/audio/file-1789085092103/file-1789085092103-card/back-1789168620008-fn3ryj.webm"
                   }
                 },
                 {
@@ -335,7 +367,8 @@
                     "text": "cửa ra vào"
                   },
                   "back": {
-                    "text": "the door"
+                    "text": "the door",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/cbe9f3e034557b06ee4f30f4cd66e0c31dd9944e/public/audio/file-1789085092103/card-1789085128469/back-1789168622504-9vqx87.webm"
                   }
                 },
                 {
@@ -344,7 +377,8 @@
                     "text": "một cái cửa sổ"
                   },
                   "back": {
-                    "text": "a window"
+                    "text": "a window",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/ebc0556e32b788c9ff757a277c36780f8b0ed644/public/audio/file-1789085092103/card-1789085130102/back-1789168624190-zcu6qu.webm"
                   }
                 },
                 {
@@ -353,7 +387,8 @@
                     "text": "một cái ghế"
                   },
                   "back": {
-                    "text": "a chair"
+                    "text": "a chair",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/38a24f10588b8597c32f2c542b393b5bdd8c11a6/public/audio/file-1789085092103/card-1789085131253/back-1789168626529-kv650c.webm"
                   }
                 },
                 {
@@ -362,7 +397,8 @@
                     "text": "một cái áo khoác dày"
                   },
                   "back": {
-                    "text": "a coat"
+                    "text": "a coat",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/942a5f73628c399b8f44cbc501695c3c473205ac/public/audio/file-1789085092103/card-1789085132086/back-1789168628412-mev517.webm"
                   }
                 },
                 {
@@ -371,7 +407,8 @@
                     "text": "một cái bàn"
                   },
                   "back": {
-                    "text": "a table"
+                    "text": "a table",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/2c06f1198e6873cc302d144e1be626405bbb39a5/public/audio/file-1789085092103/card-1789085133536/back-1789168630050-zjsfg0.webm"
                   }
                 },
                 {
@@ -380,7 +417,8 @@
                     "text": "Một cái máy tính xách tay"
                   },
                   "back": {
-                    "text": "a laptop"
+                    "text": "a laptop",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/b7a0b92261105dfe46a97f18a04270d4588f590c/public/audio/file-1789085092103/card-1789085134336/back-1789168631912-98z6qy.webm"
                   }
                 },
                 {
@@ -389,7 +427,8 @@
                     "text": "một quyển từ điển"
                   },
                   "back": {
-                    "text": "a dictionary"
+                    "text": "a dictionary",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/919906a6050b036351e64a9e8b54123c71b99135/public/audio/file-1789085092103/card-1789085134870/back-1789168633990-z6enb5.webm"
                   }
                 },
                 {
@@ -398,7 +437,8 @@
                     "text": "một tờ giấy"
                   },
                   "back": {
-                    "text": "a piece of paper"
+                    "text": "a piece of paper",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/dfd9c3d025266f6bded35d68f2fa581554c814ec/public/audio/file-1789085092103/card-1789085135170/back-1789168635790-jjubbu.webm"
                   }
                 },
                 {
@@ -407,7 +447,8 @@
                     "text": "một cái bút"
                   },
                   "back": {
-                    "text": "a pen"
+                    "text": "a pen",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/b095c61d9e020074497fb241668fb19844c298dc/public/audio/file-1789085092103/card-1789085135386/back-1789168637869-c7jboj.webm"
                   }
                 }
               ]
@@ -425,7 +466,8 @@
                     "text": "một cái điện thoại di động"
                   },
                   "back": {
-                    "text": "a mobile phone"
+                    "text": "a mobile phone",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/13bd3c14b178058d142bdbcb409dfcd9b8623a74/public/audio/file-1789085375218/file-1789085375218-card/back-1789168639683-a4xauh.webm"
                   }
                 },
                 {
@@ -434,7 +476,8 @@
                     "text": "một cái túi "
                   },
                   "back": {
-                    "text": "a bag"
+                    "text": "a bag",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/af674cdcb8aa1e6d31012d5566fc61d5d1f28d1f/public/audio/file-1789085375218/card-1789085392751/back-1789168641531-vw3h48.webm"
                   }
                 },
                 {
@@ -443,7 +486,8 @@
                     "text": "một cái chìa khoá"
                   },
                   "back": {
-                    "text": "a key"
+                    "text": "a key",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/300ee323c170509fe5c74eae18ceb3c9f8b112b9/public/audio/file-1789085375218/card-1789085393784/back-1789168643261-qbx2x6.webm"
                   }
                 },
                 {
@@ -452,7 +496,8 @@
                     "text": "một chiếc ô"
                   },
                   "back": {
-                    "text": "an umbrella"
+                    "text": "an umbrella",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/fc35a1f55b96c7214530c75e807042fd904dc78c/public/audio/file-1789085375218/card-1789085395334/back-1789168645520-s897mz.webm"
                   }
                 },
                 {
@@ -461,7 +506,8 @@
                     "text": "một cái thẻ tín dụng"
                   },
                   "back": {
-                    "text": "a credit card"
+                    "text": "a credit card",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/5d267ed04fd86b3c8bdcb533abeeee91fe9f0371/public/audio/file-1789085375218/card-1789085397485/back-1789168647712-vqr114.webm"
                   }
                 },
                 {
@@ -470,7 +516,8 @@
                     "text": "một cái thẻ ghi nợ "
                   },
                   "back": {
-                    "text": "a debit card"
+                    "text": "a debit card",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/b19d043f07a91deeae2a1dc821645f1379a2aa61/public/audio/file-1789085375218/card-1789085398918/back-1789168649831-urigfe.webm"
                   }
                 },
                 {
@@ -479,7 +526,8 @@
                     "text": "một bức ảnh"
                   },
                   "back": {
-                    "text": "a photo"
+                    "text": "a photo",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/fc11c71799caf9aac378a1c8b470e7e1b6a13def/public/audio/file-1789085375218/card-1789085399534/back-1789168651826-c4ytlq.webm"
                   }
                 },
                 {
@@ -488,7 +536,8 @@
                     "text": "một cái đồng hồ đeo tay"
                   },
                   "back": {
-                    "text": "a watch"
+                    "text": "a watch",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/70350ca298988ccc431886f52e0fe825acf3d217/public/audio/file-1789085375218/card-1789085400285/back-1789168654014-5aygdv.webm"
                   }
                 },
                 {
@@ -497,7 +546,8 @@
                     "text": "một cái kính"
                   },
                   "back": {
-                    "text": "a pair of glasses"
+                    "text": "a pair of glasses",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/8c5bef73e99b951bede9c3575cec90186dbc7993/public/audio/file-1789085375218/card-1789085400518/back-1789168655871-6ja3vb.webm"
                   }
                 },
                 {
@@ -506,7 +556,8 @@
                     "text": "một cái thẻ căn cước"
                   },
                   "back": {
-                    "text": "an ID card"
+                    "text": "an ID card",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/3b5ec64ba598c515d7d80bd0fa49615d03656a53/public/audio/file-1789085375218/card-1789085401051/back-1789168657813-dcyz8o.webm"
                   }
                 },
                 {
@@ -515,7 +566,8 @@
                     "text": "một cuốn hộ chiếu "
                   },
                   "back": {
-                    "text": "a passport"
+                    "text": "a passport",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/31aac1358624119752bc436fe7f09be5bb76633b/public/audio/file-1789085375218/card-1789085401251/back-1789168659883-x7bbzb.webm"
                   }
                 },
                 {
@@ -524,7 +576,8 @@
                     "text": "một chiếc ví gấp "
                   },
                   "back": {
-                    "text": "a wallet"
+                    "text": "a wallet",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/317fe89817e9f54280e258adebb22aae72a19dea/public/audio/file-1789085375218/card-1789085401568/back-1789168661795-i16o98.webm"
                   }
                 },
                 {
@@ -533,7 +586,8 @@
                     "text": "một chiếc ví/túi xách tay "
                   },
                   "back": {
-                    "text": "a purse"
+                    "text": "a purse",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/b16106bc265d9658aa944c920f921629d9a74ac0/public/audio/file-1789085375218/card-1789085401769/back-1789168663856-srb93k.webm"
                   }
                 },
                 {
@@ -542,7 +596,8 @@
                     "text": "một cái bút chì "
                   },
                   "back": {
-                    "text": "a pencil"
+                    "text": "a pencil",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/cc988b0c5112591d3f59214ed05c71d8cd79d25b/public/audio/file-1789085375218/card-1789085401985/back-1789168665671-xc59fu.webm"
                   }
                 },
                 {
@@ -551,7 +606,8 @@
                     "text": "một cuốn sổ ghi chú "
                   },
                   "back": {
-                    "text": "a notebook"
+                    "text": "a notebook",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/47b5b9aa4c8b65f6f77a341f2174265af09f607b/public/audio/file-1789085375218/card-1789085402184/back-1789168667810-879fmm.webm"
                   }
                 },
                 {
@@ -560,7 +616,8 @@
                     "text": "một chiếc máy ảnh "
                   },
                   "back": {
-                    "text": "a camera"
+                    "text": "a camera",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/0816e837fbec544e2b6d7c691e7bf7c0378939f0/public/audio/file-1789085375218/card-1789085402351/back-1789168669707-1crp7b.webm"
                   }
                 },
                 {
@@ -569,7 +626,8 @@
                     "text": "một chiếc máy tính bảng "
                   },
                   "back": {
-                    "text": "a tablet"
+                    "text": "a tablet",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/bfa60e114a6bf2fbcba58ec8817e2ed9c96e393b/public/audio/file-1789085375218/card-1789085402568/back-1789168671650-pj0fye.webm"
                   }
                 },
                 {
@@ -578,7 +636,8 @@
                     "text": "một cái bàn chải"
                   },
                   "back": {
-                    "text": "a brush"
+                    "text": "a brush",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/f93ed2f5f4468150ed76d4c5d7741e31b8acc9b8/public/audio/file-1789085375218/card-1789085403201/back-1789168673477-qx5f4o.webm"
                   }
                 }
               ]
@@ -596,7 +655,8 @@
                     "text": "một chàng trai "
                   },
                   "back": {
-                    "text": "a boy"
+                    "text": "a boy",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/f1cd183144a53aa55130d3c895953fb9c4af35e9/public/audio/file-1789085791786/file-1789085791786-card/back-1789168675169-hm0nq0.webm"
                   }
                 },
                 {
@@ -605,7 +665,8 @@
                     "text": "một cô gái "
                   },
                   "back": {
-                    "text": "a girl"
+                    "text": "a girl",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/205865781af0d28a146cfb03a8990ab16d039d2f/public/audio/file-1789085791786/card-1789085810285/back-1789168677054-a2p23o.webm"
                   }
                 },
                 {
@@ -614,7 +675,8 @@
                     "text": "một người đàn ông"
                   },
                   "back": {
-                    "text": "a man"
+                    "text": "a man",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/97f9784fae6b11a0c24a13b1505584f39778b18d/public/audio/file-1789085791786/card-1789085811669/back-1789168679019-hlwiyg.webm"
                   }
                 },
                 {
@@ -623,7 +685,8 @@
                     "text": "những người đàn ông"
                   },
                   "back": {
-                    "text": "men"
+                    "text": "men",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/608ed484505aa8fec4abb4cc93a6c51fbf440866/public/audio/file-1789085791786/card-1789085814069/back-1789168680856-nj6omk.webm"
                   }
                 },
                 {
@@ -632,7 +695,8 @@
                     "text": "một người phụ nữ"
                   },
                   "back": {
-                    "text": "a woman"
+                    "text": "a woman",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/84c2368d3d86ede4ac79a3b6065da5110c4e0de4/public/audio/file-1789085791786/card-1789085816286/back-1789168682514-cnejq1.webm"
                   }
                 },
                 {
@@ -641,7 +705,8 @@
                     "text": "những người phụ nữ"
                   },
                   "back": {
-                    "text": "women"
+                    "text": "women",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/d5473f3e942bb7e150cebd30dd4b3267844d460a/public/audio/file-1789085791786/card-1789085817952/back-1789168684337-3s5qht.webm"
                   }
                 },
                 {
@@ -650,7 +715,8 @@
                     "text": "một đứa trẻ"
                   },
                   "back": {
-                    "text": "a child"
+                    "text": "a child",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/e14b929b5d33871a7e439f39c0ca16332f814be7/public/audio/file-1789085791786/card-1789085818302/back-1789168686209-j32i9e.webm"
                   }
                 },
                 {
@@ -659,7 +725,8 @@
                     "text": "những đứa trẻ"
                   },
                   "back": {
-                    "text": "children"
+                    "text": "children",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/5798b523b4bfb870b18517ed45282fbecf0f93f3/public/audio/file-1789085791786/card-1789085818486/back-1789168687936-36m2z2.webm"
                   }
                 },
                 {
@@ -668,7 +735,8 @@
                     "text": "một người"
                   },
                   "back": {
-                    "text": "a person"
+                    "text": "a person",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/771fcc688897f61da87309ec921a3782ff36f2e7/public/audio/file-1789085791786/card-1789085818653/back-1789168689503-ae5jgp.webm"
                   }
                 },
                 {
@@ -677,7 +745,8 @@
                     "text": "mọi người "
                   },
                   "back": {
-                    "text": "people"
+                    "text": "people",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/71f2e5869d9284b7a1200c2b31f485eb04b63184/public/audio/file-1789085791786/card-1789085818785/back-1789168690996-wk8s5k.webm"
                   }
                 },
                 {
@@ -686,7 +755,8 @@
                     "text": "chồng"
                   },
                   "back": {
-                    "text": "husband"
+                    "text": "husband",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/d6357e92cde8380f3684e1afb375b8d6d695b5b5/public/audio/file-1789085791786/card-1789085818953/back-1789168692579-uhu5za.webm"
                   }
                 },
                 {
@@ -695,7 +765,8 @@
                     "text": "vợ "
                   },
                   "back": {
-                    "text": "wife"
+                    "text": "wife",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/e2514d6153a7daf5cb70474a7c588e47a711e347/public/audio/file-1789085791786/card-1789085819102/back-1789168694290-6fne5q.webm"
                   }
                 },
                 {
@@ -704,7 +775,8 @@
                     "text": "bố "
                   },
                   "back": {
-                    "text": "father"
+                    "text": "father",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/82443c619cc21cf70e19f51fc1d9c434630dbae4/public/audio/file-1789085791786/card-1789085819402/back-1789168696014-0w29i6.webm"
                   }
                 },
                 {
@@ -713,7 +785,8 @@
                     "text": "mẹ "
                   },
                   "back": {
-                    "text": "mother"
+                    "text": "mother",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/e270690efafef6d0ab207fefbf879aed0591c0fe/public/audio/file-1789085791786/card-1789085819553/back-1789168697625-397cs5.webm"
                   }
                 },
                 {
@@ -722,7 +795,8 @@
                     "text": "con gái "
                   },
                   "back": {
-                    "text": "daughter"
+                    "text": "daughter",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/98b65e0158c39ab1d27b92bdea5a46d49654091c/public/audio/file-1789085791786/card-1789085819719/back-1789168700218-9a3c8c.webm"
                   }
                 },
                 {
@@ -731,7 +805,8 @@
                     "text": "con trai "
                   },
                   "back": {
-                    "text": "son"
+                    "text": "son",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/565c7282a241d515c9ee431df18de51ce06b05b7/public/audio/file-1789085791786/card-1789085819902/back-1789168702256-cesb31.webm"
                   }
                 },
                 {
@@ -740,7 +815,8 @@
                     "text": "chị em gái "
                   },
                   "back": {
-                    "text": "sister"
+                    "text": "sister",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/e9b6060f0960b4f5dcf1c6f05c95451c3fde4ce7/public/audio/file-1789085791786/card-1789085820069/back-1789168704120-i7wd41.webm"
                   }
                 },
                 {
@@ -749,7 +825,8 @@
                     "text": "anh em trai "
                   },
                   "back": {
-                    "text": "brother"
+                    "text": "brother",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/3acc1b503bf5231ceaf8eed2a17205c10552d54b/public/audio/file-1789085791786/card-1789085820236/back-1789168706066-5h1htg.webm"
                   }
                 },
                 {
@@ -758,7 +835,8 @@
                     "text": "bạn trai "
                   },
                   "back": {
-                    "text": "boyfriend"
+                    "text": "boyfriend",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/661c4edeb379f4d90131b783f186701c4b92364b/public/audio/file-1789085791786/card-1789085820403/back-1789168707740-aegv0x.webm"
                   }
                 },
                 {
@@ -767,7 +845,8 @@
                     "text": "bạn gái"
                   },
                   "back": {
-                    "text": "girlfriend"
+                    "text": "girlfriend",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/b0a5604c64421159741bf862bfa7115c7f25332c/public/audio/file-1789085791786/card-1789085951552/back-1789168709452-5ji38l.webm"
                   }
                 }
               ]
@@ -785,7 +864,8 @@
                     "text": "đẹp trai"
                   },
                   "back": {
-                    "text": "handsome"
+                    "text": "handsome",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/37e2bf5a7e3415082a865dceeee2e84c480d6a25/public/audio/file-1789086120753/file-1789086120753-card/back-1789168711272-xbq0vq.webm"
                   }
                 },
                 {
@@ -794,7 +874,8 @@
                     "text": "có tóc vàng"
                   },
                   "back": {
-                    "text": "blonde"
+                    "text": "blonde",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/8a0ca06fb0e5ff36850781305bbd4d8bdf7fc504/public/audio/file-1789086120753/card-1789086131269/back-1789168712656-m4jule.webm"
                   }
                 },
                 {
@@ -803,7 +884,8 @@
                     "text": "cũ / già"
                   },
                   "back": {
-                    "text": "old"
+                    "text": "old",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/b8aa28dbe85ab6c808680f95d11eb03be589d9b4/public/audio/file-1789086120753/card-1789086131969/back-1789168714105-ml6tms.webm"
                   }
                 },
                 {
@@ -812,7 +894,8 @@
                     "text": "đẹp "
                   },
                   "back": {
-                    "text": "beautiful"
+                    "text": "beautiful",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/bb2a7e83d063b18efe58ba2509158cfd511d5eec/public/audio/file-1789086120753/card-1789086133236/back-1789168715852-92345u.webm"
                   }
                 },
                 {
@@ -821,7 +904,8 @@
                     "text": "xấu"
                   },
                   "back": {
-                    "text": "ugly"
+                    "text": "ugly",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/0a14258915e699c321ccd239ecdeceeb2b3b791d/public/audio/file-1789086120753/card-1789086134286/back-1789168717508-9rcu12.webm"
                   }
                 },
                 {
@@ -830,7 +914,8 @@
                     "text": "rẻ"
                   },
                   "back": {
-                    "text": "cheap"
+                    "text": "cheap",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/9972f427f1a44ef8f6a167eddbcc1cdc53b655b9/public/audio/file-1789086120753/card-1789086135269/back-1789168719792-gjfkbd.webm"
                   }
                 },
                 {
@@ -839,7 +924,8 @@
                     "text": "đắt"
                   },
                   "back": {
-                    "text": "expensive"
+                    "text": "expensive",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/b6b073359ee5a2f18ab7537609b7b9fabd2f916a/public/audio/file-1789086120753/card-1789086136253/back-1789168721816-59uclb.webm"
                   }
                 },
                 {
@@ -848,7 +934,8 @@
                     "text": "ngắn/ thấp"
                   },
                   "back": {
-                    "text": "short"
+                    "text": "short",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/bdc809de39351d67af7d68e04b1b766ef776ac80/public/audio/file-1789086120753/card-1789086137136/back-1789168723344-x2vx70.webm"
                   }
                 },
                 {
@@ -857,7 +944,8 @@
                     "text": "cao "
                   },
                   "back": {
-                    "text": "tall"
+                    "text": "tall",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/04ff46af121468292dd66b8195abfe98acc78bfe/public/audio/file-1789086120753/card-1789086137570/back-1789168725017-8k94tp.webm"
                   }
                 },
                 {
@@ -866,7 +954,8 @@
                     "text": "ở trên cao "
                   },
                   "back": {
-                    "text": "high"
+                    "text": "high",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/5a8dd7f2100620f183e1e563e66663ab350e576f/public/audio/file-1789086120753/card-1789086137970/back-1789168726642-lz0zcb.webm"
                   }
                 },
                 {
@@ -875,7 +964,8 @@
                     "text": "dễ"
                   },
                   "back": {
-                    "text": "easy"
+                    "text": "easy",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/0a6121d223130005ce53782c36d90d9b8b451a0d/public/audio/file-1789086120753/card-1789086138170/back-1789168728322-npl6hp.webm"
                   }
                 },
                 {
@@ -884,7 +974,8 @@
                     "text": "khó"
                   },
                   "back": {
-                    "text": "difficult"
+                    "text": "difficult",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/fb1642241d0c3318db60d76bd37cc373ae4ca840/public/audio/file-1789086120753/card-1789086138387/back-1789168730177-f8y5z2.webm"
                   }
                 },
                 {
@@ -893,7 +984,8 @@
                     "text": "tuyệt vời"
                   },
                   "back": {
-                    "text": "fantastic"
+                    "text": "fantastic",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/aff21b45c932bcf08475031184cbaf4985d6ac93/public/audio/file-1789086120753/card-1789086138586/back-1789168731814-nqkiwg.webm"
                   }
                 },
                 {
@@ -902,7 +994,8 @@
                     "text": "tồi tệ "
                   },
                   "back": {
-                    "text": "terrible"
+                    "text": "terrible",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/977695398f868b69837a0e6960962a4ca141ed9a/public/audio/file-1789086120753/card-1789086138770/back-1789168733494-6tcs1f.webm"
                   }
                 },
                 {
@@ -911,7 +1004,8 @@
                     "text": "của tôi "
                   },
                   "back": {
-                    "text": "my"
+                    "text": "my",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/6590b5cdb8e02348e21845246d1c9a316cf898c9/public/audio/file-1789086120753/card-1789086138953/back-1789168735363-dvcc9b.webm"
                   }
                 },
                 {
@@ -920,7 +1014,8 @@
                     "text": "của bạn "
                   },
                   "back": {
-                    "text": "your"
+                    "text": "your",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/94104834e72cfdf2346fa5c8ab9c117b81f68c2e/public/audio/file-1789086120753/card-1789086139136/back-1789168737287-74e7yp.webm"
                   }
                 },
                 {
@@ -929,7 +1024,8 @@
                     "text": "của chúng ta"
                   },
                   "back": {
-                    "text": "our"
+                    "text": "our",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/b158636c7e8c3b059161dbe05d0b9afb865ffc6e/public/audio/file-1789086120753/card-1789086139320/back-1789168740577-j14szs.webm"
                   }
                 },
                 {
@@ -938,7 +1034,8 @@
                     "text": "của họ "
                   },
                   "back": {
-                    "text": "their"
+                    "text": "their",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/3c630a774e0d9a29e76ae54c42c70dab37dbadf9/public/audio/file-1789086120753/card-1789086139503/back-1789168744105-9zwe01.webm"
                   }
                 },
                 {
@@ -947,7 +1044,8 @@
                     "text": "của cô ấy "
                   },
                   "back": {
-                    "text": "her"
+                    "text": "her",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/590d9aa9cdd8f913bcf158c908537c816a0a4936/public/audio/file-1789086120753/card-1789086139719/back-1789168746489-cq58gr.webm"
                   }
                 },
                 {
@@ -956,7 +1054,8 @@
                     "text": "của anh ấy "
                   },
                   "back": {
-                    "text": "his"
+                    "text": "his",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/00fb9b8c8dd9e0850e274225ac5c20beee2d611a/public/audio/file-1789086120753/card-1789086139920/back-1789168748445-ouxwuz.webm"
                   }
                 },
                 {
@@ -965,7 +1064,8 @@
                     "text": "của nó "
                   },
                   "back": {
-                    "text": "its"
+                    "text": "its",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/085dc235fe21865ba3a422ae2e9421ad915d6b28/public/audio/file-1789086120753/card-1789086234132/back-1789168751473-olw4c1.webm"
                   }
                 }
               ]
@@ -983,7 +1083,8 @@
                     "text": "bữa sáng"
                   },
                   "back": {
-                    "text": "breakfast"
+                    "text": "breakfast",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/8e4a4a58109dd2357488c4c401194ea3c6b6a187/public/audio/file-1789086434331/file-1789086434331-card/back-1789168753901-i1sktr.webm"
                   }
                 },
                 {
@@ -992,7 +1093,8 @@
                     "text": "bữa trưa"
                   },
                   "back": {
-                    "text": "lunch"
+                    "text": "lunch",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/c8c416ff2986c11e7ab621a4e1d116057f273b91/public/audio/file-1789086434331/card-1789086458980/back-1789168758537-t935e0.webm"
                   }
                 },
                 {
@@ -1001,7 +1103,8 @@
                     "text": "bữa tối "
                   },
                   "back": {
-                    "text": "dinner"
+                    "text": "dinner",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/52acba9f53fb610d3b7af118bfb468e4df426e95/public/audio/file-1789086434331/card-1789086460297/back-1789168760377-ad0le2.webm"
                   }
                 },
                 {
@@ -1010,7 +1113,8 @@
                     "text": "cá"
                   },
                   "back": {
-                    "text": "fish"
+                    "text": "fish",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/ee940c6c1193d9a4e52ec9420d3a8a9e924b96ca/public/audio/file-1789086434331/card-1789086461880/back-1789168762931-s599y7.webm"
                   }
                 },
                 {
@@ -1019,7 +1123,8 @@
                     "text": "thịt"
                   },
                   "back": {
-                    "text": "meat"
+                    "text": "meat",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/19c40d9e776371a4995f5a5e3f3a749f3191d703/public/audio/file-1789086434331/card-1789086463564/back-1789168765746-nqcc3j.webm"
                   }
                 },
                 {
@@ -1028,7 +1133,8 @@
                     "text": "mì Ý"
                   },
                   "back": {
-                    "text": "pasta"
+                    "text": "pasta",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/f1e07207c523d32ac9c04936a4cfd14148759bb3/public/audio/file-1789086434331/card-1789086464898/back-1789168768241-37xehg.webm"
                   }
                 },
                 {
@@ -1037,7 +1143,8 @@
                     "text": "cơm/ gạo "
                   },
                   "back": {
-                    "text": "rice"
+                    "text": "rice",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/d7ca7fcc06bf2a8c1996039e40b1e00f76180fbc/public/audio/file-1789086434331/card-1789086465947/back-1789168770986-u3ne38.webm"
                   }
                 },
                 {
@@ -1046,7 +1153,8 @@
                     "text": "sữa chua"
                   },
                   "back": {
-                    "text": "yoghurt"
+                    "text": "yoghurt",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/882a8cb452580e7dfde05f94977b96af6dfdcc13/public/audio/file-1789086434331/card-1789086466697/back-1789168773263-yd6bdn.webm"
                   }
                 },
                 {
@@ -1055,7 +1163,8 @@
                     "text": "rau củ"
                   },
                   "back": {
-                    "text": "vegetables"
+                    "text": "vegetables",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/2686a4772aa3eb57be9433cec1bfc78d53c36a48/public/audio/file-1789086434331/card-1789086467713/back-1789168775944-k3quus.webm"
                   }
                 },
                 {
@@ -1064,7 +1173,8 @@
                     "text": "khoai tây"
                   },
                   "back": {
-                    "text": "potatoes"
+                    "text": "potatoes",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/86274a6f1a6dd178c4ff1663cdc5bc1732574a55/public/audio/file-1789086434331/card-1789086468230/back-1789168778142-fejcuz.webm"
                   }
                 },
                 {
@@ -1073,7 +1183,8 @@
                     "text": "bánh mì"
                   },
                   "back": {
-                    "text": "bread"
+                    "text": "bread",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/f795753915766d7d044780d49a04d6705e68dc74/public/audio/file-1789086434331/card-1789086468430/back-1789168780511-3v9p32.webm"
                   }
                 },
                 {
@@ -1082,7 +1193,8 @@
                     "text": "bơ "
                   },
                   "back": {
-                    "text": "butter"
+                    "text": "butter",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/e24059fb92152d44a9ebe73ab59ba02ec6f51a33/public/audio/file-1789086434331/card-1789086468602/back-1789168782941-15ynl3.webm"
                   }
                 },
                 {
@@ -1091,7 +1203,8 @@
                     "text": "phô mai "
                   },
                   "back": {
-                    "text": "cheese"
+                    "text": "cheese",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/24e563395bcc327030b0b4a441d5c53fe29ae18e/public/audio/file-1789086434331/card-1789086468881/back-1789168784717-deice0.webm"
                   }
                 },
                 {
@@ -1100,7 +1213,8 @@
                     "text": "đường"
                   },
                   "back": {
-                    "text": "sugar"
+                    "text": "sugar",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/052cfa68d693fc99d5af4b424caf7d438db84131/public/audio/file-1789086434331/card-1789086469063/back-1789168786712-3ho2n4.webm"
                   }
                 },
                 {
@@ -1109,7 +1223,8 @@
                     "text": "bánh mì kẹp "
                   },
                   "back": {
-                    "text": "sandwich"
+                    "text": "sandwich",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/316d05ee8220dbcec43dfcb2257a0f2df11d660d/public/audio/file-1789086434331/card-1789086469364/back-1789168788385-b8dgf6.webm"
                   }
                 },
                 {
@@ -1118,7 +1233,8 @@
                     "text": "ngũ cốc"
                   },
                   "back": {
-                    "text": "cereal"
+                    "text": "cereal",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/af72a7de0915cf270f8add9bf77e7339d9aba6df/public/audio/file-1789086434331/card-1789086469564/back-1789168790059-yw6i8l.webm"
                   }
                 },
                 {
@@ -1127,7 +1243,8 @@
                     "text": "sô cô la"
                   },
                   "back": {
-                    "text": "chocolate"
+                    "text": "chocolate",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/76d9d9d15e1b044f82cf551c730d88b16a2e4dd7/public/audio/file-1789086434331/card-1789086469747/back-1789168791682-ciwd27.webm"
                   }
                 },
                 {
@@ -1136,7 +1253,8 @@
                     "text": "xúc xích "
                   },
                   "back": {
-                    "text": "sausages"
+                    "text": "sausages",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/8f0648d559ded588395940ac8eac764516e7de5b/public/audio/file-1789086434331/card-1789086469947/back-1789168793567-upudra.webm"
                   }
                 },
                 {
@@ -1145,7 +1263,8 @@
                     "text": "đặc trưng "
                   },
                   "back": {
-                    "text": "typical"
+                    "text": "typical",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/0a26bc517cb6b6be9c733da81ababaebebe9f042/public/audio/file-1789086434331/card-1789086470148/back-1789168795668-ceh0yp.webm"
                   }
                 },
                 {
@@ -1154,7 +1273,8 @@
                     "text": "truyền thống "
                   },
                   "back": {
-                    "text": "traditional"
+                    "text": "traditional",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/c7c4b5995c9a020e8d67a776991b51924bbe29f7/public/audio/file-1789086434331/card-1789086470348/back-1789168797441-3qxugm.webm"
                   }
                 }
               ]
