@@ -175,8 +175,9 @@ const loadInitialTree = (): Tree => {
 };
 const loadPublishedTree = async (): Promise<Tree | null> => {
   try {
+    const githubUrl = `https://raw.githubusercontent.com/${githubConfig.owner}/${githubConfig.repo}/${githubConfig.branch}/${githubConfig.treePath}`;
     const response = await fetch(
-      `${import.meta.env.BASE_URL}data/tree.json?v=${Date.now()}`,
+      `${githubUrl}?v=${Date.now()}`,
       { cache: "no-store" },
     );
     if (!response.ok) return null;
@@ -188,6 +189,7 @@ const loadPublishedTree = async (): Promise<Tree | null> => {
 
 function App() {
   const [tree, setTree] = useState<Tree>(loadInitialTree);
+  const [isLoading, setIsLoading] = useState(true);
   const [route, setRoute] = useState(
     window.location.hash.slice(1) || "/browse/root",
   );
@@ -200,9 +202,11 @@ function App() {
   }, []);
   useEffect(() => {
     loadPublishedTree().then((publishedTree) => {
-      if (!publishedTree) return;
-      setTree(publishedTree);
-      localStorage.setItem("vocab-tree", JSON.stringify(publishedTree));
+      if (publishedTree) {
+        setTree(publishedTree);
+        localStorage.setItem("vocab-tree", JSON.stringify(publishedTree));
+      }
+      setIsLoading(false);
     });
   }, []);
   useEffect(() => {
@@ -211,6 +215,7 @@ function App() {
       return () => clearTimeout(timer);
     }
   }, [toast]);
+  if (isLoading) return <div className="loading-screen">Đang tải dữ liệu...</div>;
   const updateTree = (next: Tree) => {
     setTree(next);
     localStorage.setItem("vocab-tree", JSON.stringify(next));
