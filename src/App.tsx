@@ -212,10 +212,9 @@ function App() {
   }, []);
   useEffect(() => {
     loadPublishedTree().then((publishedTree) => {
-      if (publishedTree) {
-        setTree(publishedTree);
-        localStorage.setItem("vocab-tree", JSON.stringify(publishedTree));
-      }
+      if (!publishedTree || localStorage.getItem("vocab-tree-dirty") === "1") return;
+      setTree(publishedTree);
+      localStorage.setItem("vocab-tree", JSON.stringify(publishedTree));
     });
   }, []);
   useEffect(() => {
@@ -227,6 +226,7 @@ function App() {
   const updateTree = (next: Tree) => {
     setTree(next);
     localStorage.setItem("vocab-tree", JSON.stringify(next));
+    localStorage.setItem("vocab-tree-dirty", "1");
     setToast("Đã lưu bản nháp trên thiết bị");
   };
   if (route.startsWith("/admin"))
@@ -833,6 +833,9 @@ function Admin({
       return;
     }
     setCheckingGithub(true);
+    const treeToPublish = JSON.parse(
+      localStorage.getItem("vocab-tree") || JSON.stringify(tree),
+    ) as Tree;
     const headers = {
       Authorization: `Bearer ${cleanToken}`,
       Accept: "application/vnd.github+json",
@@ -860,7 +863,9 @@ function Admin({
         headers,
         body: JSON.stringify({
           message: "Update vocabulary tree",
-          content: btoa(unescape(encodeURIComponent(JSON.stringify(tree, null, 2)))),
+          content: btoa(
+            unescape(encodeURIComponent(JSON.stringify(treeToPublish, null, 2))),
+          ),
           sha: info.sha,
           branch: githubConfig.branch,
         }),
@@ -870,6 +875,8 @@ function Admin({
         throw Error(error?.message || "GitHub từ chối commit");
       }
       sessionStorage.setItem("vocab-pat", cleanToken);
+      localStorage.setItem("vocab-tree", JSON.stringify(treeToPublish));
+      localStorage.removeItem("vocab-tree-dirty");
       setTokenOpen(false);
       toast("Đã commit lên GitHub. Pages sẽ cập nhật sau ít phút.");
     } catch (error) {
