@@ -22,87 +22,6 @@ type FolderNode = {
 type Node = FileNode | FolderNode;
 type Tree = FolderNode;
 
-const sampleTree: Tree = {
-  id: "root",
-  type: "folder",
-  name: "Tất cả chủ đề",
-  icon: "✦",
-  children: [
-    {
-      id: "space",
-      type: "folder",
-      name: "Vũ trụ & khoa học",
-      icon: "✺",
-      children: [
-        {
-          id: "space-basics",
-          type: "file",
-          name: "Space basics",
-          description: "Những từ đầu tiên để đọc về vũ trụ.",
-          icon: "☄",
-          cards: [
-            { id: "c1", front: { text: "quỹ đạo" }, back: { text: "orbit" } },
-            {
-              id: "c2",
-              front: { text: "hành tinh" },
-              back: { text: "planet" },
-            },
-            {
-              id: "c3",
-              front: { text: "phi hành gia" },
-              back: { text: "astronaut" },
-            },
-            { id: "c4", front: { text: "thiên hà" }, back: { text: "galaxy" } },
-            {
-              id: "c5",
-              front: { text: "kính viễn vọng" },
-              back: { text: "telescope" },
-            },
-          ],
-        },
-      ],
-    },
-    {
-      id: "daily",
-      type: "folder",
-      name: "Đời sống hằng ngày",
-      icon: "⌂",
-      children: [
-        {
-          id: "travel",
-          type: "file",
-          name: "Travel essentials",
-          description: "Từ vựng hữu ích cho những chuyến đi.",
-          icon: "✈",
-          cards: [
-            {
-              id: "c6",
-              front: { text: "hộ chiếu" },
-              back: { text: "passport" },
-            },
-            { id: "c7", front: { text: "sân bay" }, back: { text: "airport" } },
-            {
-              id: "c8",
-              front: { text: "đặt phòng" },
-              back: { text: "reservation" },
-            },
-          ],
-        },
-      ],
-    },
-    {
-      id: "starter",
-      type: "file",
-      name: "Starter pack",
-      description: "Bộ thẻ khởi động ngắn gọn.",
-      icon: "◈",
-      cards: [
-        { id: "c9", front: { text: "tập trung" }, back: { text: "focus" } },
-        { id: "c10", front: { text: "tiến bộ" }, back: { text: "progress" } },
-      ],
-    },
-  ],
-};
 const flatNodes = (node: Node): Node[] => [
   node,
   ...(node.type === "folder" ? node.children.flatMap(flatNodes) : []),
@@ -178,30 +97,46 @@ const cloneFile = (file: FileNode): FileNode => {
     })),
   };
 };
-const loadInitialTree = (): Tree => sampleTree;
-const fetchTree = async (url: string, timeoutMs: number): Promise<Tree | null> => {
+const isTree = (value: unknown): value is Tree => {
+  if (!value || typeof value !== "object") return false;
+  const tree = value as Partial<Tree>;
+  return tree.type === "folder" && typeof tree.id === "string" && Array.isArray(tree.children);
+};
+const fetchTree = async (
+  url: string,
+  timeoutMs: number,
+  signal?: AbortSignal,
+): Promise<Tree | null> => {
   const controller = new AbortController();
   const timeout = window.setTimeout(() => controller.abort(), timeoutMs);
+  const abort = () => controller.abort();
+  signal?.addEventListener("abort", abort, { once: true });
   try {
     const response = await fetch(url, {
-      cache: "no-store",
+      // Ask GitHub to revalidate rather than serving a stale browser response.
+      cache: "no-cache",
       signal: controller.signal,
     });
     if (!response.ok) return null;
-    return (await response.json()) as Tree;
+    const data: unknown = await response.json();
+    return isTree(data) ? data : null;
   } catch {
     return null;
   } finally {
     window.clearTimeout(timeout);
+    signal?.removeEventListener("abort", abort);
   }
 };
-const loadPublishedTree = async (): Promise<Tree | null> => {
+const loadPublishedTree = async (signal?: AbortSignal): Promise<Tree | null> => {
   const githubUrl = `https://raw.githubusercontent.com/${githubConfig.owner}/${githubConfig.repo}/${githubConfig.branch}/${githubConfig.treePath}?v=${Date.now()}`;
-  return fetchTree(githubUrl, 15000);
+  return fetchTree(githubUrl, 8000, signal);
 };
 
 function App() {
-  const [tree, setTree] = useState<Tree>(loadInitialTree);
+  const [tree, setTree] = useState<Tree | null>(null);
+  const [loadError, setLoadError] = useState(false);
+  const [reloadKey, setReloadKey] = useState(0);
+  const [retryCount, setRetryCount] = useState(0);
   const hasLocalEdits = useRef(false);
   const [route, setRoute] = useState(
     window.location.hash.slice(1) || "/browse/root",
@@ -214,11 +149,23 @@ function App() {
     return () => window.removeEventListener("hashchange", listener);
   }, []);
   useEffect(() => {
-    loadPublishedTree().then((publishedTree) => {
-      if (!publishedTree || hasLocalEdits.current) return;
-      setTree(publishedTree);
+    const controller = new AbortController();
+    loadPublishedTree(controller.signal).then((publishedTree) => {
+      if (controller.signal.aborted || hasLocalEdits.current) return;
+      if (publishedTree) setTree(publishedTree);
+      else setLoadError(true);
     });
-  }, []);
+    return () => controller.abort();
+  }, [reloadKey]);
+  useEffect(() => {
+    if (!loadError) return;
+    const retryTimer = window.setTimeout(() => {
+      setLoadError(false);
+      setRetryCount((count) => count + 1);
+      setReloadKey((key) => key + 1);
+    }, 1500);
+    return () => window.clearTimeout(retryTimer);
+  }, [loadError]);
   useEffect(() => {
     if (toast) {
       const timer = setTimeout(() => setToast(""), 2600);
@@ -230,6 +177,17 @@ function App() {
     setTree(next);
     setToast("Đã lưu bản nháp trên thiết bị");
   };
+  if (!tree)
+    return (
+      <LoadingScreen
+        failed={loadError}
+        retryCount={retryCount}
+        onRetry={() => {
+          setLoadError(false);
+          setReloadKey((key) => key + 1);
+        }}
+      />
+    );
   if (route.startsWith("/admin"))
     return <Admin tree={tree} updateTree={updateTree} toast={setToast} />;
   const game = route.match(/^\/file\/([^/]+)\/game/);
@@ -264,6 +222,45 @@ function App() {
     <Shell tree={tree}>
       <Browse tree={tree} folderId={folderId} />
     </Shell>
+  );
+}
+
+function LoadingScreen({
+  failed,
+  retryCount,
+  onRetry,
+}: {
+  failed: boolean;
+  retryCount: number;
+  onRetry: () => void;
+}) {
+  return (
+    <main className="loading-screen" aria-live="polite">
+      <div className="loading-brand">
+        <span className="brand-mark">v</span>
+        <span>
+          vocab<span className="accent">lab</span>
+        </span>
+      </div>
+      {failed ? (
+        <div className="load-message">
+          <h1>Chưa thể tải nội dung</h1>
+          <p>
+            {retryCount
+              ? `Đang tự kết nối lại (lần ${retryCount + 1})…`
+              : "Đang tự kết nối lại…"}
+          </p>
+          <button className="primary-button" onClick={onRetry}>
+            Tải lại ngay
+          </button>
+        </div>
+      ) : (
+        <div className="load-message">
+          <span className="loading-spinner" aria-hidden="true" />
+          <p>Đang tải bộ từ của bạn…</p>
+        </div>
+      )}
+    </main>
   );
 }
 
