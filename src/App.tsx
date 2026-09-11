@@ -283,7 +283,7 @@ function App() {
       />
     );
   if (route.startsWith("/admin"))
-    return <Admin tree={tree} toast={setToast} />;
+    return <Admin tree={tree} toast={setToast} onPublishedTree={setTree} />;
   const game = route.match(/^\/file\/([^/]+)\/game/);
   const learn = route.match(/^\/file\/([^/]+)\/learn/);
   const fileRoute = route.match(/^\/file\/([^/]+)/);
@@ -874,9 +874,11 @@ function Game({ file }: { file: FileNode }) {
 function Admin({
   tree: publishedTree,
   toast,
+  onPublishedTree,
 }: {
   tree: Tree;
   toast: (message: string) => void;
+  onPublishedTree: (tree: Tree) => void;
 }) {
   const [tree, setTree] = useState<Tree>(() => readDraftTree() || publishedTree);
   const updateTree = (next: Tree) => {
@@ -986,7 +988,6 @@ function Admin({
       Accept: "application/vnd.github+json",
       "Content-Type": "application/json",
     };
-    const base = `https://api.github.com/repos/${githubConfig.owner}/${githubConfig.repo}/contents/${githubConfig.treePath}`;
     try {
       const identity = await fetch("https://api.github.com/user", { headers });
       if (!identity.ok) {
@@ -1004,6 +1005,28 @@ function Admin({
           throw Error("Hãy bấm “Lưu thay đổi” cho bộ từ trước khi lưu audio mới.");
         }
       }
+      const refResponse = await fetch(
+        `https://api.github.com/repos/${githubConfig.owner}/${githubConfig.repo}/git/ref/heads/${githubConfig.branch}`,
+        { headers },
+      );
+      const ref = await refResponse.json();
+      if (!refResponse.ok || !ref.object?.sha) {
+        throw Error(ref.message || "Không đọc được nhánh GitHub");
+      }
+      const commitResponse = await fetch(
+        `https://api.github.com/repos/${githubConfig.owner}/${githubConfig.repo}/git/commits/${ref.object.sha}`,
+        { headers },
+      );
+      const commit = await commitResponse.json();
+      if (!commitResponse.ok || !commit.tree?.sha) {
+        throw Error(commit.message || "Không đọc được Git tree hiện tại");
+      }
+      const treeEntries: Array<{
+        path: string;
+        mode: "100644";
+        type: "blob";
+        sha: string;
+      }> = [];
       for (const [key, pending] of pendingAudio.current) {
         const [fileId, cardId, side] = key.split(":") as [string, string, CardSide];
         let remoteUrl = pending.remoteUrl;
@@ -1019,47 +1042,86 @@ function Admin({
                   : "webm";
           const filename = `${side}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${extension}`;
           const path = `public/audio/${fileId}/${cardId}/${filename}`;
-          const upload = await fetch(
-            `https://api.github.com/repos/${githubConfig.owner}/${githubConfig.repo}/contents/${path}`,
+          const blobResponse = await fetch(
+            `https://api.github.com/repos/${githubConfig.owner}/${githubConfig.repo}/git/blobs`,
             {
-              method: "PUT",
+              method: "POST",
               headers,
               body: JSON.stringify({
-                message: `Add audio for ${cardId}`,
                 content: await toBase64(pending.blob),
-                branch: githubConfig.branch,
+                encoding: "base64",
               }),
             },
           );
-          const uploaded = await upload.json().catch(() => null);
-          if (!upload.ok || !uploaded?.commit?.sha) {
-            throw Error(uploaded?.message || `Không thể tải audio ${filename}`);
+          const blob = await blobResponse.json().catch(() => null);
+          if (!blobResponse.ok || !blob?.sha) {
+            throw Error(blob?.message || `Không thể tải audio ${filename}`);
           }
-          remoteUrl = `https://raw.githubusercontent.com/${githubConfig.owner}/${githubConfig.repo}/${uploaded.commit.sha}/${path}`;
+          remoteUrl = `https://raw.githubusercontent.com/${githubConfig.owner}/${githubConfig.repo}/${githubConfig.branch}/${path}`;
+          treeEntries.push({ path, mode: "100644", type: "blob", sha: blob.sha });
           pendingAudio.current.set(key, { ...pending, remoteUrl });
         }
         treeToPublish = setCardAudio(treeToPublish, fileId, cardId, side, remoteUrl);
       }
-      const current = await fetch(`${base}?ref=${githubConfig.branch}`, { headers });
-      const info = await current.json();
-      if (!current.ok || !info.sha) {
-        throw Error(info.message || "Không đọc được file trên GitHub");
+      const treeBlobResponse = await fetch(
+        `https://api.github.com/repos/${githubConfig.owner}/${githubConfig.repo}/git/blobs`,
+        {
+          method: "POST",
+          headers,
+          body: JSON.stringify({
+            content: btoa(
+              unescape(encodeURIComponent(JSON.stringify(treeToPublish, null, 2))),
+            ),
+            encoding: "base64",
+          }),
+        },
+      );
+      const treeBlob = await treeBlobResponse.json().catch(() => null);
+      if (!treeBlobResponse.ok || !treeBlob?.sha) {
+        throw Error(treeBlob?.message || "Không tạo được blob tree.json");
       }
-      const result = await fetch(base, {
-        method: "PUT",
-        headers,
-        body: JSON.stringify({
-          message: "Update vocabulary tree",
-          content: btoa(
-            unescape(encodeURIComponent(JSON.stringify(treeToPublish, null, 2))),
-          ),
-          sha: info.sha,
-          branch: githubConfig.branch,
-        }),
-      });
-      if (!result.ok) {
-        const error = await result.json().catch(() => null);
-        throw Error(error?.message || "GitHub từ chối commit");
+      treeEntries.push({ path: githubConfig.treePath, mode: "100644", type: "blob", sha: treeBlob.sha });
+      const nextTreeResponse = await fetch(
+        `https://api.github.com/repos/${githubConfig.owner}/${githubConfig.repo}/git/trees`,
+        {
+          method: "POST",
+          headers,
+          body: JSON.stringify({ base_tree: commit.tree.sha, tree: treeEntries }),
+        },
+      );
+      const nextTree = await nextTreeResponse.json().catch(() => null);
+      if (!nextTreeResponse.ok || !nextTree?.sha) {
+        throw Error(nextTree?.message || "Không tạo được Git tree mới");
+      }
+      const result = await fetch(
+        `https://api.github.com/repos/${githubConfig.owner}/${githubConfig.repo}/git/commits`,
+        {
+          method: "POST",
+          headers,
+          body: JSON.stringify({
+            message: pendingAudio.current.size
+              ? `Update vocabulary tree and ${pendingAudio.current.size} audio file(s)`
+              : "Update vocabulary tree",
+            tree: nextTree.sha,
+            parents: [ref.object.sha],
+          }),
+        },
+      );
+      const nextCommit = await result.json().catch(() => null);
+      if (!result.ok || !nextCommit?.sha) {
+        throw Error(nextCommit?.message || "Không tạo được commit GitHub");
+      }
+      const updateRef = await fetch(
+        `https://api.github.com/repos/${githubConfig.owner}/${githubConfig.repo}/git/refs/heads/${githubConfig.branch}`,
+        {
+          method: "PATCH",
+          headers,
+          body: JSON.stringify({ sha: nextCommit.sha, force: false }),
+        },
+      );
+      if (!updateRef.ok) {
+        const error = await updateRef.json().catch(() => null);
+        throw Error(error?.message || "Nhánh đã thay đổi; hãy lưu lại lần nữa.");
       }
       sessionStorage.setItem("vocab-pat", cleanToken);
       pendingAudio.current.forEach((pending) => URL.revokeObjectURL(pending.previewUrl));
@@ -1067,6 +1129,7 @@ function Admin({
       updateTree(treeToPublish);
       localStorage.removeItem(draftTreeKey);
       void clearDraftAudio().catch(() => undefined);
+      onPublishedTree(treeToPublish);
       setTokenOpen(false);
       toast("Đã commit lên GitHub. Pages sẽ cập nhật sau ít phút.");
     } catch (error) {
