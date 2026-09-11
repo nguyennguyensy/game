@@ -27,7 +27,69 @@ type PendingAudio = {
   previewUrl: string;
   remoteUrl?: string;
 };
+type StoredAudio = { key: string; blob: Blob; remoteUrl?: string };
 type GitTreeItem = { path: string; type: "blob" | "tree"; size?: number };
+
+const draftTreeKey = "vocablab-tree-draft";
+const draftAudioStore = "audio";
+const draftAudioDb = "vocablab-draft-audio";
+
+const readDraftTree = (): Tree | null => {
+  try {
+    const value: unknown = JSON.parse(localStorage.getItem(draftTreeKey) || "null");
+    return isTree(value) ? value : null;
+  } catch {
+    return null;
+  }
+};
+const openDraftAudioDb = () =>
+  new Promise<IDBDatabase>((resolve, reject) => {
+    const request = indexedDB.open(draftAudioDb, 1);
+    request.onupgradeneeded = () => request.result.createObjectStore(draftAudioStore, { keyPath: "key" });
+    request.onsuccess = () => resolve(request.result);
+    request.onerror = () => reject(request.error);
+  });
+const storeDraftAudio = async (key: string, audio: PendingAudio) => {
+  const database = await openDraftAudioDb();
+  await new Promise<void>((resolve, reject) => {
+    const request = database.transaction(draftAudioStore, "readwrite").objectStore(draftAudioStore).put({
+      key,
+      blob: audio.blob,
+      remoteUrl: audio.remoteUrl,
+    } satisfies StoredAudio);
+    request.onsuccess = () => resolve();
+    request.onerror = () => reject(request.error);
+  });
+  database.close();
+};
+const removeDraftAudio = async (key: string) => {
+  const database = await openDraftAudioDb();
+  await new Promise<void>((resolve, reject) => {
+    const request = database.transaction(draftAudioStore, "readwrite").objectStore(draftAudioStore).delete(key);
+    request.onsuccess = () => resolve();
+    request.onerror = () => reject(request.error);
+  });
+  database.close();
+};
+const readDraftAudio = async () => {
+  const database = await openDraftAudioDb();
+  const records = await new Promise<StoredAudio[]>((resolve, reject) => {
+    const request = database.transaction(draftAudioStore, "readonly").objectStore(draftAudioStore).getAll();
+    request.onsuccess = () => resolve(request.result as StoredAudio[]);
+    request.onerror = () => reject(request.error);
+  });
+  database.close();
+  return records;
+};
+const clearDraftAudio = async () => {
+  const database = await openDraftAudioDb();
+  await new Promise<void>((resolve, reject) => {
+    const request = database.transaction(draftAudioStore, "readwrite").objectStore(draftAudioStore).clear();
+    request.onsuccess = () => resolve();
+    request.onerror = () => reject(request.error);
+  });
+  database.close();
+};
 
 const flatNodes = (node: Node): Node[] => [
   node,
@@ -189,7 +251,6 @@ const hasCard = (tree: Tree, fileId: string, cardId: string) =>
 function App() {
   const [tree, setTree] = useState<Tree | null>(null);
   const [loadError, setLoadError] = useState(false);
-  const hasLocalEdits = useRef(false);
   const [route, setRoute] = useState(
     window.location.hash.slice(1) || "/browse/root",
   );
@@ -203,7 +264,7 @@ function App() {
   useEffect(() => {
     const controller = new AbortController();
     loadPublishedTree(controller.signal).then((publishedTree) => {
-      if (controller.signal.aborted || hasLocalEdits.current) return;
+      if (controller.signal.aborted) return;
       if (publishedTree) setTree(publishedTree);
       else setLoadError(true);
     });
@@ -215,11 +276,6 @@ function App() {
       return () => clearTimeout(timer);
     }
   }, [toast]);
-  const updateTree = (next: Tree) => {
-    hasLocalEdits.current = true;
-    setTree(next);
-    setToast("Đã lưu bản nháp trên thiết bị");
-  };
   if (!tree)
     return (
       <LoadingScreen
@@ -227,7 +283,7 @@ function App() {
       />
     );
   if (route.startsWith("/admin"))
-    return <Admin tree={tree} updateTree={updateTree} toast={setToast} />;
+    return <Admin tree={tree} toast={setToast} />;
   const game = route.match(/^\/file\/([^/]+)\/game/);
   const learn = route.match(/^\/file\/([^/]+)\/learn/);
   const fileRoute = route.match(/^\/file\/([^/]+)/);
@@ -816,14 +872,23 @@ function Game({ file }: { file: FileNode }) {
 }
 
 function Admin({
-  tree,
-  updateTree,
+  tree: publishedTree,
   toast,
 }: {
   tree: Tree;
-  updateTree: (tree: Tree) => void;
   toast: (message: string) => void;
 }) {
+  const [tree, setTree] = useState<Tree>(() => readDraftTree() || publishedTree);
+  const updateTree = (next: Tree) => {
+    setTree(next);
+    try {
+      localStorage.setItem(draftTreeKey, JSON.stringify(next));
+    } catch {
+      toast("Không thể lưu bản nháp trên thiết bị");
+      return;
+    }
+    toast("Đã lưu bản nháp trên thiết bị");
+  };
   const [selected, setSelected] = useState<Node>(tree);
   const [tokenOpen, setTokenOpen] = useState(false);
   const [token, setToken] = useState(sessionStorage.getItem("vocab-pat") || "");
@@ -834,8 +899,32 @@ function Admin({
   const [cleanupCandidates, setCleanupCandidates] = useState<GitTreeItem[] | null>(null);
   const [cleanupBusy, setCleanupBusy] = useState(false);
   const [tokenAction, setTokenAction] = useState<"save" | "scan">("save");
+  const [, refreshPendingAudio] = useState(0);
   const pendingKey = (fileId: string, cardId: string, side: CardSide) =>
     `${fileId}:${cardId}:${side}`;
+  const pendingAudioFor = (fileId: string, cardId: string, side: CardSide) =>
+    pendingAudio.current.get(pendingKey(fileId, cardId, side));
+  useEffect(() => {
+    let active = true;
+    const pendingAtMount = pendingAudio.current;
+    readDraftAudio()
+      .then((records) => {
+        if (!active) return;
+        records.forEach((record) => {
+          pendingAudio.current.set(record.key, {
+            blob: record.blob,
+            previewUrl: URL.createObjectURL(record.blob),
+            remoteUrl: record.remoteUrl,
+          });
+        });
+        refreshPendingAudio((version) => version + 1);
+      })
+      .catch(() => undefined);
+    return () => {
+      active = false;
+      pendingAtMount.forEach((audio) => URL.revokeObjectURL(audio.previewUrl));
+    };
+  }, []);
   const changePendingAudio = (
     fileId: string,
     cardId: string,
@@ -847,6 +936,8 @@ function Admin({
     if (previous?.previewUrl !== audio?.previewUrl) URL.revokeObjectURL(previous?.previewUrl || "");
     if (audio) pendingAudio.current.set(key, audio);
     else pendingAudio.current.delete(key);
+    if (audio) void storeDraftAudio(key, audio).catch(() => undefined);
+    else void removeDraftAudio(key).catch(() => undefined);
   };
   const create = (type: "folder" | "file") => {
     const parent = selected.type === "folder" ? selected : tree;
@@ -945,7 +1036,7 @@ function Admin({
             throw Error(uploaded?.message || `Không thể tải audio ${filename}`);
           }
           remoteUrl = `https://raw.githubusercontent.com/${githubConfig.owner}/${githubConfig.repo}/${uploaded.commit.sha}/${path}`;
-          pending.remoteUrl = remoteUrl;
+          pendingAudio.current.set(key, { ...pending, remoteUrl });
         }
         treeToPublish = setCardAudio(treeToPublish, fileId, cardId, side, remoteUrl);
       }
@@ -974,6 +1065,8 @@ function Admin({
       pendingAudio.current.forEach((pending) => URL.revokeObjectURL(pending.previewUrl));
       pendingAudio.current.clear();
       updateTree(treeToPublish);
+      localStorage.removeItem(draftTreeKey);
+      void clearDraftAudio().catch(() => undefined);
       setTokenOpen(false);
       toast("Đã commit lên GitHub. Pages sẽ cập nhật sau ít phút.");
     } catch (error) {
@@ -1142,6 +1235,7 @@ function Admin({
             updateTree={updateTree}
             toast={toast}
             onPendingAudio={changePendingAudio}
+            pendingAudioFor={pendingAudioFor}
             onDelete={() => deleteNode(selected)}
             onCopy={() => setCopySource(selected)}
           />
@@ -1473,6 +1567,7 @@ function FileEditor({
   updateTree,
   toast,
   onPendingAudio,
+  pendingAudioFor,
   onDelete,
   onCopy,
 }: {
@@ -1481,14 +1576,13 @@ function FileEditor({
   updateTree: (tree: Tree) => void;
   toast: (message: string) => void;
   onPendingAudio: (fileId: string, cardId: string, side: CardSide, audio?: PendingAudio) => void;
+  pendingAudioFor: (fileId: string, cardId: string, side: CardSide) => PendingAudio | undefined;
   onDelete: () => void;
   onCopy: () => void;
 }) {
   const [name, setName] = useState(file.name);
   const [description, setDescription] = useState(file.description || "");
   const [cards, setCards] = useState(file.cards);
-  const [audioPreviews, setAudioPreviews] = useState<Record<string, string>>({});
-  const audioKey = (cardId: string, side: CardSide) => `${cardId}:${side}`;
   const save = () => {
     updateTree(
       updateFile(tree, file.id, (currentFile) => ({
@@ -1524,13 +1618,6 @@ function FileEditor({
       ),
     );
   const stageAudio = (cardId: string, side: CardSide, audio?: PendingAudio) => {
-    const key = audioKey(cardId, side);
-    setAudioPreviews((previews) => {
-      const next = { ...previews };
-      if (audio) next[key] = audio.previewUrl;
-      else delete next[key];
-      return next;
-    });
     onPendingAudio(file.id, cardId, side, audio);
   };
   return (
@@ -1580,7 +1667,7 @@ function FileEditor({
             <AudioEditor
               src={card.front.audio}
               toast={toast}
-              previewSrc={audioPreviews[audioKey(card.id, "front")]}
+              previewSrc={pendingAudioFor(file.id, card.id, "front")?.previewUrl}
               onRecord={(audio) => stageAudio(card.id, "front", audio)}
               onRemove={() => {
                 stageAudio(card.id, "front");
@@ -1595,7 +1682,7 @@ function FileEditor({
             <AudioEditor
               src={card.back.audio}
               toast={toast}
-              previewSrc={audioPreviews[audioKey(card.id, "back")]}
+              previewSrc={pendingAudioFor(file.id, card.id, "back")?.previewUrl}
               onRecord={(audio) => stageAudio(card.id, "back", audio)}
               onRemove={() => {
                 stageAudio(card.id, "back");
