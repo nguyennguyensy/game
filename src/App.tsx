@@ -197,11 +197,7 @@ const fetchTree = async (url: string, timeoutMs: number): Promise<Tree | null> =
 };
 const loadPublishedTree = async (): Promise<Tree | null> => {
   const githubUrl = `https://raw.githubusercontent.com/${githubConfig.owner}/${githubConfig.repo}/${githubConfig.branch}/${githubConfig.treePath}?v=${Date.now()}`;
-  const publishedUrl = `${import.meta.env.BASE_URL}data/tree.json?v=${Date.now()}`;
-  return (
-    (await fetchTree(githubUrl, 8000)) ||
-    (await fetchTree(publishedUrl, 5000))
-  );
+  return fetchTree(githubUrl, 15000);
 };
 
 function App() {
