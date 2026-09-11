@@ -173,23 +173,33 @@ const loadInitialTree = (): Tree => {
     return sampleTree;
   }
 };
-const loadPublishedTree = async (): Promise<Tree | null> => {
+const fetchTree = async (url: string, timeoutMs: number): Promise<Tree | null> => {
+  const controller = new AbortController();
+  const timeout = window.setTimeout(() => controller.abort(), timeoutMs);
   try {
-    const githubUrl = `https://raw.githubusercontent.com/${githubConfig.owner}/${githubConfig.repo}/${githubConfig.branch}/${githubConfig.treePath}`;
-    const response = await fetch(
-      `${githubUrl}?v=${Date.now()}`,
-      { cache: "no-store" },
-    );
+    const response = await fetch(url, {
+      cache: "no-store",
+      signal: controller.signal,
+    });
     if (!response.ok) return null;
     return (await response.json()) as Tree;
   } catch {
     return null;
+  } finally {
+    window.clearTimeout(timeout);
   }
+};
+const loadPublishedTree = async (): Promise<Tree | null> => {
+  const githubUrl = `https://raw.githubusercontent.com/${githubConfig.owner}/${githubConfig.repo}/${githubConfig.branch}/${githubConfig.treePath}?v=${Date.now()}`;
+  const publishedUrl = `${import.meta.env.BASE_URL}data/tree.json?v=${Date.now()}`;
+  return (
+    (await fetchTree(githubUrl, 8000)) ||
+    (await fetchTree(publishedUrl, 5000))
+  );
 };
 
 function App() {
   const [tree, setTree] = useState<Tree>(loadInitialTree);
-  const [isLoading, setIsLoading] = useState(true);
   const [route, setRoute] = useState(
     window.location.hash.slice(1) || "/browse/root",
   );
@@ -206,7 +216,6 @@ function App() {
         setTree(publishedTree);
         localStorage.setItem("vocab-tree", JSON.stringify(publishedTree));
       }
-      setIsLoading(false);
     });
   }, []);
   useEffect(() => {
@@ -215,7 +224,6 @@ function App() {
       return () => clearTimeout(timer);
     }
   }, [toast]);
-  if (isLoading) return <div className="loading-screen">Đang tải dữ liệu...</div>;
   const updateTree = (next: Tree) => {
     setTree(next);
     localStorage.setItem("vocab-tree", JSON.stringify(next));
