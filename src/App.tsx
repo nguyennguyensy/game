@@ -21,6 +21,13 @@ type FolderNode = {
 };
 type Node = FileNode | FolderNode;
 type Tree = FolderNode;
+type CardSide = "front" | "back";
+type PendingAudio = {
+  blob: Blob;
+  previewUrl: string;
+  remoteUrl?: string;
+};
+type GitTreeItem = { path: string; type: "blob" | "tree"; size?: number };
 
 const flatNodes = (node: Node): Node[] => [
   node,
@@ -123,6 +130,61 @@ const loadPublishedTree = async (signal?: AbortSignal): Promise<Tree | null> => 
   const githubUrl = `https://raw.githubusercontent.com/${githubConfig.owner}/${githubConfig.repo}/${githubConfig.branch}/${githubConfig.treePath}?v=${Date.now()}`;
   return fetchTree(githubUrl, signal);
 };
+
+const githubHeaders = (token: string) => ({
+  Authorization: `Bearer ${token}`,
+  Accept: "application/vnd.github+json",
+  "Content-Type": "application/json",
+});
+const toBase64 = async (blob: Blob) => {
+  const buffer = new Uint8Array(await blob.arrayBuffer());
+  let binary = "";
+  const chunkSize = 0x8000;
+  for (let index = 0; index < buffer.length; index += chunkSize) {
+    binary += String.fromCharCode(...buffer.subarray(index, index + chunkSize));
+  }
+  return btoa(binary);
+};
+const audioPathFromValue = (value?: string) => {
+  if (!value) return null;
+  if (value.startsWith("public/audio/")) return value;
+  if (value.startsWith("/audio/")) return `public${value}`;
+  try {
+    const url = new URL(value);
+    const marker = "/public/audio/";
+    const index = url.pathname.indexOf(marker);
+    return index >= 0 ? url.pathname.slice(index + 1) : null;
+  } catch {
+    return null;
+  }
+};
+const referencedAudioPaths = (tree: Tree) =>
+  new Set(
+    allFiles(tree).flatMap((file) =>
+      file.cards.flatMap((card) =>
+        [card.front.audio, card.back.audio]
+          .map(audioPathFromValue)
+          .filter((path): path is string => Boolean(path)),
+      ),
+    ),
+  );
+const setCardAudio = (
+  tree: Tree,
+  fileId: string,
+  cardId: string,
+  side: CardSide,
+  audio: string,
+) =>
+  updateFile(tree, fileId, (file) => ({
+    ...file,
+    cards: file.cards.map((card) =>
+      card.id === cardId ? { ...card, [side]: { ...card[side], audio } } : card,
+    ),
+  }));
+const hasCard = (tree: Tree, fileId: string, cardId: string) =>
+  allFiles(tree).some(
+    (file) => file.id === fileId && file.cards.some((card) => card.id === cardId),
+  );
 
 function App() {
   const [tree, setTree] = useState<Tree | null>(null);
@@ -403,6 +465,19 @@ function Learn({ file }: { file: FileNode }) {
   const [cards, setCards] = useState(file.cards);
   const card = cards[index];
   const showBack = initialSide === "back" ? !flipped : flipped;
+  useEffect(() => {
+    // Audio is intentionally fetched only after entering Learn, never while tree.json loads.
+    const upcoming = [card, cards[(index + 1) % cards.length]];
+    upcoming.forEach((item) => {
+      [item?.front.audio, item?.back.audio].forEach((src) => {
+        if (src) {
+          const audio = new Audio();
+          audio.preload = "metadata";
+          audio.src = src;
+        }
+      });
+    });
+  }, [card, cards, index]);
   const next = (delta: number) => {
     setIndex((index + delta + cards.length) % cards.length);
     setFlipped(false);
@@ -755,6 +830,24 @@ function Admin({
   const [copySource, setCopySource] = useState<FileNode | null>(null);
   const [githubError, setGithubError] = useState("");
   const [checkingGithub, setCheckingGithub] = useState(false);
+  const pendingAudio = useRef(new Map<string, PendingAudio>());
+  const [cleanupCandidates, setCleanupCandidates] = useState<GitTreeItem[] | null>(null);
+  const [cleanupBusy, setCleanupBusy] = useState(false);
+  const [tokenAction, setTokenAction] = useState<"save" | "scan">("save");
+  const pendingKey = (fileId: string, cardId: string, side: CardSide) =>
+    `${fileId}:${cardId}:${side}`;
+  const changePendingAudio = (
+    fileId: string,
+    cardId: string,
+    side: CardSide,
+    audio?: PendingAudio,
+  ) => {
+    const key = pendingKey(fileId, cardId, side);
+    const previous = pendingAudio.current.get(key);
+    if (previous?.previewUrl !== audio?.previewUrl) URL.revokeObjectURL(previous?.previewUrl || "");
+    if (audio) pendingAudio.current.set(key, audio);
+    else pendingAudio.current.delete(key);
+  };
   const create = (type: "folder" | "file") => {
     const parent = selected.type === "folder" ? selected : tree;
     const id = `${type}-${Date.now()}`;
@@ -796,7 +889,7 @@ function Admin({
       return;
     }
     setCheckingGithub(true);
-    const treeToPublish = tree;
+    let treeToPublish = tree;
     const headers = {
       Authorization: `Bearer ${cleanToken}`,
       Accept: "application/vnd.github+json",
@@ -813,6 +906,48 @@ function Admin({
             : "Không thể xác thực PAT với GitHub.",
         );
         return;
+      }
+      for (const key of pendingAudio.current.keys()) {
+        const [fileId, cardId] = key.split(":");
+        if (!hasCard(tree, fileId, cardId)) {
+          throw Error("Hãy bấm “Lưu thay đổi” cho bộ từ trước khi lưu audio mới.");
+        }
+      }
+      for (const [key, pending] of pendingAudio.current) {
+        const [fileId, cardId, side] = key.split(":") as [string, string, CardSide];
+        let remoteUrl = pending.remoteUrl;
+        if (!remoteUrl) {
+          const extension = pending.blob.type.includes("ogg")
+            ? "ogg"
+            : pending.blob.type.includes("mp4")
+              ? "m4a"
+              : pending.blob.type.includes("mpeg")
+                ? "mp3"
+                : pending.blob.type.includes("wav")
+                  ? "wav"
+                  : "webm";
+          const filename = `${side}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${extension}`;
+          const path = `public/audio/${fileId}/${cardId}/${filename}`;
+          const upload = await fetch(
+            `https://api.github.com/repos/${githubConfig.owner}/${githubConfig.repo}/contents/${path}`,
+            {
+              method: "PUT",
+              headers,
+              body: JSON.stringify({
+                message: `Add audio for ${cardId}`,
+                content: await toBase64(pending.blob),
+                branch: githubConfig.branch,
+              }),
+            },
+          );
+          const uploaded = await upload.json().catch(() => null);
+          if (!upload.ok || !uploaded?.commit?.sha) {
+            throw Error(uploaded?.message || `Không thể tải audio ${filename}`);
+          }
+          remoteUrl = `https://raw.githubusercontent.com/${githubConfig.owner}/${githubConfig.repo}/${uploaded.commit.sha}/${path}`;
+          pending.remoteUrl = remoteUrl;
+        }
+        treeToPublish = setCardAudio(treeToPublish, fileId, cardId, side, remoteUrl);
       }
       const current = await fetch(`${base}?ref=${githubConfig.branch}`, { headers });
       const info = await current.json();
@@ -836,6 +971,9 @@ function Admin({
         throw Error(error?.message || "GitHub từ chối commit");
       }
       sessionStorage.setItem("vocab-pat", cleanToken);
+      pendingAudio.current.forEach((pending) => URL.revokeObjectURL(pending.previewUrl));
+      pendingAudio.current.clear();
+      updateTree(treeToPublish);
       setTokenOpen(false);
       toast("Đã commit lên GitHub. Pages sẽ cập nhật sau ít phút.");
     } catch (error) {
@@ -852,6 +990,101 @@ function Admin({
       );
     } finally {
       setCheckingGithub(false);
+    }
+  };
+  const scanAudio = async () => {
+    const cleanToken = token.trim();
+    if (!cleanToken) {
+      setTokenAction("scan");
+      setTokenOpen(true);
+      setGithubError("Hãy nhập PAT có quyền contents: write để quét audio.");
+      return;
+    }
+    setCleanupBusy(true);
+    setGithubError("");
+    try {
+      const response = await fetch(
+        `https://api.github.com/repos/${githubConfig.owner}/${githubConfig.repo}/git/trees/${githubConfig.branch}?recursive=1`,
+        { headers: githubHeaders(cleanToken) },
+      );
+      const data = await response.json();
+      if (!response.ok || !Array.isArray(data.tree) || data.truncated) {
+        throw Error(data.message || "Không thể đọc danh sách audio trên GitHub");
+      }
+      const used = referencedAudioPaths(tree);
+      const orphaned = (data.tree as GitTreeItem[]).filter(
+        (item) => item.type === "blob" && item.path.startsWith("public/audio/") && !used.has(item.path),
+      );
+      sessionStorage.setItem("vocab-pat", cleanToken);
+      setCleanupCandidates(orphaned);
+      if (!orphaned.length) toast("Audio đã sạch: không có file thừa.");
+    } catch (error) {
+      setGithubError(error instanceof Error ? error.message : "Không thể quét audio.");
+      setTokenAction("scan");
+      setTokenOpen(true);
+    } finally {
+      setCleanupBusy(false);
+    }
+  };
+  const deleteOrphanAudio = async () => {
+    const cleanToken = token.trim();
+    if (!cleanToken || !cleanupCandidates?.length) return;
+    setCleanupBusy(true);
+    try {
+      const headers = githubHeaders(cleanToken);
+      const refResponse = await fetch(
+        `https://api.github.com/repos/${githubConfig.owner}/${githubConfig.repo}/git/ref/heads/${githubConfig.branch}`,
+        { headers },
+      );
+      const ref = await refResponse.json();
+      if (!refResponse.ok || !ref.object?.sha) throw Error(ref.message || "Không đọc được nhánh GitHub");
+      const commitResponse = await fetch(
+        `https://api.github.com/repos/${githubConfig.owner}/${githubConfig.repo}/git/commits/${ref.object.sha}`,
+        { headers },
+      );
+      const commit = await commitResponse.json();
+      if (!commitResponse.ok || !commit.tree?.sha) throw Error(commit.message || "Không đọc được Git tree");
+      const treeResponse = await fetch(
+        `https://api.github.com/repos/${githubConfig.owner}/${githubConfig.repo}/git/trees`,
+        {
+          method: "POST",
+          headers,
+          body: JSON.stringify({
+            base_tree: commit.tree.sha,
+            tree: cleanupCandidates.map((item) => ({ path: item.path, mode: "100644", type: "blob", sha: null })),
+          }),
+        },
+      );
+      const nextTree = await treeResponse.json();
+      if (!treeResponse.ok || !nextTree.sha) throw Error(nextTree.message || "Không tạo được thay đổi dọn dẹp");
+      const nextCommitResponse = await fetch(
+        `https://api.github.com/repos/${githubConfig.owner}/${githubConfig.repo}/git/commits`,
+        {
+          method: "POST",
+          headers,
+          body: JSON.stringify({
+            message: `Clean ${cleanupCandidates.length} orphan audio file(s)`,
+            tree: nextTree.sha,
+            parents: [ref.object.sha],
+          }),
+        },
+      );
+      const nextCommit = await nextCommitResponse.json();
+      if (!nextCommitResponse.ok || !nextCommit.sha) throw Error(nextCommit.message || "Không tạo được commit dọn dẹp");
+      const updateRef = await fetch(
+        `https://api.github.com/repos/${githubConfig.owner}/${githubConfig.repo}/git/refs/heads/${githubConfig.branch}`,
+        { method: "PATCH", headers, body: JSON.stringify({ sha: nextCommit.sha, force: false }) },
+      );
+      if (!updateRef.ok) {
+        const error = await updateRef.json().catch(() => null);
+        throw Error(error?.message || "Nhánh đã thay đổi; hãy quét lại trước khi xóa.");
+      }
+      toast(`Đã xóa ${cleanupCandidates.length} file audio không còn được dùng.`);
+      setCleanupCandidates(null);
+    } catch (error) {
+      toast(error instanceof Error ? `Không thể dọn audio: ${error.message}` : "Không thể dọn audio.");
+    } finally {
+      setCleanupBusy(false);
     }
   };
   const copyFile = (destinationId: string) => {
@@ -893,6 +1126,9 @@ function Admin({
             <button className="primary-button" onClick={() => create("file")}>
               + Bộ từ con
             </button>
+            <button className="outline-button" onClick={scanAudio} disabled={cleanupBusy}>
+              {cleanupBusy ? "Đang quét..." : "♲ Dọn audio"}
+            </button>
             <button className="save-github" onClick={saveGithub}>
               ↑ Lưu GitHub
             </button>
@@ -905,6 +1141,7 @@ function Admin({
             tree={tree}
             updateTree={updateTree}
             toast={toast}
+            onPendingAudio={changePendingAudio}
             onDelete={() => deleteNode(selected)}
             onCopy={() => setCopySource(selected)}
           />
@@ -939,10 +1176,14 @@ function Admin({
               {githubError && <p className="github-error">{githubError}</p>}
               <button
                 className="primary-button"
-                onClick={saveGithub}
+                onClick={tokenAction === "scan" ? scanAudio : saveGithub}
                 disabled={checkingGithub}
               >
-                {checkingGithub ? "Đang kiểm tra..." : "Xác nhận & lưu"}
+                {checkingGithub || cleanupBusy
+                  ? "Đang kiểm tra..."
+                  : tokenAction === "scan"
+                    ? "Xác nhận & quét"
+                    : "Xác nhận & lưu"}
               </button>
               <button
                 className="text-button"
@@ -975,6 +1216,31 @@ function Admin({
               <button className="text-button" onClick={() => setCopySource(null)}>
                 Hủy
               </button>
+            </div>
+          </div>
+        )}
+        {cleanupCandidates && (
+          <div className="edit-modal">
+            <div className="modal-card cleanup-modal">
+              <p className="eyebrow">AUDIO CLEANUP</p>
+              <h2>{cleanupCandidates.length ? "Xóa audio không còn dùng?" : "Audio đã sạch"}</h2>
+              {cleanupCandidates.length ? (
+                <>
+                  <p className="muted">
+                    {cleanupCandidates.length} file dưới <code>public/audio/</code> không được card nào trong tree hiện tại tham chiếu.
+                  </p>
+                  <ul className="cleanup-list">
+                    {cleanupCandidates.slice(0, 10).map((item) => <li key={item.path}>{item.path}</li>)}
+                  </ul>
+                  {cleanupCandidates.length > 10 && <p className="muted">và {cleanupCandidates.length - 10} file khác.</p>}
+                  <button className="delete-button cleanup-confirm" onClick={deleteOrphanAudio} disabled={cleanupBusy}>
+                    {cleanupBusy ? "Đang xóa..." : `Xóa ${cleanupCandidates.length} file`}
+                  </button>
+                </>
+              ) : (
+                <p className="muted">Không có file audio nào cần dọn.</p>
+              )}
+              <button className="text-button" onClick={() => setCleanupCandidates(null)}>Đóng</button>
             </div>
           </div>
         )}
@@ -1036,11 +1302,15 @@ function AdminTree({
 
 function AudioEditor({
   src,
-  onChange,
+  previewSrc,
+  onRecord,
+  onRemove,
   toast,
 }: {
   src?: string;
-  onChange: (audio?: string) => void;
+  previewSrc?: string;
+  onRecord: (audio: PendingAudio) => void;
+  onRemove: () => void;
   toast: (message: string) => void;
 }) {
   const uploadRef = useRef<HTMLInputElement>(null);
@@ -1069,9 +1339,8 @@ function AudioEditor({
         if (event.data.size) chunks.push(event.data);
       };
       recorder.onstop = () => {
-        const reader = new FileReader();
-        reader.onload = () => onChange(String(reader.result));
-        reader.readAsDataURL(new Blob(chunks, { type: recorder.mimeType }));
+        const blob = new Blob(chunks, { type: recorder.mimeType || "audio/webm" });
+        onRecord({ blob, previewUrl: URL.createObjectURL(blob) });
         stream.getTracks().forEach((track) => track.stop());
         streamRef.current = null;
         recorderRef.current = null;
@@ -1095,15 +1364,13 @@ function AudioEditor({
       toast("Hãy chọn một file audio");
       return;
     }
-    const reader = new FileReader();
-    reader.onload = () => onChange(String(reader.result));
-    reader.readAsDataURL(file);
+    onRecord({ blob: file, previewUrl: URL.createObjectURL(file) });
     event.target.value = "";
   };
 
   return (
     <div className="audio-editor">
-      <AudioButton src={src} />
+      <AudioButton src={previewSrc || src} />
       <button
         type="button"
         className="audio-action"
@@ -1118,11 +1385,11 @@ function AudioEditor({
       >
         Tải lên
       </button>
-      {src && (
+      {(src || previewSrc) && (
         <button
           type="button"
           className="audio-remove"
-          onClick={() => onChange(undefined)}
+          onClick={onRemove}
           aria-label="Xóa âm thanh"
         >
           ×
@@ -1205,6 +1472,7 @@ function FileEditor({
   tree,
   updateTree,
   toast,
+  onPendingAudio,
   onDelete,
   onCopy,
 }: {
@@ -1212,12 +1480,15 @@ function FileEditor({
   tree: Tree;
   updateTree: (tree: Tree) => void;
   toast: (message: string) => void;
+  onPendingAudio: (fileId: string, cardId: string, side: CardSide, audio?: PendingAudio) => void;
   onDelete: () => void;
   onCopy: () => void;
 }) {
   const [name, setName] = useState(file.name);
   const [description, setDescription] = useState(file.description || "");
   const [cards, setCards] = useState(file.cards);
+  const [audioPreviews, setAudioPreviews] = useState<Record<string, string>>({});
+  const audioKey = (cardId: string, side: CardSide) => `${cardId}:${side}`;
   const save = () => {
     updateTree(
       updateFile(tree, file.id, (currentFile) => ({
@@ -1252,6 +1523,16 @@ function FileEditor({
           : card,
       ),
     );
+  const stageAudio = (cardId: string, side: CardSide, audio?: PendingAudio) => {
+    const key = audioKey(cardId, side);
+    setAudioPreviews((previews) => {
+      const next = { ...previews };
+      if (audio) next[key] = audio.previewUrl;
+      else delete next[key];
+      return next;
+    });
+    onPendingAudio(file.id, cardId, side, audio);
+  };
   return (
     <div className="editor">
       <div className="editor-heading">
@@ -1299,7 +1580,12 @@ function FileEditor({
             <AudioEditor
               src={card.front.audio}
               toast={toast}
-              onChange={(audio) => changeAudio(card.id, "front", audio)}
+              previewSrc={audioPreviews[audioKey(card.id, "front")]}
+              onRecord={(audio) => stageAudio(card.id, "front", audio)}
+              onRemove={() => {
+                stageAudio(card.id, "front");
+                changeAudio(card.id, "front", undefined);
+              }}
             />
             <input
               value={card.back.text}
@@ -1309,13 +1595,20 @@ function FileEditor({
             <AudioEditor
               src={card.back.audio}
               toast={toast}
-              onChange={(audio) => changeAudio(card.id, "back", audio)}
+              previewSrc={audioPreviews[audioKey(card.id, "back")]}
+              onRecord={(audio) => stageAudio(card.id, "back", audio)}
+              onRemove={() => {
+                stageAudio(card.id, "back");
+                changeAudio(card.id, "back", undefined);
+              }}
             />
             <button
               className="delete-button"
-              onClick={() =>
-                setCards(cards.filter((item) => item.id !== card.id))
-              }
+              onClick={() => {
+                stageAudio(card.id, "front");
+                stageAudio(card.id, "back");
+                setCards(cards.filter((item) => item.id !== card.id));
+              }}
             >
               ×
             </button>
@@ -1326,8 +1619,8 @@ function FileEditor({
         + Thêm thẻ mới
       </button>
       <div className="editor-note">
-        Âm thanh có thể gắn sau khi kết nối GitHub Contents API. Bản soạn hiện
-        tại được lưu ở local để thử luồng editor.
+        Audio mới chỉ là bản xem trước cho đến khi bạn bấm “Lưu GitHub”. File
+        được lưu riêng tại <code>public/audio/fileId/cardId/</code>; tree chỉ giữ URL.
       </div>
     </div>
   );
