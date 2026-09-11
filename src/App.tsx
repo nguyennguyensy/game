@@ -151,6 +151,20 @@ const removeNode = (node: FolderNode, id: string): FolderNode => ({
     .filter((item) => item.id !== id)
     .map((item) => (item.type === "folder" ? removeNode(item, id) : item)),
 });
+const updateFile = (
+  node: FolderNode,
+  id: string,
+  update: (file: FileNode) => FileNode,
+): FolderNode => ({
+  ...node,
+  children: node.children.map((item) =>
+    item.type === "folder"
+      ? updateFile(item, id, update)
+      : item.id === id
+        ? update(item)
+        : item,
+  ),
+});
 const cloneFile = (file: FileNode): FileNode => {
   const id = `file-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`;
   return {
@@ -164,15 +178,7 @@ const cloneFile = (file: FileNode): FileNode => {
     })),
   };
 };
-const loadInitialTree = (): Tree => {
-  const saved = localStorage.getItem("vocab-tree");
-  if (!saved) return sampleTree;
-  try {
-    return JSON.parse(saved) as Tree;
-  } catch {
-    return sampleTree;
-  }
-};
+const loadInitialTree = (): Tree => sampleTree;
 const fetchTree = async (url: string, timeoutMs: number): Promise<Tree | null> => {
   const controller = new AbortController();
   const timeout = window.setTimeout(() => controller.abort(), timeoutMs);
@@ -200,6 +206,7 @@ const loadPublishedTree = async (): Promise<Tree | null> => {
 
 function App() {
   const [tree, setTree] = useState<Tree>(loadInitialTree);
+  const hasLocalEdits = useRef(false);
   const [route, setRoute] = useState(
     window.location.hash.slice(1) || "/browse/root",
   );
@@ -212,9 +219,8 @@ function App() {
   }, []);
   useEffect(() => {
     loadPublishedTree().then((publishedTree) => {
-      if (!publishedTree || localStorage.getItem("vocab-tree-dirty") === "1") return;
+      if (!publishedTree || hasLocalEdits.current) return;
       setTree(publishedTree);
-      localStorage.setItem("vocab-tree", JSON.stringify(publishedTree));
     });
   }, []);
   useEffect(() => {
@@ -224,9 +230,8 @@ function App() {
     }
   }, [toast]);
   const updateTree = (next: Tree) => {
+    hasLocalEdits.current = true;
     setTree(next);
-    localStorage.setItem("vocab-tree", JSON.stringify(next));
-    localStorage.setItem("vocab-tree-dirty", "1");
     setToast("Đã lưu bản nháp trên thiết bị");
   };
   if (route.startsWith("/admin"))
@@ -833,9 +838,7 @@ function Admin({
       return;
     }
     setCheckingGithub(true);
-    const treeToPublish = JSON.parse(
-      localStorage.getItem("vocab-tree") || JSON.stringify(tree),
-    ) as Tree;
+    const treeToPublish = tree;
     const headers = {
       Authorization: `Bearer ${cleanToken}`,
       Accept: "application/vnd.github+json",
@@ -875,8 +878,6 @@ function Admin({
         throw Error(error?.message || "GitHub từ chối commit");
       }
       sessionStorage.setItem("vocab-pat", cleanToken);
-      localStorage.setItem("vocab-tree", JSON.stringify(treeToPublish));
-      localStorage.removeItem("vocab-tree-dirty");
       setTokenOpen(false);
       toast("Đã commit lên GitHub. Pages sẽ cập nhật sau ít phút.");
     } catch (error) {
@@ -943,6 +944,7 @@ function Admin({
           <FileEditor
             key={selected.id}
             file={selected}
+            tree={tree}
             updateTree={updateTree}
             toast={toast}
             onDelete={() => deleteNode(selected)}
@@ -1242,12 +1244,14 @@ function FolderEditor({
 }
 function FileEditor({
   file,
+  tree,
   updateTree,
   toast,
   onDelete,
   onCopy,
 }: {
   file: FileNode;
+  tree: Tree;
   updateTree: (tree: Tree) => void;
   toast: (message: string) => void;
   onDelete: () => void;
@@ -1257,16 +1261,14 @@ function FileEditor({
   const [description, setDescription] = useState(file.description || "");
   const [cards, setCards] = useState(file.cards);
   const save = () => {
-    const saved = JSON.parse(
-      localStorage.getItem("vocab-tree") || JSON.stringify(sampleTree),
-    ) as Tree;
-    const target = findNode(saved, file.id);
-    if (target?.type === "file") {
-      target.name = name;
-      target.description = description;
-      target.cards = cards;
-    }
-    updateTree(saved);
+    updateTree(
+      updateFile(tree, file.id, (currentFile) => ({
+        ...currentFile,
+        name,
+        description,
+        cards,
+      })),
+    );
     toast("Đã lưu nội dung local");
   };
   const add = () =>
