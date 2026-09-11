@@ -104,39 +104,29 @@ const isTree = (value: unknown): value is Tree => {
 };
 const fetchTree = async (
   url: string,
-  timeoutMs: number,
   signal?: AbortSignal,
 ): Promise<Tree | null> => {
-  const controller = new AbortController();
-  const timeout = window.setTimeout(() => controller.abort(), timeoutMs);
-  const abort = () => controller.abort();
-  signal?.addEventListener("abort", abort, { once: true });
   try {
     const response = await fetch(url, {
       // Ask GitHub to revalidate rather than serving a stale browser response.
       cache: "no-cache",
-      signal: controller.signal,
+      signal,
     });
     if (!response.ok) return null;
     const data: unknown = await response.json();
     return isTree(data) ? data : null;
   } catch {
     return null;
-  } finally {
-    window.clearTimeout(timeout);
-    signal?.removeEventListener("abort", abort);
   }
 };
 const loadPublishedTree = async (signal?: AbortSignal): Promise<Tree | null> => {
   const githubUrl = `https://raw.githubusercontent.com/${githubConfig.owner}/${githubConfig.repo}/${githubConfig.branch}/${githubConfig.treePath}?v=${Date.now()}`;
-  return fetchTree(githubUrl, 8000, signal);
+  return fetchTree(githubUrl, signal);
 };
 
 function App() {
   const [tree, setTree] = useState<Tree | null>(null);
   const [loadError, setLoadError] = useState(false);
-  const [reloadKey, setReloadKey] = useState(0);
-  const [retryCount, setRetryCount] = useState(0);
   const hasLocalEdits = useRef(false);
   const [route, setRoute] = useState(
     window.location.hash.slice(1) || "/browse/root",
@@ -156,16 +146,7 @@ function App() {
       else setLoadError(true);
     });
     return () => controller.abort();
-  }, [reloadKey]);
-  useEffect(() => {
-    if (!loadError) return;
-    const retryTimer = window.setTimeout(() => {
-      setLoadError(false);
-      setRetryCount((count) => count + 1);
-      setReloadKey((key) => key + 1);
-    }, 1500);
-    return () => window.clearTimeout(retryTimer);
-  }, [loadError]);
+  }, []);
   useEffect(() => {
     if (toast) {
       const timer = setTimeout(() => setToast(""), 2600);
@@ -181,11 +162,6 @@ function App() {
     return (
       <LoadingScreen
         failed={loadError}
-        retryCount={retryCount}
-        onRetry={() => {
-          setLoadError(false);
-          setReloadKey((key) => key + 1);
-        }}
       />
     );
   if (route.startsWith("/admin"))
@@ -227,12 +203,8 @@ function App() {
 
 function LoadingScreen({
   failed,
-  retryCount,
-  onRetry,
 }: {
   failed: boolean;
-  retryCount: number;
-  onRetry: () => void;
 }) {
   return (
     <main className="loading-screen" aria-live="polite">
@@ -245,14 +217,7 @@ function LoadingScreen({
       {failed ? (
         <div className="load-message">
           <h1>Chưa thể tải nội dung</h1>
-          <p>
-            {retryCount
-              ? `Đang tự kết nối lại (lần ${retryCount + 1})…`
-              : "Đang tự kết nối lại…"}
-          </p>
-          <button className="primary-button" onClick={onRetry}>
-            Tải lại ngay
-          </button>
+          <p>Kiểm tra kết nối mạng rồi tải lại trang.</p>
         </div>
       ) : (
         <div className="load-message">
