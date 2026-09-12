@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { githubConfig } from "./config";
 import "./App.css";
 
@@ -166,6 +166,10 @@ const cloneFile = (file: FileNode): FileNode => {
     })),
   };
 };
+const createNodeId = (prefix: string) => `${prefix}-${Date.now()}`;
+const createAudioFilename = (side: string, extension: string) =>
+  `${side}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${extension}`;
+
 const isTree = (value: unknown): value is Tree => {
   if (!value || typeof value !== "object") return false;
   const tree = value as Partial<Tree>;
@@ -881,17 +885,76 @@ function Admin({
   onPublishedTree: (tree: Tree) => void;
 }) {
   const [tree, setTree] = useState<Tree>(() => readDraftTree() || publishedTree);
-  const updateTree = (next: Tree) => {
+  const [hasDraft, setHasDraft] = useState(() => Boolean(localStorage.getItem(draftTreeKey)));
+  const treeRef = useRef<Tree>(tree);
+  useEffect(() => {
+    treeRef.current = tree;
+  }, [tree]);
+  const flushActiveDraftRef = useRef<(() => void) | null>(null);
+
+  const persistTreeDraft = (next: Tree) => {
+    treeRef.current = next;
     setTree(next);
     try {
       localStorage.setItem(draftTreeKey, JSON.stringify(next));
+      setHasDraft(true);
+      return true;
     } catch {
       toast("Không thể lưu bản nháp trên thiết bị");
-      return;
+      return false;
     }
-    toast("Đã lưu bản nháp trên thiết bị");
   };
-  const [selected, setSelected] = useState<Node>(tree);
+
+  const updateTree = (
+    next: Tree,
+    options?: { silent?: boolean; toastMessage?: string },
+  ) => {
+    const success = persistTreeDraft(next);
+    if (success && !options?.silent) {
+      toast(options?.toastMessage || "Đã lưu bản nháp trên thiết bị");
+    }
+  };
+
+  const updateFileDraft = (
+    fileId: string,
+    data: { name: string; description: string; cards: Card[] },
+    options?: { silent?: boolean; toastMessage?: string },
+  ) => {
+    const currentTree = treeRef.current;
+    const nextTree = updateFile(currentTree, fileId, (current) => ({
+      ...current,
+      name: data.name,
+      description: data.description,
+      cards: data.cards,
+    }));
+    const success = persistTreeDraft(nextTree);
+    if (success && !options?.silent) {
+      toast(options?.toastMessage || "Đã lưu nội dung local");
+    }
+  };
+
+  const [selectedId, setSelectedId] = useState<string>(tree.id);
+  const selected = findNode(tree, selectedId) || tree;
+
+  const selectNode = (node: Node) => {
+    flushActiveDraftRef.current?.();
+    setSelectedId(node.id);
+  };
+
+  const discardDraft = () => {
+    if (!window.confirm("Hủy toàn bộ bản nháp chưa lưu GitHub và tải lại dữ liệu từ GitHub?")) return;
+    flushActiveDraftRef.current = null;
+    localStorage.removeItem(draftTreeKey);
+    void clearDraftAudio().catch(() => undefined);
+    pendingAudio.current.forEach((pending) => URL.revokeObjectURL(pending.previewUrl));
+    pendingAudio.current.clear();
+    setHasDraft(false);
+    treeRef.current = publishedTree;
+    setTree(publishedTree);
+    setSelectedId(publishedTree.id);
+    toast("Đã hủy bản nháp, đã nạp dữ liệu từ GitHub");
+  };
+
   const [tokenOpen, setTokenOpen] = useState(false);
   const [token, setToken] = useState(sessionStorage.getItem("vocab-pat") || "");
   const [copySource, setCopySource] = useState<FileNode | null>(null);
@@ -940,10 +1003,14 @@ function Admin({
     else pendingAudio.current.delete(key);
     if (audio) void storeDraftAudio(key, audio).catch(() => undefined);
     else void removeDraftAudio(key).catch(() => undefined);
+    refreshPendingAudio((version) => version + 1);
   };
   const create = (type: "folder" | "file") => {
-    const parent = selected.type === "folder" ? selected : tree;
-    const id = `${type}-${Date.now()}`;
+    flushActiveDraftRef.current?.();
+    const currentTree = treeRef.current;
+    const parentNode = findNode(currentTree, selectedId);
+    const parent = parentNode && parentNode.type === "folder" ? parentNode : currentTree;
+    const id = createNodeId(type);
     const item: Node =
       type === "folder"
         ? { id, type, name: "Folder mới", icon: "◇", children: [] }
@@ -961,8 +1028,9 @@ function Admin({
               },
             ],
           };
-    updateTree(addChild(tree, parent.id, item));
-    setSelected(item);
+    const nextTree = addChild(currentTree, parent.id, item);
+    updateTree(nextTree, { toastMessage: type === "folder" ? "Đã thêm folder mới" : "Đã thêm bộ từ mới" });
+    setSelectedId(item.id);
   };
   const deleteNode = (node: Node) => {
     if (node.id === tree.id) {
@@ -970,10 +1038,27 @@ function Admin({
       return;
     }
     if (!window.confirm(`Xóa "${node.name}" và toàn bộ mục con?`)) return;
-    updateTree(removeNode(tree, node.id));
-    setSelected(tree);
+    flushActiveDraftRef.current = null;
+    const nodeFileIds = new Set(
+      flatNodes(node)
+        .filter((n): n is FileNode => n.type === "file")
+        .map((n) => n.id),
+    );
+    for (const key of Array.from(pendingAudio.current.keys())) {
+      const [fileId] = key.split(":");
+      if (nodeFileIds.has(fileId)) {
+        const item = pendingAudio.current.get(key);
+        if (item) URL.revokeObjectURL(item.previewUrl);
+        pendingAudio.current.delete(key);
+        void removeDraftAudio(key).catch(() => undefined);
+      }
+    }
+    const nextTree = removeNode(treeRef.current, node.id);
+    updateTree(nextTree, { toastMessage: `Đã xóa "${node.name}"` });
+    setSelectedId(tree.id);
   };
   const saveGithub = async () => {
+    flushActiveDraftRef.current?.();
     const cleanToken = token.trim();
     setGithubError("");
     if (!cleanToken) {
@@ -982,7 +1067,7 @@ function Admin({
       return;
     }
     setCheckingGithub(true);
-    let treeToPublish = tree;
+    let treeToPublish = treeRef.current;
     const headers = {
       Authorization: `Bearer ${cleanToken}`,
       Accept: "application/vnd.github+json",
@@ -999,10 +1084,13 @@ function Admin({
         );
         return;
       }
-      for (const key of pendingAudio.current.keys()) {
+      for (const key of Array.from(pendingAudio.current.keys())) {
         const [fileId, cardId] = key.split(":");
-        if (!hasCard(tree, fileId, cardId)) {
-          throw Error("Hãy bấm “Lưu thay đổi” cho bộ từ trước khi lưu audio mới.");
+        if (!hasCard(treeToPublish, fileId, cardId)) {
+          const pending = pendingAudio.current.get(key);
+          if (pending) URL.revokeObjectURL(pending.previewUrl);
+          pendingAudio.current.delete(key);
+          void removeDraftAudio(key).catch(() => undefined);
         }
       }
       const refResponse = await fetch(
@@ -1040,7 +1128,7 @@ function Admin({
                 : pending.blob.type.includes("wav")
                   ? "wav"
                   : "webm";
-          const filename = `${side}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}.${extension}`;
+          const filename = createAudioFilename(side, extension);
           const path = `public/audio/${fileId}/${cardId}/${filename}`;
           const blobResponse = await fetch(
             `https://api.github.com/repos/${githubConfig.owner}/${githubConfig.repo}/git/blobs`,
@@ -1126,9 +1214,11 @@ function Admin({
       sessionStorage.setItem("vocab-pat", cleanToken);
       pendingAudio.current.forEach((pending) => URL.revokeObjectURL(pending.previewUrl));
       pendingAudio.current.clear();
-      updateTree(treeToPublish);
       localStorage.removeItem(draftTreeKey);
       void clearDraftAudio().catch(() => undefined);
+      setHasDraft(false);
+      treeRef.current = treeToPublish;
+      setTree(treeToPublish);
       onPublishedTree(treeToPublish);
       setTokenOpen(false);
       toast("Đã commit lên GitHub. Pages sẽ cập nhật sau ít phút.");
@@ -1149,6 +1239,7 @@ function Admin({
     }
   };
   const scanAudio = async () => {
+    flushActiveDraftRef.current?.();
     const cleanToken = token.trim();
     if (!cleanToken) {
       setTokenAction("scan");
@@ -1167,7 +1258,7 @@ function Admin({
       if (!response.ok || !Array.isArray(data.tree) || data.truncated) {
         throw Error(data.message || "Không thể đọc danh sách audio trên GitHub");
       }
-      const used = referencedAudioPaths(tree);
+      const used = referencedAudioPaths(treeRef.current);
       const orphaned = (data.tree as GitTreeItem[]).filter(
         (item) => item.type === "blob" && item.path.startsWith("public/audio/") && !used.has(item.path),
       );
@@ -1245,11 +1336,14 @@ function Admin({
   };
   const copyFile = (destinationId: string) => {
     if (!copySource) return;
-    const copied = cloneFile(copySource);
-    updateTree(addChild(tree, destinationId, copied));
-    setSelected(copied);
+    flushActiveDraftRef.current?.();
+    const currentTree = treeRef.current;
+    const freshSource = (findNode(currentTree, copySource.id) as FileNode) || copySource;
+    const copied = cloneFile(freshSource);
+    const nextTree = addChild(currentTree, destinationId, copied);
+    updateTree(nextTree, { toastMessage: `Đã copy "${copied.name}" vào folder đã chọn` });
+    setSelectedId(copied.id);
     setCopySource(null);
-    toast(`Đã copy "${copied.name}" vào folder đã chọn`);
   };
   return (
     <div className="admin-shell">
@@ -1264,8 +1358,14 @@ function Admin({
         <button className="admin-nav active">⌗ Nội dung</button>
         <button className="admin-nav">◷ Hoạt động</button>
         <div className="admin-label tree-label">CÂY HỌC TẬP</div>
-        <AdminTree node={tree} selected={selected.id} onSelect={setSelected} />
-        <button className="back-public" onClick={() => go("/browse/root")}>
+        <AdminTree node={tree} selected={selected.id} onSelect={selectNode} />
+        <button
+          className="back-public"
+          onClick={() => {
+            flushActiveDraftRef.current?.();
+            go("/browse/root");
+          }}
+        >
           ← Xem giao diện học
         </button>
       </aside>
@@ -1285,6 +1385,11 @@ function Admin({
             <button className="outline-button" onClick={scanAudio} disabled={cleanupBusy}>
               {cleanupBusy ? "Đang quét..." : "♲ Dọn audio"}
             </button>
+            {hasDraft && (
+              <button className="outline-button discard-draft-btn" onClick={discardDraft}>
+                ⤺ Hủy bản nháp
+              </button>
+            )}
             <button className="save-github" onClick={saveGithub}>
               ↑ Lưu GitHub
             </button>
@@ -1295,22 +1400,35 @@ function Admin({
             key={selected.id}
             file={selected}
             tree={tree}
-            updateTree={updateTree}
+            onSaveDraft={updateFileDraft}
             toast={toast}
             onPendingAudio={changePendingAudio}
             pendingAudioFor={pendingAudioFor}
             onDelete={() => deleteNode(selected)}
-            onCopy={() => setCopySource(selected)}
+            onCopy={() => {
+              flushActiveDraftRef.current?.();
+              const fresh = (findNode(treeRef.current, selected.id) as FileNode) || selected;
+              setCopySource(fresh);
+            }}
+            registerFlush={(flushFn) => {
+              flushActiveDraftRef.current = flushFn;
+            }}
           />
         ) : (
           <FolderEditor
             key={selected.id}
             folder={selected}
-            onSelect={setSelected}
+            onSelect={selectNode}
             onRename={(nextName) => {
-              if (nextName.trim()) updateTree(renameNode(tree, selected.id, nextName.trim()));
+              if (nextName.trim()) {
+                const nextTree = renameNode(treeRef.current, selected.id, nextName.trim());
+                updateTree(nextTree, { toastMessage: "Đã đổi tên folder" });
+              }
             }}
             onDelete={() => deleteNode(selected)}
+            registerFlush={(flushFn) => {
+              flushActiveDraftRef.current = flushFn;
+            }}
           />
         )}
         {tokenOpen && (
@@ -1568,13 +1686,38 @@ function FolderEditor({
   onSelect,
   onRename,
   onDelete,
+  registerFlush,
 }: {
   folder: FolderNode;
   onSelect: (node: Node) => void;
   onRename: (name: string) => void;
   onDelete: () => void;
+  registerFlush: (flushFn: (() => void) | null) => void;
 }) {
   const [name, setName] = useState(folder.name);
+  const nameRef = useRef(name);
+  useEffect(() => {
+    nameRef.current = name;
+  }, [name]);
+
+  const flush = useCallback(() => {
+    const trimmed = nameRef.current.trim();
+    if (trimmed && trimmed !== folder.name) {
+      onRename(trimmed);
+    }
+  }, [folder.name, onRename]);
+
+  useEffect(() => {
+    registerFlush(flush);
+    return () => registerFlush(null);
+  }, [flush, registerFlush]);
+
+  useEffect(() => {
+    return () => {
+      flush();
+    };
+  }, [flush]);
+
   return (
     <div className="editor folder-editor">
       <div className="editor-heading">
@@ -1627,61 +1770,128 @@ function FolderEditor({
 function FileEditor({
   file,
   tree,
-  updateTree,
+  onSaveDraft,
   toast,
   onPendingAudio,
   pendingAudioFor,
   onDelete,
   onCopy,
+  registerFlush,
 }: {
   file: FileNode;
   tree: Tree;
-  updateTree: (tree: Tree) => void;
+  onSaveDraft: (
+    fileId: string,
+    data: { name: string; description: string; cards: Card[] },
+    options?: { silent?: boolean; toastMessage?: string },
+  ) => void;
   toast: (message: string) => void;
   onPendingAudio: (fileId: string, cardId: string, side: CardSide, audio?: PendingAudio) => void;
   pendingAudioFor: (fileId: string, cardId: string, side: CardSide) => PendingAudio | undefined;
   onDelete: () => void;
   onCopy: () => void;
+  registerFlush: (flushFn: (() => void) | null) => void;
 }) {
   const [name, setName] = useState(file.name);
   const [description, setDescription] = useState(file.description || "");
   const [cards, setCards] = useState(file.cards);
+  const [, setAudioVersion] = useState(0);
+  const isDirtyRef = useRef(false);
+  const latestRef = useRef({ name, description, cards });
+  useEffect(() => {
+    latestRef.current = { name, description, cards };
+  }, [name, description, cards]);
+
+  const flush = useCallback(() => {
+    if (isDirtyRef.current) {
+      onSaveDraft(file.id, latestRef.current, { silent: true });
+      isDirtyRef.current = false;
+    }
+  }, [file.id, onSaveDraft]);
+
+  useEffect(() => {
+    registerFlush(flush);
+    return () => {
+      registerFlush(null);
+    };
+  }, [flush, registerFlush]);
+
+  // Debounced auto-save (400ms after user pauses typing)
+  useEffect(() => {
+    if (!isDirtyRef.current) return;
+    const timer = setTimeout(() => {
+      onSaveDraft(file.id, latestRef.current, { silent: true });
+      isDirtyRef.current = false;
+    }, 400);
+    return () => clearTimeout(timer);
+  }, [name, description, cards, file.id, onSaveDraft]);
+
+  // Flush on unmount (e.g. when switching files or folders)
+  useEffect(() => {
+    return () => {
+      if (isDirtyRef.current) {
+        onSaveDraft(file.id, latestRef.current, { silent: true });
+        isDirtyRef.current = false;
+      }
+    };
+  }, [file.id, onSaveDraft]);
+
+  // Flush synchronously before page unload (tab close, reload)
+  useEffect(() => {
+    const handleBeforeUnload = () => {
+      if (isDirtyRef.current) {
+        const currentTree = readDraftTree() || tree;
+        const updated = updateFile(currentTree, file.id, (current) => ({
+          ...current,
+          name: latestRef.current.name,
+          description: latestRef.current.description,
+          cards: latestRef.current.cards,
+        }));
+        try {
+          localStorage.setItem(draftTreeKey, JSON.stringify(updated));
+        } catch {}
+      }
+    };
+    window.addEventListener("beforeunload", handleBeforeUnload);
+    return () => window.removeEventListener("beforeunload", handleBeforeUnload);
+  }, [file.id, tree]);
+
   const save = () => {
-    updateTree(
-      updateFile(tree, file.id, (currentFile) => ({
-        ...currentFile,
-        name,
-        description,
-        cards,
-      })),
-    );
-    toast("Đã lưu nội dung local");
+    onSaveDraft(file.id, latestRef.current, { toastMessage: "Đã lưu nội dung local" });
+    isDirtyRef.current = false;
   };
-  const add = () =>
-    setCards([
-      ...cards,
-      { id: `card-${Date.now()}`, front: { text: "" }, back: { text: "" } },
+  const add = () => {
+    setCards((prev) => [
+      ...prev,
+      { id: createNodeId("card"), front: { text: "" }, back: { text: "" } },
     ]);
-  const change = (id: string, side: "front" | "back", text: string) =>
-    setCards(
-      cards.map((card) =>
+    isDirtyRef.current = true;
+  };
+  const change = (id: string, side: "front" | "back", text: string) => {
+    setCards((prev) =>
+      prev.map((card) =>
         card.id === id ? { ...card, [side]: { ...card[side], text } } : card,
       ),
     );
+    isDirtyRef.current = true;
+  };
   const changeAudio = (
     id: string,
     side: "front" | "back",
     audio?: string,
-  ) =>
-    setCards(
-      cards.map((card) =>
+  ) => {
+    setCards((prev) =>
+      prev.map((card) =>
         card.id === id
           ? { ...card, [side]: { ...card[side], audio } }
           : card,
       ),
     );
+    isDirtyRef.current = true;
+  };
   const stageAudio = (cardId: string, side: CardSide, audio?: PendingAudio) => {
     onPendingAudio(file.id, cardId, side, audio);
+    setAudioVersion((v) => v + 1);
   };
   return (
     <div className="editor">
@@ -1691,12 +1901,18 @@ function FileEditor({
           <input
             className="title-input"
             value={name}
-            onChange={(event) => setName(event.target.value)}
+            onChange={(event) => {
+              setName(event.target.value);
+              isDirtyRef.current = true;
+            }}
           />
           <input
             className="desc-input"
             value={description}
-            onChange={(event) => setDescription(event.target.value)}
+            onChange={(event) => {
+              setDescription(event.target.value);
+              isDirtyRef.current = true;
+            }}
           />
         </div>
         <div className="admin-actions">
@@ -1757,7 +1973,8 @@ function FileEditor({
               onClick={() => {
                 stageAudio(card.id, "front");
                 stageAudio(card.id, "back");
-                setCards(cards.filter((item) => item.id !== card.id));
+                setCards((prev) => prev.filter((item) => item.id !== card.id));
+                isDirtyRef.current = true;
               }}
             >
               ×
