@@ -1744,215 +1744,215 @@
               }
             }
           ]
-        }
-      ]
-    },
-    {
-      "id": "file-1789289809805",
-      "type": "file",
-      "name": "Daily activities",
-      "description": "Mô tả bộ từ",
-      "icon": "▤",
-      "cards": [
-        {
-          "id": "file-1789289809805-card",
-          "front": {
-            "text": "thức dậy "
-          },
-          "back": {
-            "text": "get up",
-            "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/file-1789289809805-card/back-1789291076932-up8mg5.webm"
-          }
         },
         {
-          "id": "card-1789289812087",
-          "front": {
-            "text": "Rửa mặt"
-          },
-          "back": {
-            "text": "wash my face",
-            "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289812087/back-1789291076056-ubpm2k.webm"
-          }
-        },
-        {
-          "id": "card-1789289813637",
-          "front": {
-            "text": "Đánh răng "
-          },
-          "back": {
-            "text": "brush my teeth ",
-            "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289813637/back-1789291075495-hu9db7.webm"
-          }
-        },
-        {
-          "id": "card-1789289814621",
-          "front": {
-            "text": "chuẩn bị bữa sáng"
-          },
-          "back": {
-            "text": "prepare for breakfast",
-            "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289814621/back-1789291074369-ptmlne.webm"
-          }
-        },
-        {
-          "id": "card-1789289815517",
-          "front": {
-            "text": "nấu bữa trưa"
-          },
-          "back": {
-            "text": "make lunch ",
-            "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289815517/back-1789291073447-9cjhqj.webm"
-          }
-        },
-        {
-          "id": "card-1789289816471",
-          "front": {
-            "text": "nấu đồ ăn / nấu bữa ăn"
-          },
-          "back": {
-            "text": "cook ",
-            "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289816471/back-1789291072614-fn6uy2.webm"
-          }
-        },
-        {
-          "id": "card-1789289817837",
-          "front": {
-            "text": "ăn đồ ăn / ăn bữa ăn"
-          },
-          "back": {
-            "text": "eat",
-            "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289817837/back-1789291072067-b6hgjl.webm"
-          }
-        },
-        {
-          "id": "card-1789289818871",
-          "front": {
-            "text": "ăn tối"
-          },
-          "back": {
-            "text": "have dinner",
-            "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289818871/back-1789291071201-rauekq.webm"
-          }
-        },
-        {
-          "id": "card-1789289819054",
-          "front": {
-            "text": "tập thể dục "
-          },
-          "back": {
-            "text": "work out",
-            "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289819054/back-1789291070336-0axegl.webm"
-          }
-        },
-        {
-          "id": "card-1789289819522",
-          "front": {
-            "text": "đi dạo "
-          },
-          "back": {
-            "text": "go for a walk ",
-            "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289819522/back-1789291077835-evakyc.webm"
-          }
-        },
-        {
-          "id": "card-1789289820238",
-          "front": {
-            "text": "dọn nhà"
-          },
-          "back": {
-            "text": "clean the house",
-            "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289820238/back-1789291069566-1s4ldp.webm"
-          }
-        },
-        {
-          "id": "card-1789289884754",
-          "front": {
-            "text": "quét nhà"
-          },
-          "back": {
-            "text": "sweep the floor",
-            "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289884754/back-1789291068737-enljj1.webm"
-          }
-        },
-        {
-          "id": "card-1789289886104",
-          "front": {
-            "text": "lau nhà"
-          },
-          "back": {
-            "text": "mop the floor",
-            "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289886104/back-1789291067756-dk1ql9.webm"
-          }
-        },
-        {
-          "id": "card-1789289886871",
-          "front": {
-            "text": "lau bàn"
-          },
-          "back": {
-            "text": "wipe the table",
-            "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289886871/back-1789291066182-5q2nhg.webm"
-          }
-        },
-        {
-          "id": "card-1789289905354",
-          "front": {
-            "text": "gấp chăn gối "
-          },
-          "back": {
-            "text": "make the bed",
-            "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289905354/back-1789291065251-878qly.webm"
-          }
-        },
-        {
-          "id": "card-1789289971487",
-          "front": {
-            "text": "chải tóc"
-          },
-          "back": {
-            "text": "comb my hair",
-            "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289971487/back-1789291064245-wxiimq.webm"
-          }
-        },
-        {
-          "id": "card-1789290033321",
-          "front": {
-            "text": "mặc quần áo"
-          },
-          "back": {
-            "text": "get dressed",
-            "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789290033321/back-1789291063479-l971pa.webm"
-          }
-        },
-        {
-          "id": "card-1789290037771",
-          "front": {
-            "text": "ăn diện "
-          },
-          "back": {
-            "text": "dress up ",
-            "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789290037771/back-1789291062696-tttzvs.webm"
-          }
-        },
-        {
-          "id": "card-1789290051338",
-          "front": {
-            "text": "lướt Tiktok vô thức"
-          },
-          "back": {
-            "text": "dumbscroll through Tiktok",
-            "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789290051338/back-1789291061671-xdz5as.webm"
-          }
-        },
-        {
-          "id": "card-1789290052905",
-          "front": {
-            "text": "đi chơi với bạn "
-          },
-          "back": {
-            "text": "hang out with friends",
-            "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789290052905/back-1789291060442-7u39ka.webm"
-          }
+          "id": "file-1789291110868-vx4h9l",
+          "type": "file",
+          "name": "Daily activities",
+          "description": "Mô tả bộ từ",
+          "icon": "▤",
+          "cards": [
+            {
+              "id": "file-1789291110868-vx4h9l-z2gzme",
+              "front": {
+                "text": "thức dậy "
+              },
+              "back": {
+                "text": "get up",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/file-1789289809805-card/back-1789291076932-up8mg5.webm"
+              }
+            },
+            {
+              "id": "file-1789291110868-vx4h9l-d4f5wj",
+              "front": {
+                "text": "Rửa mặt"
+              },
+              "back": {
+                "text": "wash my face",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289812087/back-1789291076056-ubpm2k.webm"
+              }
+            },
+            {
+              "id": "file-1789291110868-vx4h9l-hf4q5u",
+              "front": {
+                "text": "Đánh răng "
+              },
+              "back": {
+                "text": "brush my teeth ",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289813637/back-1789291075495-hu9db7.webm"
+              }
+            },
+            {
+              "id": "file-1789291110868-vx4h9l-bnxvk0",
+              "front": {
+                "text": "chuẩn bị bữa sáng"
+              },
+              "back": {
+                "text": "prepare for breakfast",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289814621/back-1789291074369-ptmlne.webm"
+              }
+            },
+            {
+              "id": "file-1789291110868-vx4h9l-jpjdnf",
+              "front": {
+                "text": "nấu bữa trưa"
+              },
+              "back": {
+                "text": "make lunch ",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289815517/back-1789291073447-9cjhqj.webm"
+              }
+            },
+            {
+              "id": "file-1789291110868-vx4h9l-qirnn8",
+              "front": {
+                "text": "nấu đồ ăn / nấu bữa ăn"
+              },
+              "back": {
+                "text": "cook ",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289816471/back-1789291072614-fn6uy2.webm"
+              }
+            },
+            {
+              "id": "file-1789291110868-vx4h9l-p3rmrc",
+              "front": {
+                "text": "ăn đồ ăn / ăn bữa ăn"
+              },
+              "back": {
+                "text": "eat",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289817837/back-1789291072067-b6hgjl.webm"
+              }
+            },
+            {
+              "id": "file-1789291110868-vx4h9l-nsvv76",
+              "front": {
+                "text": "ăn tối"
+              },
+              "back": {
+                "text": "have dinner",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289818871/back-1789291071201-rauekq.webm"
+              }
+            },
+            {
+              "id": "file-1789291110868-vx4h9l-exylxu",
+              "front": {
+                "text": "tập thể dục "
+              },
+              "back": {
+                "text": "work out",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289819054/back-1789291070336-0axegl.webm"
+              }
+            },
+            {
+              "id": "file-1789291110868-vx4h9l-ldxpxr",
+              "front": {
+                "text": "đi dạo "
+              },
+              "back": {
+                "text": "go for a walk ",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289819522/back-1789291077835-evakyc.webm"
+              }
+            },
+            {
+              "id": "file-1789291110868-vx4h9l-zti49x",
+              "front": {
+                "text": "dọn nhà"
+              },
+              "back": {
+                "text": "clean the house",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289820238/back-1789291069566-1s4ldp.webm"
+              }
+            },
+            {
+              "id": "file-1789291110868-vx4h9l-w0v556",
+              "front": {
+                "text": "quét nhà"
+              },
+              "back": {
+                "text": "sweep the floor",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289884754/back-1789291068737-enljj1.webm"
+              }
+            },
+            {
+              "id": "file-1789291110868-vx4h9l-tffwor",
+              "front": {
+                "text": "lau nhà"
+              },
+              "back": {
+                "text": "mop the floor",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289886104/back-1789291067756-dk1ql9.webm"
+              }
+            },
+            {
+              "id": "file-1789291110868-vx4h9l-yh83t4",
+              "front": {
+                "text": "lau bàn"
+              },
+              "back": {
+                "text": "wipe the table",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289886871/back-1789291066182-5q2nhg.webm"
+              }
+            },
+            {
+              "id": "file-1789291110868-vx4h9l-s1x4ep",
+              "front": {
+                "text": "gấp chăn gối "
+              },
+              "back": {
+                "text": "make the bed",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289905354/back-1789291065251-878qly.webm"
+              }
+            },
+            {
+              "id": "file-1789291110868-vx4h9l-72fq6m",
+              "front": {
+                "text": "chải tóc"
+              },
+              "back": {
+                "text": "comb my hair",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289971487/back-1789291064245-wxiimq.webm"
+              }
+            },
+            {
+              "id": "file-1789291110868-vx4h9l-i36f6t",
+              "front": {
+                "text": "mặc quần áo"
+              },
+              "back": {
+                "text": "get dressed",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789290033321/back-1789291063479-l971pa.webm"
+              }
+            },
+            {
+              "id": "file-1789291110868-vx4h9l-ys6ide",
+              "front": {
+                "text": "ăn diện "
+              },
+              "back": {
+                "text": "dress up ",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789290037771/back-1789291062696-tttzvs.webm"
+              }
+            },
+            {
+              "id": "file-1789291110868-vx4h9l-t1h4v8",
+              "front": {
+                "text": "lướt Tiktok vô thức"
+              },
+              "back": {
+                "text": "dumbscroll through Tiktok",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789290051338/back-1789291061671-xdz5as.webm"
+              }
+            },
+            {
+              "id": "file-1789291110868-vx4h9l-z6cpdn",
+              "front": {
+                "text": "đi chơi với bạn "
+              },
+              "back": {
+                "text": "hang out with friends",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789290052905/back-1789291060442-7u39ka.webm"
+              }
+            }
+          ]
         }
       ]
     }
