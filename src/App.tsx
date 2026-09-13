@@ -628,6 +628,17 @@ type Falling = Card & {
   typed: number;
   born: number;
 };
+const DESKTOP_SPAWN_INTERVAL_MS = 3500;
+const MOBILE_SPAWN_INTERVAL_MS = 5000;
+
+const getSpawnInterval = () => {
+  if (typeof window === "undefined") return DESKTOP_SPAWN_INTERVAL_MS;
+  const isMobile =
+    window.matchMedia?.("(max-width: 700px)")?.matches ??
+    (window.innerWidth > 0 && window.innerWidth <= 700);
+  return isMobile ? MOBILE_SPAWN_INTERVAL_MS : DESKTOP_SPAWN_INTERVAL_MS;
+};
+
 function Game({ file }: { file: FileNode }) {
   type GameResult = "won" | "lost";
   const [active, setActive] = useState<Falling[]>([]);
@@ -650,7 +661,6 @@ function Game({ file }: { file: FileNode }) {
   const missedLivesRef = useRef(0);
   const missedBoxIdsRef = useRef(new Set<string>());
   const FALL_SPEED = 0.44;
-  const SPAWN_INTERVAL_MS = 3500;
   const totalCards = file.cards.length * 3;
   const done = result !== null;
   const won = result === "won";
@@ -696,6 +706,7 @@ function Game({ file }: { file: FileNode }) {
   }, [INITIAL_LIVES, done, speed]);
   useEffect(() => {
     if (done || !deck.length) return;
+    const interval = getSpawnInterval();
     const spawnTimer = window.setTimeout(() => {
       const [card, ...rest] = deck;
       if (!card) return;
@@ -715,7 +726,7 @@ function Game({ file }: { file: FileNode }) {
         },
       ]);
       hasSpawnedRef.current = true;
-    }, hasSpawnedRef.current ? SPAWN_INTERVAL_MS : 0);
+    }, hasSpawnedRef.current ? interval : 0);
     return () => window.clearTimeout(spawnTimer);
   }, [deck, done, runId]);
   useEffect(() => {
