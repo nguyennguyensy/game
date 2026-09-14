@@ -1955,6 +1955,542 @@
           ]
         }
       ]
+    },
+    {
+      "id": "folder-1789344881665",
+      "type": "folder",
+      "name": "Self-Learn",
+      "icon": "◇",
+      "children": [
+        {
+          "id": "file-1789344898631",
+          "type": "file",
+          "name": "Long Term Forecast",
+          "description": "Mô tả bộ từ",
+          "icon": "▤",
+          "cards": [
+            {
+              "id": "file-1789344898631-card",
+              "front": {
+                "text": "sự tàn phá "
+              },
+              "back": {
+                "text": "havoc",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789344898631/file-1789344898631-card/back-1789347529916-6du2y7.webm"
+              }
+            },
+            {
+              "id": "card-1789344972599",
+              "front": {
+                "text": "gây ra việc xấu "
+              },
+              "back": {
+                "text": "wreak ",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789344898631/card-1789344972599/back-1789347529177-t8ndsi.webm"
+              }
+            },
+            {
+              "id": "card-1789344973531",
+              "front": {
+                "text": "(phr. v)bị giới hạn trong phạm vi gì đó"
+              },
+              "back": {
+                "text": "be confined to ",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789344898631/card-1789344973531/back-1789347528546-k02veg.webm"
+              }
+            },
+            {
+              "id": "card-1789344974432",
+              "front": {
+                "text": "khô cằn (adj)"
+              },
+              "back": {
+                "text": "arid",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789344898631/card-1789344974432/back-1789347527786-6i8558.webm"
+              }
+            },
+            {
+              "id": "card-1789344975482",
+              "front": {
+                "text": "sự giảm chất lượng (n)"
+              },
+              "back": {
+                "text": "degradation ",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789344898631/card-1789344975482/back-1789347527016-nkps20.webm"
+              }
+            },
+            {
+              "id": "card-1789344976381",
+              "front": {
+                "text": "sự giảm số lượng  (n)"
+              },
+              "back": {
+                "text": "reduction",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789344898631/card-1789344976381/back-1789347526195-zja7sc.webm"
+              }
+            },
+            {
+              "id": "card-1789344977599",
+              "front": {
+                "text": "tăng cương (v)"
+              },
+              "back": {
+                "text": "intensify",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789344898631/card-1789344977599/back-1789347525582-x0ctmz.webm"
+              }
+            },
+            {
+              "id": "card-1789344979315",
+              "front": {
+                "text": "sự cạn kiệt (n)"
+              },
+              "back": {
+                "text": "depletion",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789344898631/card-1789344979315/back-1789347525033-2z8irl.webm"
+              }
+            },
+            {
+              "id": "card-1789344979849",
+              "front": {
+                "text": "làm cạn kiệt (v)"
+              },
+              "back": {
+                "text": "deplete",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789344898631/card-1789344979849/back-1789347524125-yutcwt.webm"
+              }
+            },
+            {
+              "id": "card-1789344980032",
+              "front": {
+                "text": "dễ bị nhiễm, dễ bị ảnh hưởng do yếu đuối (phr. v)"
+              },
+              "back": {
+                "text": "be prone to ",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789344898631/card-1789344980032/back-1789347523784-1rwee7.webm"
+              }
+            },
+            {
+              "id": "card-1789344980216",
+              "front": {
+                "text": "dẫn đến. (phr. v)"
+              },
+              "back": {
+                "text": "bring about",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789344898631/card-1789344980216/back-1789347523046-dhf668.webm"
+              }
+            },
+            {
+              "id": "card-1789344980366",
+              "front": {
+                "text": "thất thường (adj) / người khác biệt (n)"
+              },
+              "back": {
+                "text": "erratic ",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789344898631/card-1789344980366/back-1789347522217-3ee2nn.webm"
+              }
+            },
+            {
+              "id": "card-1789344980499",
+              "front": {
+                "text": "sự xói mòn đất (phr. n)"
+              },
+              "back": {
+                "text": "soil erosion",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789344898631/card-1789344980499/back-1789347521008-tnneqg.webm"
+              }
+            },
+            {
+              "id": "card-1789344980699",
+              "front": {
+                "text": "kèm theo (phr. v)"
+              },
+              "back": {
+                "text": "be coupled with",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789344898631/card-1789344980699/back-1789347520201-zv5pl9.webm"
+              }
+            },
+            {
+              "id": "card-1789344980848",
+              "front": {
+                "text": "làm cạn kiệt (chất lỏng) (phr. v)"
+              },
+              "back": {
+                "text": "dry up",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789344898631/card-1789344980848/back-1789347519622-vn03up.webm"
+              }
+            },
+            {
+              "id": "card-1789344981015",
+              "front": {
+                "text": "giảm thiệt hại (v) "
+              },
+              "back": {
+                "text": "mitigate",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789344898631/card-1789344981015/back-1789347518856-9uj949.webm"
+              }
+            },
+            {
+              "id": "card-1789344981216",
+              "front": {
+                "text": "canh tác (v) "
+              },
+              "back": {
+                "text": "cultivate",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789344898631/card-1789344981216/back-1789347518112-52zb1l.webm"
+              }
+            },
+            {
+              "id": "card-1789344981399",
+              "front": {
+                "text": "tưới tiêu (v) "
+              },
+              "back": {
+                "text": "irrigate",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789344898631/card-1789344981399/back-1789347517267-wk9jbh.webm"
+              }
+            },
+            {
+              "id": "card-1789344981582",
+              "front": {
+                "text": "(v) ăn cỏ / sượt qua "
+              },
+              "back": {
+                "text": "graze ",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789344898631/card-1789344981582/back-1789347516565-c48txz.webm"
+              }
+            },
+            {
+              "id": "card-1789344981815",
+              "front": {
+                "text": "(n) chuyến thám hiểm thiên nhiên hoang dã"
+              },
+              "back": {
+                "text": "safari",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789344898631/card-1789344981815/back-1789347515524-o4oubq.webm"
+              }
+            }
+          ]
+        },
+        {
+          "id": "file-1789346157022",
+          "type": "file",
+          "name": "Cam 21",
+          "description": "Mô tả bộ từ",
+          "icon": "▤",
+          "cards": [
+            {
+              "id": "file-1789346157022-card",
+              "front": {
+                "text": "(v) tích luỹ"
+              },
+              "back": {
+                "text": "amass",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789346157022/file-1789346157022-card/back-1789347553600-gown4h.webm"
+              }
+            },
+            {
+              "id": "card-1789346182655",
+              "front": {
+                "text": "(adj) tính từ thiện "
+              },
+              "back": {
+                "text": "philanthropic",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789346157022/card-1789346182655/back-1789347552863-t02557.webm"
+              }
+            },
+            {
+              "id": "card-1789346183722",
+              "front": {
+                "text": "(n) hoạt động nhân đạo "
+              },
+              "back": {
+                "text": "humanitarian act",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789346157022/card-1789346183722/back-1789347551711-wgb3ip.webm"
+              }
+            },
+            {
+              "id": "card-1789346185170",
+              "front": {
+                "text": "(phr) theo ý kiến của tôi "
+              },
+              "back": {
+                "text": "of my own volition ",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789346157022/card-1789346185170/back-1789347551170-82i98b.webm"
+              }
+            },
+            {
+              "id": "card-1789346186388",
+              "front": {
+                "text": "(n) một người ủng hộ gì đó "
+              },
+              "back": {
+                "text": "an advocate of",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789346157022/card-1789346186388/back-1789347550600-j2pj5w.webm"
+              }
+            },
+            {
+              "id": "card-1789346187305",
+              "front": {
+                "text": "(adj) vô hại "
+              },
+              "back": {
+                "text": "benign",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789346157022/card-1789346187305/back-1789347549797-ccc0c8.webm"
+              }
+            },
+            {
+              "id": "card-1789346188638",
+              "front": {
+                "text": "(v) giảm (âm) "
+              },
+              "back": {
+                "text": "muffle",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789346157022/card-1789346188638/back-1789347548580-tfo932.webm"
+              }
+            },
+            {
+              "id": "card-1789346189838",
+              "front": {
+                "text": "(adj) rất mệt"
+              },
+              "back": {
+                "text": "tedious",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789346157022/card-1789346189838/back-1789347547711-tifgut.webm"
+              }
+            },
+            {
+              "id": "card-1789346190671",
+              "front": {
+                "text": "(adj) common"
+              },
+              "back": {
+                "text": "ubiquitous",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789346157022/card-1789346190671/back-1789347547181-gxya52.webm"
+              }
+            },
+            {
+              "id": "card-1789346191388",
+              "front": {
+                "text": "(n) nữ gia sư "
+              },
+              "back": {
+                "text": "governess",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789346157022/card-1789346191388/back-1789347546378-xawnd8.webm"
+              }
+            },
+            {
+              "id": "card-1789346191605",
+              "front": {
+                "text": "(phr v): được định hướng tới"
+              },
+              "back": {
+                "text": "be geared towards",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789346157022/card-1789346191605/back-1789347545532-8c34vx.webm"
+              }
+            },
+            {
+              "id": "card-1789346191955",
+              "front": {
+                "text": "(phr) vượt quá khả năng tài chín "
+              },
+              "back": {
+                "text": "beyond one's means",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789346157022/card-1789346191955/back-1789347544799-0ys9cq.webm"
+              }
+            },
+            {
+              "id": "card-1789346192139",
+              "front": {
+                "text": "trường phái ấn tượng "
+              },
+              "back": {
+                "text": "impressionist",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789346157022/card-1789346192139/back-1789347544036-5w279v.webm"
+              }
+            },
+            {
+              "id": "card-1789346192304",
+              "front": {
+                "text": "(phr. v) nhạy cảm (phản ứng nhanh/mạnh) với gì đó"
+              },
+              "back": {
+                "text": "be attuned to ",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789346157022/card-1789346192304/back-1789347543157-7908db.webm"
+              }
+            },
+            {
+              "id": "card-1789346192455",
+              "front": {
+                "text": "(n) chuyên gia âm học "
+              },
+              "back": {
+                "text": "acoustic consultant",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789346157022/card-1789346192455/back-1789347542762-98ufqs.webm"
+              }
+            },
+            {
+              "id": "card-1789346192622",
+              "front": {
+                "text": "(n) luật pháp "
+              },
+              "back": {
+                "text": "legislation",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789346157022/card-1789346192622/back-1789347541510-cf0wvr.webm"
+              }
+            },
+            {
+              "id": "card-1789346192788",
+              "front": {
+                "text": "(n) kích thích giác quan"
+              },
+              "back": {
+                "text": "sensory stimuli",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789346157022/card-1789346192788/back-1789347540690-4sg76d.webm"
+              }
+            },
+            {
+              "id": "card-1789346192954",
+              "front": {
+                "text": "(n) tước bỏ giác quan "
+              },
+              "back": {
+                "text": "sensory deprivation",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789346157022/card-1789346192954/back-1789347539943-8yge8b.webm"
+              }
+            },
+            {
+              "id": "card-1789346193121",
+              "front": {
+                "text": "(v) duy trì, tiếp nối "
+              },
+              "back": {
+                "text": "retain",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789346157022/card-1789346193121/back-1789347539202-ui8q1d.webm"
+              }
+            },
+            {
+              "id": "card-1789346193389",
+              "front": {
+                "text": "(n) điều kiện lap động "
+              },
+              "back": {
+                "text": "labour regime",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789346157022/card-1789346193389/back-1789347538630-08g7ww.webm"
+              }
+            },
+            {
+              "id": "card-1789346356106",
+              "front": {
+                "text": "(n): middle class/ông chủ "
+              },
+              "back": {
+                "text": "bourgeoisie",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789346157022/card-1789346356106/back-1789347537726-x31vw0.webm"
+              }
+            },
+            {
+              "id": "card-1789346361472",
+              "front": {
+                "text": "(n) sự hoà hợp, hoà tan "
+              },
+              "back": {
+                "text": "diffusion",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789346157022/card-1789346361472/back-1789347536803-edpkdo.webm"
+              }
+            },
+            {
+              "id": "card-1789346369506",
+              "front": {
+                "text": "(n) chướng ngại "
+              },
+              "back": {
+                "text": "obstruction",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789346157022/card-1789346369506/back-1789347536227-h34h8q.webm"
+              }
+            },
+            {
+              "id": "card-1789346376022",
+              "front": {
+                "text": "(adj) chưa từng có "
+              },
+              "back": {
+                "text": "unprecedented",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789346157022/card-1789346376022/back-1789347535680-07ydx4.webm"
+              }
+            },
+            {
+              "id": "card-1789346384922",
+              "front": {
+                "text": "(n) biến động xã hội"
+              },
+              "back": {
+                "text": "social upheaval ",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789346157022/card-1789346384922/back-1789347534862-11ub7n.webm"
+              }
+            },
+            {
+              "id": "card-1789346395306",
+              "front": {
+                "text": "(n) các tuyến trong cơ thể"
+              },
+              "back": {
+                "text": "glands",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789346157022/card-1789346395306/back-1789347534001-s6mps1.webm"
+              }
+            },
+            {
+              "id": "card-1789346408605",
+              "front": {
+                "text": "(v) làm xấu gì đó"
+              },
+              "back": {
+                "text": "detract from",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789346157022/card-1789346408605/back-1789347533263-g3rmqs.webm"
+              }
+            },
+            {
+              "id": "card-1789346413039",
+              "front": {
+                "text": "(adj); căn bản, quan trọng "
+              },
+              "back": {
+                "text": "clinical ",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789346157022/card-1789346413039/back-1789347532715-hegrza.webm"
+              }
+            },
+            {
+              "id": "card-1789346416556",
+              "front": {
+                "text": "(n) phòng khám"
+              },
+              "back": {
+                "text": "clinic",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789346157022/card-1789346416556/back-1789347532093-rwrc4e.webm"
+              }
+            },
+            {
+              "id": "card-1789346419422",
+              "front": {
+                "text": "(adj) sâu sắc"
+              },
+              "back": {
+                "text": "profound",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789346157022/card-1789346419422/back-1789347531520-psvyfw.webm"
+              }
+            },
+            {
+              "id": "card-1789346427706",
+              "front": {
+                "text": "(phr. v) tàn phá"
+              },
+              "back": {
+                "text": "wreak havoc",
+                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789346157022/card-1789346427706/back-1789347530667-yd1qsg.webm"
+              }
+            }
+          ]
+        }
+      ]
     }
   ]
 }
