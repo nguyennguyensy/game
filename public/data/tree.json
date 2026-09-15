@@ -1278,6 +1278,165 @@
                   }
                 }
               ]
+            },
+            {
+              "id": "file-1789468666030",
+              "type": "file",
+              "name": "Phrasal Verbs 1",
+              "description": "Mô tả bộ từ",
+              "icon": "▤",
+              "cards": [
+                {
+                  "id": "file-1789468666030-card",
+                  "front": {
+                    "text": "sống trong một căn chung cư"
+                  },
+                  "back": {
+                    "text": "live in a flat",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789468666030/file-1789468666030-card/back-1789469037386-nwpzuy.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789468686396",
+                  "front": {
+                    "text": "ăn sáng"
+                  },
+                  "back": {
+                    "text": "have breakfast",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789468666030/card-1789468686396/back-1789469038520-ihwwad.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789468687378",
+                  "front": {
+                    "text": "xem tivi"
+                  },
+                  "back": {
+                    "text": "watch TV",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789468666030/card-1789468687378/back-1789469039391-70kc4g.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789468688478",
+                  "front": {
+                    "text": "nghe đài radio"
+                  },
+                  "back": {
+                    "text": "listen to the radio",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789468666030/card-1789468688478/back-1789469040444-5k3fyx.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789468689828",
+                  "front": {
+                    "text": "đọc báo"
+                  },
+                  "back": {
+                    "text": "read the newspaper",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789468666030/card-1789468689828/back-1789469041537-ol22s3.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789468690567",
+                  "front": {
+                    "text": "ăn đồ ăn nhanh"
+                  },
+                  "back": {
+                    "text": "eat fast food",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789468666030/card-1789468690567/back-1789469042170-zp5y7o.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789468691467",
+                  "front": {
+                    "text": "uống trà"
+                  },
+                  "back": {
+                    "text": "drink tea",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789468666030/card-1789468691467/back-1789469043201-vyr764.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789468692428",
+                  "front": {
+                    "text": "nói tiếng Anh"
+                  },
+                  "back": {
+                    "text": "speak English",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789468666030/card-1789468692428/back-1789469044046-5k4uf9.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789468693411",
+                  "front": {
+                    "text": "muốn một cốc cà phê"
+                  },
+                  "back": {
+                    "text": "want a coffee",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789468666030/card-1789468693411/back-1789469044810-65gvdq.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789468694362",
+                  "front": {
+                    "text": "có một con chó"
+                  },
+                  "back": {
+                    "text": "have a dog",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789468666030/card-1789468694362/back-1789469045895-xg8y3g.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789468695301",
+                  "front": {
+                    "text": "thích mèo"
+                  },
+                  "back": {
+                    "text": "like cats",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789468666030/card-1789468695301/back-1789469046677-14pbow.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789468696361",
+                  "front": {
+                    "text": "làm việc trong ngân hàng"
+                  },
+                  "back": {
+                    "text": "work in a bank",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789468666030/card-1789468696361/back-1789469047684-60yqao.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789468697595",
+                  "front": {
+                    "text": "học tiếng Tây Ban Nha"
+                  },
+                  "back": {
+                    "text": "study Spanish",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789468666030/card-1789468697595/back-1789469048778-1hkrd2.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789468699345",
+                  "front": {
+                    "text": "đi tới lớp học tiếng anh"
+                  },
+                  "back": {
+                    "text": "go to English classes",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789468666030/card-1789468699345/back-1789469049699-2xkp9i.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789468700061",
+                  "front": {
+                    "text": "cần một chiếc xe mới"
+                  },
+                  "back": {
+                    "text": "need a new car",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789468666030/card-1789468700061/back-1789469050513-s5qbjq.m4a"
+                  }
+                }
+              ]
             }
           ]
         }
