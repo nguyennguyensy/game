@@ -628,8 +628,8 @@ type Falling = Card & {
   typed: number;
   born: number;
 };
-const DESKTOP_SPAWN_INTERVAL_MS = 3500;
-const MOBILE_SPAWN_INTERVAL_MS = 5000;
+const DESKTOP_SPAWN_INTERVAL_MS = 7000;
+const MOBILE_SPAWN_INTERVAL_MS = 8500;
 
 const getSpawnInterval = () => {
   if (typeof window === "undefined") return DESKTOP_SPAWN_INTERVAL_MS;
@@ -660,11 +660,12 @@ function Game({ file }: { file: FileNode }) {
   const completedRef = useRef(0);
   const missedLivesRef = useRef(0);
   const missedBoxIdsRef = useRef(new Set<string>());
-  const FALL_SPEED = 0.44;
+  // Chỉnh tốc độ rơi ở đây: giảm xuống = chậm hơn, tăng lên = nhanh hơn.
+  const FALL_SPEED = 0.4;
   const totalCards = file.cards.length * 3;
   const done = result !== null;
   const won = result === "won";
-  const speed = FALL_SPEED + Math.floor(combo / 5) * 0.07;
+  const speed = FALL_SPEED + Math.floor(combo / 5) * 0.04;
   const finish = (nextResult: GameResult) => {
     if (resultRef.current) return;
     resultRef.current = nextResult;
