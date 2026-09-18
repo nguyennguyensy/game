@@ -1696,420 +1696,1313 @@
       "icon": "◇",
       "children": [
         {
-          "id": "file-1789173610222",
-          "type": "file",
-          "name": "Nouns - Household Equipments",
-          "description": "Mô tả bộ từ",
-          "icon": "▤",
-          "cards": [
+          "id": "folder-1789718440304",
+          "type": "folder",
+          "name": "Week 1",
+          "icon": "◇",
+          "children": [
             {
-              "id": "file-1789173610222-card",
-              "front": {
-                "text": "một cái máy giặt"
-              },
-              "back": {
-                "text": "a washing machine",
-                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789173610222/file-1789173610222-card/back-1789291041664-f4xghc.webm"
-              }
+              "id": "file-1789718460023-6yp835",
+              "type": "file",
+              "name": "Daily activities",
+              "description": "Mô tả bộ từ",
+              "icon": "▤",
+              "cards": [
+                {
+                  "id": "file-1789718460023-6yp835-2fzmxy",
+                  "front": {
+                    "text": "thức dậy "
+                  },
+                  "back": {
+                    "text": "get up",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/file-1789289809805-card/back-1789291076932-up8mg5.webm"
+                  }
+                },
+                {
+                  "id": "file-1789718460023-6yp835-e70134",
+                  "front": {
+                    "text": "Rửa mặt"
+                  },
+                  "back": {
+                    "text": "wash my face",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289812087/back-1789291076056-ubpm2k.webm"
+                  }
+                },
+                {
+                  "id": "file-1789718460023-6yp835-p8u5a4",
+                  "front": {
+                    "text": "Đánh răng "
+                  },
+                  "back": {
+                    "text": "brush my teeth ",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289813637/back-1789291075495-hu9db7.webm"
+                  }
+                },
+                {
+                  "id": "file-1789718460023-6yp835-ypv0b0",
+                  "front": {
+                    "text": "chuẩn bị bữa sáng"
+                  },
+                  "back": {
+                    "text": "prepare for breakfast",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289814621/back-1789291074369-ptmlne.webm"
+                  }
+                },
+                {
+                  "id": "file-1789718460023-6yp835-8kqk2o",
+                  "front": {
+                    "text": "nấu bữa trưa"
+                  },
+                  "back": {
+                    "text": "make lunch ",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289815517/back-1789291073447-9cjhqj.webm"
+                  }
+                },
+                {
+                  "id": "file-1789718460023-6yp835-0uaeqx",
+                  "front": {
+                    "text": "nấu đồ ăn / nấu bữa ăn"
+                  },
+                  "back": {
+                    "text": "cook ",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289816471/back-1789291072614-fn6uy2.webm"
+                  }
+                },
+                {
+                  "id": "file-1789718460023-6yp835-qs5q2o",
+                  "front": {
+                    "text": "ăn đồ ăn / ăn bữa ăn"
+                  },
+                  "back": {
+                    "text": "eat",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289817837/back-1789291072067-b6hgjl.webm"
+                  }
+                },
+                {
+                  "id": "file-1789718460023-6yp835-czaodk",
+                  "front": {
+                    "text": "ăn tối"
+                  },
+                  "back": {
+                    "text": "have dinner",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289818871/back-1789291071201-rauekq.webm"
+                  }
+                },
+                {
+                  "id": "file-1789718460023-6yp835-a90wnt",
+                  "front": {
+                    "text": "tập thể dục "
+                  },
+                  "back": {
+                    "text": "work out",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289819054/back-1789291070336-0axegl.webm"
+                  }
+                },
+                {
+                  "id": "file-1789718460023-6yp835-ehysqk",
+                  "front": {
+                    "text": "đi dạo "
+                  },
+                  "back": {
+                    "text": "go for a walk ",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289819522/back-1789291077835-evakyc.webm"
+                  }
+                },
+                {
+                  "id": "file-1789718460023-6yp835-vpqqe9",
+                  "front": {
+                    "text": "dọn nhà"
+                  },
+                  "back": {
+                    "text": "clean the house",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289820238/back-1789291069566-1s4ldp.webm"
+                  }
+                },
+                {
+                  "id": "file-1789718460023-6yp835-d3ohcm",
+                  "front": {
+                    "text": "quét nhà"
+                  },
+                  "back": {
+                    "text": "sweep the floor",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289884754/back-1789291068737-enljj1.webm"
+                  }
+                },
+                {
+                  "id": "file-1789718460023-6yp835-ty5xk6",
+                  "front": {
+                    "text": "lau nhà"
+                  },
+                  "back": {
+                    "text": "mop the floor",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289886104/back-1789291067756-dk1ql9.webm"
+                  }
+                },
+                {
+                  "id": "file-1789718460023-6yp835-vk0r84",
+                  "front": {
+                    "text": "lau bàn"
+                  },
+                  "back": {
+                    "text": "wipe the table",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289886871/back-1789291066182-5q2nhg.webm"
+                  }
+                },
+                {
+                  "id": "file-1789718460023-6yp835-x2a8af",
+                  "front": {
+                    "text": "gấp chăn gối "
+                  },
+                  "back": {
+                    "text": "make the bed",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289905354/back-1789291065251-878qly.webm"
+                  }
+                },
+                {
+                  "id": "file-1789718460023-6yp835-fg4ww2",
+                  "front": {
+                    "text": "chải tóc"
+                  },
+                  "back": {
+                    "text": "comb my hair",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289971487/back-1789291064245-wxiimq.webm"
+                  }
+                },
+                {
+                  "id": "file-1789718460023-6yp835-3ujnk8",
+                  "front": {
+                    "text": "mặc quần áo"
+                  },
+                  "back": {
+                    "text": "get dressed",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789290033321/back-1789291063479-l971pa.webm"
+                  }
+                },
+                {
+                  "id": "file-1789718460023-6yp835-iti1x5",
+                  "front": {
+                    "text": "ăn diện "
+                  },
+                  "back": {
+                    "text": "dress up ",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789290037771/back-1789291062696-tttzvs.webm"
+                  }
+                },
+                {
+                  "id": "file-1789718460023-6yp835-n60z6z",
+                  "front": {
+                    "text": "lướt Tiktok vô thức"
+                  },
+                  "back": {
+                    "text": "dumbscroll through Tiktok",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789290051338/back-1789291061671-xdz5as.webm"
+                  }
+                },
+                {
+                  "id": "file-1789718460023-6yp835-3jn1bq",
+                  "front": {
+                    "text": "đi chơi với bạn "
+                  },
+                  "back": {
+                    "text": "hang out with friends",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789290052905/back-1789291060442-7u39ka.webm"
+                  }
+                }
+              ]
             },
             {
-              "id": "card-1789288945440",
-              "front": {
-                "text": "một cái máy rửa bát"
-              },
-              "back": {
-                "text": "a dishwasher",
-                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789173610222/card-1789288945440/back-1789291043141-rhspsb.webm"
-              }
-            },
-            {
-              "id": "card-1789288947723",
-              "front": {
-                "text": "một cái chổi"
-              },
-              "back": {
-                "text": "a broom",
-                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789173610222/card-1789288947723/back-1789291044137-2d3h47.webm"
-              }
-            },
-            {
-              "id": "card-1789288948740",
-              "front": {
-                "text": "một cái tho hót"
-              },
-              "back": {
-                "text": "a dustpan",
-                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789173610222/card-1789288948740/back-1789291044935-khwdy8.webm"
-              }
-            },
-            {
-              "id": "card-1789288949640",
-              "front": {
-                "text": "một cái cây lau nhà"
-              },
-              "back": {
-                "text": "a mop",
-                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789173610222/card-1789288949640/back-1789291045696-46pjgn.webm"
-              }
-            },
-            {
-              "id": "card-1789288950456",
-              "front": {
-                "text": "một cái máy sấy "
-              },
-              "back": {
-                "text": "a dryer",
-                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789173610222/card-1789288950456/back-1789291046490-47p9jf.webm"
-              }
-            },
-            {
-              "id": "card-1789288951273",
-              "front": {
-                "text": "một cái máy sấy tóc"
-              },
-              "back": {
-                "text": "a hair dryer",
-                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789173610222/card-1789288951273/back-1789291047689-6oicup.webm"
-              }
-            },
-            {
-              "id": "card-1789288951906",
-              "front": {
-                "text": "một cái khăn tắm"
-              },
-              "back": {
-                "text": "a towel",
-                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789173610222/card-1789288951906/back-1789291048478-3qtsnj.webm"
-              }
-            },
-            {
-              "id": "card-1789288952473",
-              "front": {
-                "text": "khăn giấy"
-              },
-              "back": {
-                "text": "paper towels ",
-                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789173610222/card-1789288952473/back-1789291049279-dthjwy.webm"
-              }
-            },
-            {
-              "id": "card-1789288953073",
-              "front": {
-                "text": "đèn"
-              },
-              "back": {
-                "text": "lights",
-                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789173610222/card-1789288953073/back-1789291050800-63o3db.webm"
-              }
-            },
-            {
-              "id": "card-1789288953539",
-              "front": {
-                "text": "một cái tủ quần áo"
-              },
-              "back": {
-                "text": "a wardrobe ",
-                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789173610222/card-1789288953539/back-1789291051625-f1a31z.webm"
-              }
-            },
-            {
-              "id": "card-1789288953873",
-              "front": {
-                "text": "một cái tủ ngăn kéo"
-              },
-              "back": {
-                "text": "a cupboard",
-                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789173610222/card-1789288953873/back-1789291052494-mtuisu.webm"
-              }
-            },
-            {
-              "id": "card-1789288954039",
-              "front": {
-                "text": "móc"
-              },
-              "back": {
-                "text": "hangers",
-                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789173610222/card-1789288954039/back-1789291053325-glp2fa.webm"
-              }
-            },
-            {
-              "id": "card-1789288954189",
-              "front": {
-                "text": "một cái máy điều hoà"
-              },
-              "back": {
-                "text": "an air conditioner ",
-                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789173610222/card-1789288954189/back-1789291054243-fcnl28.webm"
-              }
-            },
-            {
-              "id": "card-1789288954374",
-              "front": {
-                "text": "một cái tivi"
-              },
-              "back": {
-                "text": "a television",
-                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789173610222/card-1789288954374/back-1789291055516-8sbv1e.webm"
-              }
-            },
-            {
-              "id": "card-1789288954523",
-              "front": {
-                "text": "một cái điều khiển"
-              },
-              "back": {
-                "text": "a remote control ",
-                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789173610222/card-1789288954523/back-1789291056340-7ku33d.webm"
-              }
-            },
-            {
-              "id": "card-1789288954674",
-              "front": {
-                "text": "một cái giá"
-              },
-              "back": {
-                "text": "a shelf",
-                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789173610222/card-1789288954674/back-1789291057224-q6h0c8.webm"
-              }
-            },
-            {
-              "id": "card-1789288954840",
-              "front": {
-                "text": "cuộn tóc"
-              },
-              "back": {
-                "text": "a hair roller",
-                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789173610222/card-1789288954840/back-1789291058014-fmwjfd.webm"
-              }
-            },
-            {
-              "id": "card-1789288954990",
-              "front": {
-                "text": "Một cái gương"
-              },
-              "back": {
-                "text": "a mirror",
-                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789173610222/card-1789288954990/back-1789291058789-7n05xx.webm"
-              }
-            },
-            {
-              "id": "card-1789288955340",
-              "front": {
-                "text": "Một cái lược"
-              },
-              "back": {
-                "text": "a comb",
-                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789173610222/card-1789288955340/back-1789291059625-8gd5hh.webm"
-              }
+              "id": "file-1789718467504-s6eu6w",
+              "type": "file",
+              "name": "Nouns - Household Equipments",
+              "description": "Mô tả bộ từ",
+              "icon": "▤",
+              "cards": [
+                {
+                  "id": "file-1789718467504-s6eu6w-fos10e",
+                  "front": {
+                    "text": "một cái máy giặt"
+                  },
+                  "back": {
+                    "text": "a washing machine",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789173610222/file-1789173610222-card/back-1789291041664-f4xghc.webm"
+                  }
+                },
+                {
+                  "id": "file-1789718467504-s6eu6w-nu0ye8",
+                  "front": {
+                    "text": "một cái máy rửa bát"
+                  },
+                  "back": {
+                    "text": "a dishwasher",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789173610222/card-1789288945440/back-1789291043141-rhspsb.webm"
+                  }
+                },
+                {
+                  "id": "file-1789718467504-s6eu6w-nmuhag",
+                  "front": {
+                    "text": "một cái chổi"
+                  },
+                  "back": {
+                    "text": "a broom",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789173610222/card-1789288947723/back-1789291044137-2d3h47.webm"
+                  }
+                },
+                {
+                  "id": "file-1789718467504-s6eu6w-31jw6d",
+                  "front": {
+                    "text": "một cái tho hót"
+                  },
+                  "back": {
+                    "text": "a dustpan",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789173610222/card-1789288948740/back-1789291044935-khwdy8.webm"
+                  }
+                },
+                {
+                  "id": "file-1789718467504-s6eu6w-ksovoe",
+                  "front": {
+                    "text": "một cái cây lau nhà"
+                  },
+                  "back": {
+                    "text": "a mop",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789173610222/card-1789288949640/back-1789291045696-46pjgn.webm"
+                  }
+                },
+                {
+                  "id": "file-1789718467504-s6eu6w-g1j7nc",
+                  "front": {
+                    "text": "một cái máy sấy "
+                  },
+                  "back": {
+                    "text": "a dryer",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789173610222/card-1789288950456/back-1789291046490-47p9jf.webm"
+                  }
+                },
+                {
+                  "id": "file-1789718467504-s6eu6w-cu0sl5",
+                  "front": {
+                    "text": "một cái máy sấy tóc"
+                  },
+                  "back": {
+                    "text": "a hair dryer",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789173610222/card-1789288951273/back-1789291047689-6oicup.webm"
+                  }
+                },
+                {
+                  "id": "file-1789718467504-s6eu6w-cwerqm",
+                  "front": {
+                    "text": "một cái khăn tắm"
+                  },
+                  "back": {
+                    "text": "a towel",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789173610222/card-1789288951906/back-1789291048478-3qtsnj.webm"
+                  }
+                },
+                {
+                  "id": "file-1789718467504-s6eu6w-t9k5nf",
+                  "front": {
+                    "text": "khăn giấy"
+                  },
+                  "back": {
+                    "text": "paper towels ",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789173610222/card-1789288952473/back-1789291049279-dthjwy.webm"
+                  }
+                },
+                {
+                  "id": "file-1789718467504-s6eu6w-ue2eou",
+                  "front": {
+                    "text": "đèn"
+                  },
+                  "back": {
+                    "text": "lights",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789173610222/card-1789288953073/back-1789291050800-63o3db.webm"
+                  }
+                },
+                {
+                  "id": "file-1789718467504-s6eu6w-6n3hu3",
+                  "front": {
+                    "text": "một cái tủ quần áo"
+                  },
+                  "back": {
+                    "text": "a wardrobe ",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789173610222/card-1789288953539/back-1789291051625-f1a31z.webm"
+                  }
+                },
+                {
+                  "id": "file-1789718467504-s6eu6w-ngzssv",
+                  "front": {
+                    "text": "một cái tủ ngăn kéo"
+                  },
+                  "back": {
+                    "text": "a cupboard",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789173610222/card-1789288953873/back-1789291052494-mtuisu.webm"
+                  }
+                },
+                {
+                  "id": "file-1789718467504-s6eu6w-6rfnqy",
+                  "front": {
+                    "text": "móc"
+                  },
+                  "back": {
+                    "text": "hangers",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789173610222/card-1789288954039/back-1789291053325-glp2fa.webm"
+                  }
+                },
+                {
+                  "id": "file-1789718467504-s6eu6w-sftac2",
+                  "front": {
+                    "text": "một cái máy điều hoà"
+                  },
+                  "back": {
+                    "text": "an air conditioner ",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789173610222/card-1789288954189/back-1789291054243-fcnl28.webm"
+                  }
+                },
+                {
+                  "id": "file-1789718467504-s6eu6w-5q2od7",
+                  "front": {
+                    "text": "một cái tivi"
+                  },
+                  "back": {
+                    "text": "a television",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789173610222/card-1789288954374/back-1789291055516-8sbv1e.webm"
+                  }
+                },
+                {
+                  "id": "file-1789718467504-s6eu6w-deuov3",
+                  "front": {
+                    "text": "một cái điều khiển"
+                  },
+                  "back": {
+                    "text": "a remote control ",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789173610222/card-1789288954523/back-1789291056340-7ku33d.webm"
+                  }
+                },
+                {
+                  "id": "file-1789718467504-s6eu6w-zpnvil",
+                  "front": {
+                    "text": "một cái giá"
+                  },
+                  "back": {
+                    "text": "a shelf",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789173610222/card-1789288954674/back-1789291057224-q6h0c8.webm"
+                  }
+                },
+                {
+                  "id": "file-1789718467504-s6eu6w-advcdu",
+                  "front": {
+                    "text": "cuộn tóc"
+                  },
+                  "back": {
+                    "text": "a hair roller",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789173610222/card-1789288954840/back-1789291058014-fmwjfd.webm"
+                  }
+                },
+                {
+                  "id": "file-1789718467504-s6eu6w-ofj3o9",
+                  "front": {
+                    "text": "Một cái gương"
+                  },
+                  "back": {
+                    "text": "a mirror",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789173610222/card-1789288954990/back-1789291058789-7n05xx.webm"
+                  }
+                },
+                {
+                  "id": "file-1789718467504-s6eu6w-svm5m9",
+                  "front": {
+                    "text": "Một cái lược"
+                  },
+                  "back": {
+                    "text": "a comb",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789173610222/card-1789288955340/back-1789291059625-8gd5hh.webm"
+                  }
+                }
+              ]
             }
           ]
         },
         {
-          "id": "file-1789291110868-vx4h9l",
-          "type": "file",
-          "name": "Daily activities",
-          "description": "Mô tả bộ từ",
-          "icon": "▤",
-          "cards": [
+          "id": "folder-1789718483555",
+          "type": "folder",
+          "name": "Week 2",
+          "icon": "◇",
+          "children": [
             {
-              "id": "file-1789291110868-vx4h9l-z2gzme",
-              "front": {
-                "text": "thức dậy "
-              },
-              "back": {
-                "text": "get up",
-                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/file-1789289809805-card/back-1789291076932-up8mg5.webm"
-              }
+              "id": "file-1789718517588",
+              "type": "file",
+              "name": "In the kitchen - Cooking Equipments",
+              "description": "Mô tả bộ từ",
+              "icon": "▤",
+              "cards": [
+                {
+                  "id": "file-1789718517588-card",
+                  "front": {
+                    "text": "một cái nồi"
+                  },
+                  "back": {
+                    "text": "a pot ",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789718517588/file-1789718517588-card/back-1789726040315-fuy0vy.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789718519388",
+                  "front": {
+                    "text": "một cái chảo"
+                  },
+                  "back": {
+                    "text": "a pan",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789718517588/card-1789718519388/back-1789726039300-b31ypa.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789718520304",
+                  "front": {
+                    "text": "một cái vung"
+                  },
+                  "back": {
+                    "text": "a lid",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789718517588/card-1789718520304/back-1789726038721-ia60xn.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789718521121",
+                  "front": {
+                    "text": "một cái bếp / một cái lò"
+                  },
+                  "back": {
+                    "text": "a stove",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789718517588/card-1789718521121/back-1789726037233-frjn5e.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789718521921",
+                  "front": {
+                    "text": "một cái lò vi sóng"
+                  },
+                  "back": {
+                    "text": "a microwave",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789718517588/card-1789718521921/back-1789726036403-bd7g2l.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789718522704",
+                  "front": {
+                    "text": "một cái nồi cơm điện"
+                  },
+                  "back": {
+                    "text": "a cooker",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789718517588/card-1789718522704/back-1789726035789-ds5ijg.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789718524104",
+                  "front": {
+                    "text": "một cái nồi chiên không dầu"
+                  },
+                  "back": {
+                    "text": "an air fryer",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789718517588/card-1789718524104/back-1789726034694-erzowp.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789718524838",
+                  "front": {
+                    "text": "một cái tủ lạnh "
+                  },
+                  "back": {
+                    "text": "a fridge",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789718517588/card-1789718524838/back-1789726033685-68g2lz.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789718525688",
+                  "front": {
+                    "text": "một cái tủ đông"
+                  },
+                  "back": {
+                    "text": "a freezer",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789718517588/card-1789718525688/back-1789726032813-f7q765.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789718526588",
+                  "front": {
+                    "text": "một cái mài dao"
+                  },
+                  "back": {
+                    "text": "a knife sharpener",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789718517588/card-1789718526588/back-1789726031786-qnjihh.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789718527554",
+                  "front": {
+                    "text": "một con dao"
+                  },
+                  "back": {
+                    "text": "a knife",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789718517588/card-1789718527554/back-1789726030699-mhm8oe.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789718528454",
+                  "front": {
+                    "text": "một cái thớt "
+                  },
+                  "back": {
+                    "text": "a cutting board",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789718517588/card-1789718528454/back-1789726029654-mn5qe5.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789718529321",
+                  "front": {
+                    "text": "bồn rửa"
+                  },
+                  "back": {
+                    "text": "a sink",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789718517588/card-1789718529321/back-1789726028601-ttjwbt.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789718530172",
+                  "front": {
+                    "text": "xà phòng"
+                  },
+                  "back": {
+                    "text": "soap",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789718517588/card-1789718530172/back-1789726027243-oxg9bw.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789718530988",
+                  "front": {
+                    "text": "đũa"
+                  },
+                  "back": {
+                    "text": "chopsticks",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789718517588/card-1789718530988/back-1789726026606-yew73b.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789718531771",
+                  "front": {
+                    "text": "một cái dĩa"
+                  },
+                  "back": {
+                    "text": "a fork",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789718517588/card-1789718531771/back-1789726025468-zlp8qu.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789718532787",
+                  "front": {
+                    "text": "một cái thìa"
+                  },
+                  "back": {
+                    "text": "a spoon",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789718517588/card-1789718532787/back-1789726024268-94z7tx.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789718533654",
+                  "front": {
+                    "text": "muối"
+                  },
+                  "back": {
+                    "text": "salt",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789718517588/card-1789718533654/back-1789726023440-5nllxh.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789718534571",
+                  "front": {
+                    "text": "Mì chính"
+                  },
+                  "back": {
+                    "text": "MSG",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789718517588/card-1789718534571/back-1789726022332-vug2zx.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789718539037",
+                  "front": {
+                    "text": "tiêu / ớt chuông"
+                  },
+                  "back": {
+                    "text": "pepper",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789718517588/card-1789718539037/back-1789726020737-rdg2gn.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789718540222",
+                  "front": {
+                    "text": "đường"
+                  },
+                  "back": {
+                    "text": "sugar",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789718517588/card-1789718540222/back-1789726019623-ce4qxx.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789718541221",
+                  "front": {
+                    "text": "ớt"
+                  },
+                  "back": {
+                    "text": "chilli",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789718517588/card-1789718541221/back-1789726018542-4vx57p.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789718542009",
+                  "front": {
+                    "text": "dầu"
+                  },
+                  "back": {
+                    "text": "oil",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789718517588/card-1789718542009/back-1789726017778-gbxumk.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789718542940",
+                  "front": {
+                    "text": "nước mắm"
+                  },
+                  "back": {
+                    "text": "fish sauce",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789718517588/card-1789718542940/back-1789726016697-iejmf9.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789718543823",
+                  "front": {
+                    "text": "nước tương"
+                  },
+                  "back": {
+                    "text": "soy sauce",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789718517588/card-1789718543823/back-1789726015528-fpqo32.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789718544955",
+                  "front": {
+                    "text": "dầu hào"
+                  },
+                  "back": {
+                    "text": "oyster sauce",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789718517588/card-1789718544955/back-1789726014325-rgrp3e.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789718546871",
+                  "front": {
+                    "text": "nước lã / nước từ vòi"
+                  },
+                  "back": {
+                    "text": "tap water",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789718517588/card-1789718546871/back-1789726013193-d377re.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789719130030",
+                  "front": {
+                    "text": "một cái bát"
+                  },
+                  "back": {
+                    "text": "a bowl",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789718517588/card-1789719130030/back-1789726012109-ha3den.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789719137643",
+                  "front": {
+                    "text": "một cái đĩa"
+                  },
+                  "back": {
+                    "text": "a dish",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789718517588/card-1789719137643/back-1789726011247-wayxry.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789719153658",
+                  "front": {
+                    "text": "một cái cốc"
+                  },
+                  "back": {
+                    "text": "a cup",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789718517588/card-1789719153658/back-1789726010140-px6em0.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789719170827",
+                  "front": {
+                    "text": "một cái bàn ăn"
+                  },
+                  "back": {
+                    "text": "a dinning table",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789718517588/card-1789719170827/back-1789726008980-e08exs.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789719395161",
+                  "front": {
+                    "text": "kéo"
+                  },
+                  "back": {
+                    "text": "scissors",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789718517588/card-1789719395161/back-1789726007833-w4bl30.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789719399928",
+                  "front": {
+                    "text": "một cái giá"
+                  },
+                  "back": {
+                    "text": "a rack",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789718517588/card-1789719399928/back-1789726006590-jpavls.m4a"
+                  }
+                }
+              ]
             },
             {
-              "id": "file-1789291110868-vx4h9l-d4f5wj",
-              "front": {
-                "text": "Rửa mặt"
-              },
-              "back": {
-                "text": "wash my face",
-                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289812087/back-1789291076056-ubpm2k.webm"
-              }
+              "id": "file-1789723964123",
+              "type": "file",
+              "name": "In the Kitchen - Cooking methods and ingredients",
+              "description": "Mô tả bộ từ",
+              "icon": "▤",
+              "cards": [
+                {
+                  "id": "file-1789723964123-card",
+                  "front": {
+                    "text": "(v)ướp"
+                  },
+                  "back": {
+                    "text": "marinate",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789723964123/file-1789723964123-card/back-1789726072765-vs99p6.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789723983370",
+                  "front": {
+                    "text": "(v)luộc"
+                  },
+                  "back": {
+                    "text": "boil",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789723964123/card-1789723983370/back-1789726071621-z8sxab.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789723984637",
+                  "front": {
+                    "text": "(v) hấp"
+                  },
+                  "back": {
+                    "text": "steam",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789723964123/card-1789723984637/back-1789726070529-1nq548.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789723985520",
+                  "front": {
+                    "text": "(v)rán"
+                  },
+                  "back": {
+                    "text": "fry",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789723964123/card-1789723985520/back-1789726069970-sn7xid.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789723986654",
+                  "front": {
+                    "text": "(v)rán ngập dầu"
+                  },
+                  "back": {
+                    "text": "deep fry",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789723964123/card-1789723986654/back-1789726068913-fmnxi3.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789723987670",
+                  "front": {
+                    "text": "(v)xào, rang"
+                  },
+                  "back": {
+                    "text": "stir fry",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789723964123/card-1789723987670/back-1789726067888-pfzd2z.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789723989254",
+                  "front": {
+                    "text": "(v)kho "
+                  },
+                  "back": {
+                    "text": "braise",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789723964123/card-1789723989254/back-1789726066850-ibi8v9.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789724019637",
+                  "front": {
+                    "text": "(v)nấu lửa liu diu"
+                  },
+                  "back": {
+                    "text": "simmer",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789723964123/card-1789724019637/back-1789726066036-acvzri.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789724020537",
+                  "front": {
+                    "text": "(v)nướng than hoa"
+                  },
+                  "back": {
+                    "text": "grill",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789723964123/card-1789724020537/back-1789726065121-refcot.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789724021822",
+                  "front": {
+                    "text": "(v)nướng lò nhiệt độ cao (thường dùng cho bánh)"
+                  },
+                  "back": {
+                    "text": "bake",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789723964123/card-1789724021822/back-1789726064048-l7r8z6.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789724054538",
+                  "front": {
+                    "text": "(v)nướng nhiệt độ thấp"
+                  },
+                  "back": {
+                    "text": "toast",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789723964123/card-1789724054538/back-1789726062577-ndqdcu.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789724065721",
+                  "front": {
+                    "text": "(v)trộn"
+                  },
+                  "back": {
+                    "text": "mix ",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789723964123/card-1789724065721/back-1789726061077-lbqwjn.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789724072821",
+                  "front": {
+                    "text": "(v) xay, trộn đều"
+                  },
+                  "back": {
+                    "text": "blend",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789723964123/card-1789724072821/back-1789726060063-bti91p.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789724075970",
+                  "front": {
+                    "text": "(v)cắt thành miếng nhỏ"
+                  },
+                  "back": {
+                    "text": "cut into smaller pieces",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789723964123/card-1789724075970/back-1789726058988-k331zb.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789724143438",
+                  "front": {
+                    "text": "(v)chặt"
+                  },
+                  "back": {
+                    "text": "chop",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789723964123/card-1789724143438/back-1789726058121-qjlhx7.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789724146655",
+                  "front": {
+                    "text": "(v)rửa "
+                  },
+                  "back": {
+                    "text": "wash ",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789723964123/card-1789724146655/back-1789726056623-s4aue4.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789724159555",
+                  "front": {
+                    "text": "(v)rửa dưới vòi nước chảy"
+                  },
+                  "back": {
+                    "text": "rinse",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789723964123/card-1789724159555/back-1789726055859-xvmed5.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789724230892",
+                  "front": {
+                    "text": "(n) hành tím/ hành khô"
+                  },
+                  "back": {
+                    "text": "shallots",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789723964123/card-1789724230892/back-1789726054298-jweudf.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789724258589",
+                  "front": {
+                    "text": "(n) cà chua"
+                  },
+                  "back": {
+                    "text": "tomatoes",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789723964123/card-1789724258589/back-1789726053738-c4hf3v.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789724268072",
+                  "front": {
+                    "text": "(n) hành tây"
+                  },
+                  "back": {
+                    "text": "onions",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789723964123/card-1789724268072/back-1789726052918-izs4np.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789724272889",
+                  "front": {
+                    "text": "(n) một tép tỏi"
+                  },
+                  "back": {
+                    "text": "a clove of garlic",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789723964123/card-1789724272889/back-1789726051887-258lxe.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789724295505",
+                  "front": {
+                    "text": "(n) hành lá"
+                  },
+                  "back": {
+                    "text": "green onions",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789723964123/card-1789724295505/back-1789726050844-mq8vnn.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789724337188",
+                  "front": {
+                    "text": "(n) sốt cà chua"
+                  },
+                  "back": {
+                    "text": "tomato sauce",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789723964123/card-1789724337188/back-1789726049707-4uawir.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789724343804",
+                  "front": {
+                    "text": "(n) gừng"
+                  },
+                  "back": {
+                    "text": "ginger",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789723964123/card-1789724343804/back-1789726048257-czjsbb.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789724466272",
+                  "front": {
+                    "text": "(n) nước dùng"
+                  },
+                  "back": {
+                    "text": "broth",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789723964123/card-1789724466272/back-1789726047470-ujot68.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789724483972",
+                  "front": {
+                    "text": "(n) xả"
+                  },
+                  "back": {
+                    "text": "lemon grass",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789723964123/card-1789724483972/back-1789726044510-x4xhjx.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789724488955",
+                  "front": {
+                    "text": "(n)rau thơm"
+                  },
+                  "back": {
+                    "text": "herbs",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789723964123/card-1789724488955/back-1789726043728-1v6vej.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789724491722",
+                  "front": {
+                    "text": "(n) rau húng"
+                  },
+                  "back": {
+                    "text": "basil",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789723964123/card-1789724491722/back-1789726043083-4rkr76.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789724496222",
+                  "front": {
+                    "text": "(n) rau mùi"
+                  },
+                  "back": {
+                    "text": "cilantro",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789723964123/card-1789724496222/back-1789726042213-9sq7mq.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789724519988",
+                  "front": {
+                    "text": "(n) cà rốt"
+                  },
+                  "back": {
+                    "text": "carrots",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789723964123/card-1789724519988/back-1789726041363-4068c8.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789724833276",
+                  "front": {
+                    "text": "(n)lime"
+                  },
+                  "back": {
+                    "text": "chanh xanh ",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789723964123/card-1789724833276/back-1789726046575-oxq3ox.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789724836941",
+                  "front": {
+                    "text": "(n)lemon"
+                  },
+                  "back": {
+                    "text": "chanh vàng",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789723964123/card-1789724836941/back-1789726045668-odsqnv.m4a"
+                  }
+                }
+              ]
             },
             {
-              "id": "file-1789291110868-vx4h9l-hf4q5u",
-              "front": {
-                "text": "Đánh răng "
-              },
-              "back": {
-                "text": "brush my teeth ",
-                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289813637/back-1789291075495-hu9db7.webm"
-              }
-            },
-            {
-              "id": "file-1789291110868-vx4h9l-bnxvk0",
-              "front": {
-                "text": "chuẩn bị bữa sáng"
-              },
-              "back": {
-                "text": "prepare for breakfast",
-                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289814621/back-1789291074369-ptmlne.webm"
-              }
-            },
-            {
-              "id": "file-1789291110868-vx4h9l-jpjdnf",
-              "front": {
-                "text": "nấu bữa trưa"
-              },
-              "back": {
-                "text": "make lunch ",
-                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289815517/back-1789291073447-9cjhqj.webm"
-              }
-            },
-            {
-              "id": "file-1789291110868-vx4h9l-qirnn8",
-              "front": {
-                "text": "nấu đồ ăn / nấu bữa ăn"
-              },
-              "back": {
-                "text": "cook ",
-                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289816471/back-1789291072614-fn6uy2.webm"
-              }
-            },
-            {
-              "id": "file-1789291110868-vx4h9l-p3rmrc",
-              "front": {
-                "text": "ăn đồ ăn / ăn bữa ăn"
-              },
-              "back": {
-                "text": "eat",
-                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289817837/back-1789291072067-b6hgjl.webm"
-              }
-            },
-            {
-              "id": "file-1789291110868-vx4h9l-nsvv76",
-              "front": {
-                "text": "ăn tối"
-              },
-              "back": {
-                "text": "have dinner",
-                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289818871/back-1789291071201-rauekq.webm"
-              }
-            },
-            {
-              "id": "file-1789291110868-vx4h9l-exylxu",
-              "front": {
-                "text": "tập thể dục "
-              },
-              "back": {
-                "text": "work out",
-                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289819054/back-1789291070336-0axegl.webm"
-              }
-            },
-            {
-              "id": "file-1789291110868-vx4h9l-ldxpxr",
-              "front": {
-                "text": "đi dạo "
-              },
-              "back": {
-                "text": "go for a walk ",
-                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289819522/back-1789291077835-evakyc.webm"
-              }
-            },
-            {
-              "id": "file-1789291110868-vx4h9l-zti49x",
-              "front": {
-                "text": "dọn nhà"
-              },
-              "back": {
-                "text": "clean the house",
-                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289820238/back-1789291069566-1s4ldp.webm"
-              }
-            },
-            {
-              "id": "file-1789291110868-vx4h9l-w0v556",
-              "front": {
-                "text": "quét nhà"
-              },
-              "back": {
-                "text": "sweep the floor",
-                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289884754/back-1789291068737-enljj1.webm"
-              }
-            },
-            {
-              "id": "file-1789291110868-vx4h9l-tffwor",
-              "front": {
-                "text": "lau nhà"
-              },
-              "back": {
-                "text": "mop the floor",
-                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289886104/back-1789291067756-dk1ql9.webm"
-              }
-            },
-            {
-              "id": "file-1789291110868-vx4h9l-yh83t4",
-              "front": {
-                "text": "lau bàn"
-              },
-              "back": {
-                "text": "wipe the table",
-                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289886871/back-1789291066182-5q2nhg.webm"
-              }
-            },
-            {
-              "id": "file-1789291110868-vx4h9l-s1x4ep",
-              "front": {
-                "text": "gấp chăn gối "
-              },
-              "back": {
-                "text": "make the bed",
-                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289905354/back-1789291065251-878qly.webm"
-              }
-            },
-            {
-              "id": "file-1789291110868-vx4h9l-72fq6m",
-              "front": {
-                "text": "chải tóc"
-              },
-              "back": {
-                "text": "comb my hair",
-                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789289971487/back-1789291064245-wxiimq.webm"
-              }
-            },
-            {
-              "id": "file-1789291110868-vx4h9l-i36f6t",
-              "front": {
-                "text": "mặc quần áo"
-              },
-              "back": {
-                "text": "get dressed",
-                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789290033321/back-1789291063479-l971pa.webm"
-              }
-            },
-            {
-              "id": "file-1789291110868-vx4h9l-ys6ide",
-              "front": {
-                "text": "ăn diện "
-              },
-              "back": {
-                "text": "dress up ",
-                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789290037771/back-1789291062696-tttzvs.webm"
-              }
-            },
-            {
-              "id": "file-1789291110868-vx4h9l-t1h4v8",
-              "front": {
-                "text": "lướt Tiktok vô thức"
-              },
-              "back": {
-                "text": "dumbscroll through Tiktok",
-                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789290051338/back-1789291061671-xdz5as.webm"
-              }
-            },
-            {
-              "id": "file-1789291110868-vx4h9l-z6cpdn",
-              "front": {
-                "text": "đi chơi với bạn "
-              },
-              "back": {
-                "text": "hang out with friends",
-                "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789289809805/card-1789290052905/back-1789291060442-7u39ka.webm"
-              }
+              "id": "file-1789725109774",
+              "type": "file",
+              "name": "In the kitchen - Vegetables",
+              "description": "Mô tả bộ từ",
+              "icon": "▤",
+              "cards": [
+                {
+                  "id": "file-1789725109774-card",
+                  "front": {
+                    "text": "cà rốt"
+                  },
+                  "back": {
+                    "text": "carrots",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789725109774/file-1789725109774-card/back-1789726095201-zdpmjd.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789725128337",
+                  "front": {
+                    "text": "bắp cải"
+                  },
+                  "back": {
+                    "text": "cabbages",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789725109774/card-1789725128337/back-1789726094142-otampa.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789725129305",
+                  "front": {
+                    "text": "bông cải xanh"
+                  },
+                  "back": {
+                    "text": "broccoli",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789725109774/card-1789725129305/back-1789726093581-ykazdx.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789725130122",
+                  "front": {
+                    "text": "bông cải trắng"
+                  },
+                  "back": {
+                    "text": "cauliflower",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789725109774/card-1789725130122/back-1789726092389-4csurl.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789725144338",
+                  "front": {
+                    "text": "hạt đậu / hạt đỗ"
+                  },
+                  "back": {
+                    "text": "peas",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789725109774/card-1789725144338/back-1789726091584-q3l5ay.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789725192971",
+                  "front": {
+                    "text": "đỗ chưa tách hạt"
+                  },
+                  "back": {
+                    "text": "beans",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789725109774/card-1789725192971/back-1789726090786-ogj1vr.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789725197737",
+                  "front": {
+                    "text": "ngô "
+                  },
+                  "back": {
+                    "text": "corn",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789725109774/card-1789725197737/back-1789726090012-0lzlr2.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789725200472",
+                  "front": {
+                    "text": "dưa chuột"
+                  },
+                  "back": {
+                    "text": "cucumbers",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789725109774/card-1789725200472/back-1789726088942-gl1coj.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789725203838",
+                  "front": {
+                    "text": "khoai tây"
+                  },
+                  "back": {
+                    "text": "potatoes",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789725109774/card-1789725203838/back-1789726087944-mbuz0c.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789725214521",
+                  "front": {
+                    "text": "khoai lang "
+                  },
+                  "back": {
+                    "text": "sweet potatoes",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789725109774/card-1789725214521/back-1789726086878-3t2tl1.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789725219738",
+                  "front": {
+                    "text": "rau muống "
+                  },
+                  "back": {
+                    "text": "morning glory",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789725109774/card-1789725219738/back-1789726086045-lkvdlp.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789725236155",
+                  "front": {
+                    "text": "cải thìa / cải chíp"
+                  },
+                  "back": {
+                    "text": "bok choy ",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789725109774/card-1789725236155/back-1789726081256-e42j7x.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789725283905",
+                  "front": {
+                    "text": "cải đắng"
+                  },
+                  "back": {
+                    "text": "mustard greens",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789725109774/card-1789725283905/back-1789726080565-6xdr0c.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789725297155",
+                  "front": {
+                    "text": "bầu, bí, mướp nói chung"
+                  },
+                  "back": {
+                    "text": "gourd",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789725109774/card-1789725297155/back-1789726077878-wu6rjm.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789725399270",
+                  "front": {
+                    "text": "bí đỏ (hình cầu, to)"
+                  },
+                  "back": {
+                    "text": "pumpkin",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789725109774/card-1789725399270/back-1789726076717-eu722c.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789725403836",
+                  "front": {
+                    "text": "bí đỏ (nhỏ)"
+                  },
+                  "back": {
+                    "text": "squash",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789725109774/card-1789725403836/back-1789726075807-kp2a9n.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789725406754",
+                  "front": {
+                    "text": "đỗ đen"
+                  },
+                  "back": {
+                    "text": "black beans",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789725109774/card-1789725406754/back-1789726074519-mm0wkb.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789725557952",
+                  "front": {
+                    "text": "lạc"
+                  },
+                  "back": {
+                    "text": "peanut",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789725109774/card-1789725557952/back-1789726073661-z29s2a.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789725622459",
+                  "front": {
+                    "text": "cà tím"
+                  },
+                  "back": {
+                    "text": "eggplant",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789725109774/card-1789725622459/back-1789726079820-cz4sc3.m4a"
+                  }
+                },
+                {
+                  "id": "card-1789725781582",
+                  "front": {
+                    "text": "rong / rêu"
+                  },
+                  "back": {
+                    "text": "algea",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789725109774/card-1789725781582/back-1789726078972-qky8x0.m4a"
+                  }
+                }
+              ]
             }
           ]
         }
