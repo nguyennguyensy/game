@@ -101,6 +101,16 @@ const allFiles = (tree: Tree) =>
   flatNodes(tree).filter((node): node is FileNode => node.type === "file");
 const allFolders = (tree: Tree) =>
   flatNodes(tree).filter((node): node is FolderNode => node.type === "folder");
+const findParentFolder = (tree: Tree, childId: string): FolderNode | null => {
+  if (tree.children.some((child) => child.id === childId)) return tree;
+  for (const child of tree.children) {
+    if (child.type === "folder") {
+      const parent = findParentFolder(child, childId);
+      if (parent) return parent;
+    }
+  }
+  return null;
+};
 const go = (path: string) => {
   window.location.hash = path;
 };
@@ -290,6 +300,7 @@ function App() {
     return <Admin tree={tree} toast={setToast} onPublishedTree={setTree} />;
   const game = route.match(/^\/file\/([^/]+)\/game/);
   const learn = route.match(/^\/file\/([^/]+)\/learn/);
+  const check = route.match(/^\/file\/([^/]+)\/check/);
   const fileRoute = route.match(/^\/file\/([^/]+)/);
   if (game) {
     const node = findNode(tree, game[1]);
@@ -307,11 +318,19 @@ function App() {
       </Shell>
     );
   }
+  if (check) {
+    const node = findNode(tree, check[1]);
+    return (
+      <Shell tree={tree}>
+        <SelfCheck file={node?.type === "file" ? node : allFiles(tree)[0]} />
+      </Shell>
+    );
+  }
   if (fileRoute) {
     const node = findNode(tree, fileRoute[1]);
     return (
       <Shell tree={tree}>
-        <FileChoice file={node?.type === "file" ? node : allFiles(tree)[0]} />
+        <FileChoice file={node?.type === "file" ? node : allFiles(tree)[0]} tree={tree} />
       </Shell>
     );
   }
@@ -351,7 +370,7 @@ function LoadingScreen({
   );
 }
 
-function Shell({ children, tree }: { children: React.ReactNode; tree: Tree }) {
+function Shell({ children, tree: _tree }: { children: React.ReactNode; tree: Tree }) {
   return (
     <div className="app-shell">
       <header className="topbar">
@@ -370,7 +389,6 @@ function Shell({ children, tree }: { children: React.ReactNode; tree: Tree }) {
         <span>
           vocab<span className="accent">lab</span> · học một chút, nhớ lâu hơn
         </span>
-        <span>{allFiles(tree).length} bộ học</span>
       </footer>
     </div>
   );
@@ -415,10 +433,6 @@ function Browse({ tree, folderId }: { tree: Tree; folderId: string }) {
           <h1>{folder.name}</h1>
           <p className="muted">Chọn một chủ đề để bắt đầu phiên học 10 phút.</p>
         </div>
-        <div className="stat-pill">
-          <strong>{folder.children.length}</strong>
-          <span>mục trong thư mục</span>
-        </div>
       </div>
       <div className="node-grid">
         {folder.children.map((item) => (
@@ -435,11 +449,6 @@ function Browse({ tree, folderId }: { tree: Tree; folderId: string }) {
               {item.icon || (item.type === "folder" ? "◇" : "▤")}
             </span>
             <span className="node-title">{item.name}</span>
-            <span className="node-meta">
-              {item.type === "folder"
-                ? `${item.children.length} bộ học`
-                : `${item.cards.length} thẻ`}
-            </span>
             <span className="node-arrow">↗</span>
           </button>
         ))}
@@ -452,11 +461,12 @@ function Browse({ tree, folderId }: { tree: Tree; folderId: string }) {
     </section>
   );
 }
-function FileChoice({ file }: { file: FileNode }) {
+function FileChoice({ file, tree }: { file: FileNode; tree: Tree }) {
+  const parent = findParentFolder(tree, file.id) || tree;
   return (
     <section className="page choice-page">
-      <button className="back-link" onClick={() => go("/browse/root")}>
-        ← Thư viện
+      <button className="back-link" onClick={() => go(`/browse/${parent.id}`)}>
+        ← {parent.name}
       </button>
       <div className="choice-layout">
         <div>
@@ -464,14 +474,6 @@ function FileChoice({ file }: { file: FileNode }) {
           <p className="eyebrow">BỘ TỪ VỰNG</p>
           <h1>{file.name}</h1>
           <p className="lead">{file.description}</p>
-          <div className="choice-count">
-            <strong>{String(file.cards.length).padStart(2, "0")}</strong>
-            <span>
-              thẻ được chuẩn bị
-              <br />
-              cho phiên học này
-            </span>
-          </div>
         </div>
         <div className="mode-panel">
           <p className="eyebrow">CHỌN CÁCH HỌC</p>
@@ -488,9 +490,20 @@ function FileChoice({ file }: { file: FileNode }) {
           </button>
           <button
             className="mode-button light"
-            onClick={() => go(`/file/${file.id}/game`)}
+            onClick={() => go(`/file/${file.id}/check`)}
           >
             <span>02</span>
+            <div>
+              <strong>Tự kiểm tra</strong>
+              <small>Lật thẻ rồi đánh dấu thuộc hoặc quên</small>
+            </div>
+            <b>→</b>
+          </button>
+          <button
+            className="mode-button light"
+            onClick={() => go(`/file/${file.id}/game`)}
+          >
+            <span>03</span>
             <div>
               <strong>Mưa từ vựng</strong>
               <small>Gõ nhanh, phá box, giữ combo</small>
@@ -502,19 +515,119 @@ function FileChoice({ file }: { file: FileNode }) {
     </section>
   );
 }
+
+function SelfCheck({ file }: { file: FileNode }) {
+  const [cards] = useState(() => shuffled(file.cards));
+  const [index, setIndex] = useState(0);
+  const [flipped, setFlipped] = useState(false);
+  const [startX, setStartX] = useState<number | null>(null);
+  const swipedRef = useRef(false);
+  const card = cards[index];
+  const complete = index >= cards.length;
+  const choose = () => {
+    if (complete) return;
+    setFlipped(false);
+    setIndex((value) => value + 1);
+  };
+  const reset = () => {
+    setIndex(0);
+    setFlipped(false);
+  };
+  return (
+    <section className="page check-page">
+      <button className="back-link" onClick={() => go(`/file/${file.id}`)}>← {file.name}</button>
+      {complete ? (
+        <div className="check-summary">
+          <span className="result-icon">✦</span>
+          <p className="eyebrow">ĐÃ KIỂM TRA</p>
+          <h1>Phiên tự kiểm tra hoàn tất.</h1>
+          <p className="muted">Hãy tiếp tục ôn lại các thẻ cần ghi nhớ.</p>
+          <button className="primary-button" onClick={reset}>Kiểm tra lại</button>
+        </div>
+      ) : (
+        <>
+          <div className="learn-head check-head">
+            <div>
+              <p className="eyebrow">TỰ KIỂM TRA · {file.name.toUpperCase()}</p>
+              <h1>Bạn còn nhớ chứ?</h1>
+              <p className="muted">Chạm vào thẻ để lật, dùng nút loa để nghe phát âm.</p>
+            </div>
+          </div>
+          <button
+            className={`flashcard check-card ${flipped ? "is-flipped" : ""}`}
+            onClick={() => {
+              if (swipedRef.current) {
+                swipedRef.current = false;
+                return;
+              }
+              setFlipped((value) => !value);
+            }}
+            onPointerDown={(event) => setStartX(event.clientX)}
+            onPointerUp={(event) => {
+              if (startX === null) return;
+              const distance = event.clientX - startX;
+              setStartX(null);
+              if (Math.abs(distance) >= 60) {
+                swipedRef.current = true;
+                choose();
+              }
+            }}
+            onPointerCancel={() => setStartX(null)}
+          >
+            <div className="card-face front">
+              <span className="face-label">GỢI Ý</span>
+              <strong>{card.front.text}</strong>
+            </div>
+            <div className="card-face back">
+              <span className="face-label">ĐÁP ÁN</span>
+              <strong>{card.back.text}</strong>
+            </div>
+            <span className="flip-hint">↻ chạm để lật</span>
+          </button>
+          <div className="check-controls" aria-label="Đánh giá thẻ">
+            <button className="forget-button" onClick={choose}>← Quên</button>
+            <AudioButton src={flipped ? card.back.audio : card.front.audio} />
+            <button className="know-button" onClick={choose}>Thuộc →</button>
+          </div>
+          <p className="swipe-hint">Vuốt trái nếu quên · vuốt phải nếu thuộc</p>
+        </>
+      )}
+    </section>
+  );
+}
+const playAudioSource = (src?: string, cache?: Map<string, HTMLAudioElement>) => {
+  if (!src) return;
+  const audio = cache?.get(src) ?? new Audio(src);
+  if (cache && !cache.has(src)) cache.set(src, audio);
+  audio.currentTime = 0;
+  audio.play().catch(() => {
+    const fallback = new Audio(src);
+    fallback.play().catch(() => {});
+    if (cache) cache.set(src, fallback);
+  });
+};
 function AudioButton({ src }: { src?: string }) {
+  const play = () => {
+    if (!src) return;
+    const audio = new Audio(src);
+    audio.preload = "auto";
+    audio.play().catch(() => {
+      const fallback = new Audio(src);
+      fallback.play().catch(() => {});
+    });
+  };
   return (
     <button
       type="button"
       className={`audio-button ${src ? "" : "muted-audio"}`}
-      onClick={(event) => {
-        event.stopPropagation();
-        if (src) new Audio(src).play().catch(() => {});
-      }}
+      onClick={play}
       disabled={!src}
       aria-label={src ? "Nghe âm thanh" : "Chưa có âm thanh"}
     >
-      ◖
+      <svg viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M4 10h4l5-4v12l-5-4H4z" />
+        <path d="M16 9.5a4 4 0 0 1 0 5M18.5 7a7.5 7.5 0 0 1 0 10" />
+      </svg>
     </button>
   );
 }
@@ -544,15 +657,7 @@ function Learn({ file }: { file: FileNode }) {
   };
   return (
     <section className="page learn-page">
-      <div className="mode-top">
-        <button className="back-link" onClick={() => go(`/file/${file.id}`)}>
-          ← {file.name}
-        </button>
-        <div className="mode-tabs">
-          <button className="active">Học</button>
-          <button onClick={() => go(`/file/${file.id}/game`)}>Game</button>
-        </div>
-      </div>
+      <button className="back-link" onClick={() => go(`/file/${file.id}`)}>← {file.name}</button>
       <div className="learn-head">
         <div>
           <p className="eyebrow">PHIÊN HỌC · {file.name.toUpperCase()}</p>
@@ -586,16 +691,6 @@ function Learn({ file }: { file: FileNode }) {
           Đáp án
         </button>
       </div>
-      <div className="progress-row">
-        <span>
-          {String(index + 1).padStart(2, "0")} /{" "}
-          {String(cards.length).padStart(2, "0")}
-        </span>
-        <div className="progress">
-          <i style={{ width: `${((index + 1) / cards.length) * 100}%` }} />
-        </div>
-        <span>{Math.round(((index + 1) / cards.length) * 100)}%</span>
-      </div>
       <button
         className={`flashcard ${showBack ? "is-flipped" : ""}`}
         onClick={() => setFlipped(!flipped)}
@@ -603,17 +698,16 @@ function Learn({ file }: { file: FileNode }) {
         <div className="card-face front">
           <span className="face-label">GỢI Ý</span>
           <strong>{card.front.text}</strong>
-          <AudioButton src={card.front.audio} />
         </div>
         <div className="card-face back">
           <span className="face-label">ĐÁP ÁN</span>
           <strong>{card.back.text}</strong>
-          <AudioButton src={card.back.audio} />
         </div>
         <span className="flip-hint">↻ chạm để lật</span>
       </button>
       <div className="learn-controls">
         <button onClick={() => next(-1)}>← Trước</button>
+        <AudioButton src={showBack ? card.back.audio : card.front.audio} />
         <button className="primary-button" onClick={() => next(1)}>
           Tiếp theo →
         </button>
@@ -628,8 +722,9 @@ type Falling = Card & {
   typed: number;
   born: number;
 };
-const DESKTOP_SPAWN_INTERVAL_MS = 7000;
-const MOBILE_SPAWN_INTERVAL_MS = 8500;
+const DESKTOP_SPAWN_INTERVAL_MS = 4500;
+const MOBILE_SPAWN_INTERVAL_MS = 6000;
+const STAGE_SPEEDS = [0.4, 0.55, 0.7];
 
 const getSpawnInterval = () => {
   if (typeof window === "undefined") return DESKTOP_SPAWN_INTERVAL_MS;
@@ -641,38 +736,71 @@ const getSpawnInterval = () => {
 
 function Game({ file }: { file: FileNode }) {
   type GameResult = "won" | "lost";
+  type Difficulty = "slow" | "medium" | "fast";
   const [active, setActive] = useState<Falling[]>([]);
   const [activeId, setActiveId] = useState<string | null>(null);
-  const [deck, setDeck] = useState<Card[]>(() =>
-    shuffled([...file.cards, ...file.cards, ...file.cards]),
-  );
-  const [score, setScore] = useState(0);
-  const [combo, setCombo] = useState(0);
-  const INITIAL_LIVES = Math.max(1, Math.floor((file.cards.length * 3) / 10));
-  const [lives, setLives] = useState(INITIAL_LIVES);
+  const [deck, setDeck] = useState<Card[]>([]);
+  const [difficulty, setDifficulty] = useState<Difficulty | null>(null);
+  const INITIAL_LIVES = Math.max(1, Math.floor((file.cards.length * 2) / 10));
   const [result, setResult] = useState<GameResult | null>(null);
-  const [completed, setCompleted] = useState(0);
   const [wrong, setWrong] = useState(false);
   const [runId, setRunId] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
   const hasSpawnedRef = useRef(false);
   const resultRef = useRef<GameResult | null>(null);
-  const completedRef = useRef(0);
   const missedLivesRef = useRef(0);
   const missedBoxIdsRef = useRef(new Set<string>());
-  // Chỉnh tốc độ rơi ở đây: giảm xuống = chậm hơn, tăng lên = nhanh hơn.
-  const FALL_SPEED = 0.4;
-  const totalCards = file.cards.length * 3;
+  const missAudioRef = useRef(new Map<string, HTMLAudioElement>());
+  const audioContextRef = useRef<AudioContext | null>(null);
+  const musicStopRef = useRef<(() => void) | null>(null);
+  const [soundOn, setSoundOn] = useState(true);
+  const speed = difficulty === "slow" ? STAGE_SPEEDS[0] : difficulty === "medium" ? STAGE_SPEEDS[1] : STAGE_SPEEDS[2];
   const done = result !== null;
   const won = result === "won";
-  const speed = FALL_SPEED + Math.floor(combo / 5) * 0.04;
-  const finish = (nextResult: GameResult) => {
+  const stopMusic = useCallback(() => {
+    musicStopRef.current?.();
+    musicStopRef.current = null;
+  }, []);
+  const startAudio = useCallback(() => {
+    const AudioContextClass = window.AudioContext ||
+      (window as typeof window & { webkitAudioContext?: typeof AudioContext }).webkitAudioContext;
+    if (!AudioContextClass) return;
+    const context = audioContextRef.current ?? new AudioContextClass();
+    audioContextRef.current = context;
+    context.resume().catch(() => {});
+    if (musicStopRef.current) return;
+    const notes = [261.63, 329.63, 392, 329.63, 293.66, 369.99, 440, 369.99];
+    let step = 0;
+    const playNote = () => {
+      if (context.state !== "running") return;
+      const oscillator = context.createOscillator();
+      const gain = context.createGain();
+      oscillator.type = "sine";
+      oscillator.frequency.value = notes[step % notes.length];
+      gain.gain.setValueAtTime(0.0001, context.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.035, context.currentTime + 0.04);
+      gain.gain.exponentialRampToValueAtTime(0.0001, context.currentTime + 0.46);
+      oscillator.connect(gain).connect(context.destination);
+      oscillator.start();
+      oscillator.stop(context.currentTime + 0.5);
+      step += 1;
+    };
+    playNote();
+    const timer = window.setInterval(playNote, 520);
+    musicStopRef.current = () => window.clearInterval(timer);
+  }, []);
+  useEffect(() => {
+    if (soundOn && audioContextRef.current && !musicStopRef.current) startAudio();
+  }, [soundOn, startAudio]);
+  useEffect(() => () => stopMusic(), [stopMusic]);
+  const finish = useCallback((nextResult: GameResult) => {
     if (resultRef.current) return;
     resultRef.current = nextResult;
+    stopMusic();
     setResult(nextResult);
-  };
+  }, [stopMusic]);
   useEffect(() => {
-    if (done) return;
+    if (done || !difficulty) return;
     const timer = setInterval(
       () =>
         setActive((items) => {
@@ -689,30 +817,37 @@ function Game({ file }: { file: FileNode }) {
             newFallen.forEach((item) => missedBoxIdsRef.current.add(item.id));
             const fallenCount = newFallen.length;
             if (!fallenCount) return moved.filter((item) => item.progress < 100);
+            newFallen.forEach((item) => {
+              const savedAudio = item.back.audio || item.front.audio;
+              playAudioSource(savedAudio, missAudioRef.current);
+            });
             const missedLives = Math.min(
               INITIAL_LIVES,
               missedLivesRef.current + fallenCount,
             );
             missedLivesRef.current = missedLives;
-            const nextLives = INITIAL_LIVES - missedLives;
-            setLives(nextLives);
             if (missedLives >= INITIAL_LIVES) finish("lost");
-            setCombo(0);
           }
           return moved.filter((item) => item.progress < 100);
         }),
       120,
     );
     return () => clearInterval(timer);
-  }, [INITIAL_LIVES, done, speed]);
+  }, [INITIAL_LIVES, difficulty, done, finish, speed]);
   useEffect(() => {
-    if (done || !deck.length) return;
+    if (done || !difficulty || !deck.length) return;
     const interval = getSpawnInterval();
     const spawnTimer = window.setTimeout(() => {
       const [card, ...rest] = deck;
       if (!card) return;
       const now = Date.now();
       const spawnedId = `${card.id}-${now}`;
+      const savedAudio = card.back.audio || card.front.audio;
+      if (savedAudio && !missAudioRef.current.has(savedAudio)) {
+        const audio = new Audio(savedAudio);
+        audio.preload = "auto";
+        missAudioRef.current.set(savedAudio, audio);
+      }
       setDeck(rest);
       setActiveId((currentId) => currentId ?? spawnedId);
       setActive((boxes) => [
@@ -729,17 +864,17 @@ function Game({ file }: { file: FileNode }) {
       hasSpawnedRef.current = true;
     }, hasSpawnedRef.current ? interval : 0);
     return () => window.clearTimeout(spawnTimer);
-  }, [deck, done, runId]);
+  }, [deck, difficulty, done, runId]);
   useEffect(() => {
     if (
-      !done &&
-      !deck.length &&
-      !active.length &&
+      difficulty && !done &&
+      !deck.length && !active.length &&
       missedLivesRef.current < INITIAL_LIVES
     ) {
-      finish("won");
+      const stageTimer = window.setTimeout(() => finish("won"), 0);
+      return () => window.clearTimeout(stageTimer);
     }
-  }, [INITIAL_LIVES, active.length, deck.length, done]);
+  }, [INITIAL_LIVES, active.length, deck.length, difficulty, done, finish]);
   const current = active.find((item) => item.id === activeId) ?? active[0];
   const focusInput = () => {
     const input = inputRef.current;
@@ -759,12 +894,6 @@ function Game({ file }: { file: FileNode }) {
         typed += 1;
       const updated = { ...current, typed };
       if (updated.typed === updated.back.text.length) {
-        setScore((v) => v + 100 + combo * 15);
-        setCombo((v) => v + 1);
-        const nextCompleted = completedRef.current + 1;
-        completedRef.current = nextCompleted;
-        setCompleted(nextCompleted);
-        if (nextCompleted >= totalCards) finish("won");
         const remaining = active.filter((item) => item.id !== current.id);
         setActive(remaining);
         setActiveId(remaining[0]?.id ?? null);
@@ -784,51 +913,62 @@ function Game({ file }: { file: FileNode }) {
   };
   const reset = () => {
     hasSpawnedRef.current = false;
+    stopMusic();
     setRunId((value) => value + 1);
     setActive([]);
     setActiveId(null);
-    setDeck(shuffled([...file.cards, ...file.cards, ...file.cards]));
-    setScore(0);
-    setCombo(0);
+    setDeck(shuffled([...file.cards, ...file.cards]));
     missedLivesRef.current = 0;
     missedBoxIdsRef.current.clear();
-    completedRef.current = 0;
     resultRef.current = null;
-    setLives(INITIAL_LIVES);
-    setCompleted(0);
     setResult(null);
   };
+  const beginGame = (nextDifficulty: Difficulty) => {
+    startAudio();
+    setDifficulty(nextDifficulty);
+    reset();
+  };
+  if (!difficulty) {
+    return <section className="page game-level-page">
+      <button className="back-link" onClick={() => go(`/file/${file.id}`)}>← {file.name}</button>
+      <div className="game-level-picker">
+        <p className="eyebrow">MƯA TỪ VỰNG</p>
+        <h1>Chọn mức độ.</h1>
+        <p className="muted">Chọn nhịp chơi phù hợp với bạn.</p>
+        <div className="level-options">
+          <button onClick={() => beginGame("slow")}><strong>Chậm</strong></button>
+          <button onClick={() => beginGame("medium")}><strong>Vừa</strong></button>
+          <button onClick={() => beginGame("fast")}><strong>Nhanh</strong></button>
+        </div>
+      </div>
+    </section>;
+  }
   return (
     <section className="game-page">
       <div className="game-header">
         <div>
-          <button className="back-link" onClick={() => go(`/file/${file.id}`)}>
-            ← Thoát game
-          </button>
+          <button className="back-link" onClick={() => go(`/file/${file.id}`)}>← {file.name}</button>
           <p className="eyebrow">MƯA TỪ VỰNG</p>
           <h1>Gõ để phá.</h1>
-        </div>
-        <div className="game-hud">
-          <div>
-            <small>ĐIỂM</small>
-            <strong>{String(score).padStart(4, "0")}</strong>
-          </div>
-          <div>
-            <small>COMBO</small>
-            <strong className="orange">×{combo}</strong>
-          </div>
-          <div>
-            <small>MẠNG</small>
-            <strong className="lives">
-              {"●".repeat(lives)}
-              <i>{"●".repeat(Math.max(0, INITIAL_LIVES - lives))}</i>
-            </strong>
-          </div>
+          <button
+            className="sound-toggle"
+            onClick={() => {
+              if (soundOn) {
+                stopMusic();
+                setSoundOn(false);
+              } else {
+                startAudio();
+                setSoundOn(true);
+              }
+            }}
+          >
+            {soundOn ? "♫ Nhạc: bật" : "♫ Nhạc: tắt"}
+          </button>
         </div>
       </div>
       <div
         className={`rain-arena ${wrong ? "shake" : ""}`}
-        onClick={focusInput}
+        onClick={() => { if (soundOn) startAudio(); focusInput(); }}
       >
         {active.map((item) => (
           <button
@@ -838,6 +978,7 @@ function Game({ file }: { file: FileNode }) {
             style={{ left: `${item.x}%`, top: `${item.progress}%` }}
             onClick={(event) => {
               event.stopPropagation();
+              if (soundOn) startAudio();
               setActiveId(item.id);
               focusInput();
             }}
@@ -855,21 +996,12 @@ function Game({ file }: { file: FileNode }) {
         <div className="player">⌁</div>
         <input ref={inputRef} aria-label="Gõ đáp án" onKeyDown={keyDown} />
       </div>
-      <div className="game-tip">
-        Đang chọn: <strong>{current?.front.text || "chờ box tiếp theo"}</strong>
-        <span>
-          Box mới bắt đầu rơi sau 1 giây · tốc độ chỉnh ở FALL_SPEED
-        </span>
-      </div>
       {done && (
         <div className="game-result">
           <span className="result-icon">✦</span>
           <p className="eyebrow">{won ? "HOÀN THÀNH" : "GAME OVER"}</p>
           <p className="result-set-name">{file.name}</p>
           <h2>{won ? "Bạn đã phá tan cơn mưa từ." : "Lần sau sẽ nhanh hơn."}</h2>
-          <p>
-            {completed} từ đã phá · {score} điểm
-          </p>
           <div>
             <button className="primary-button" onClick={reset}>
               Chơi lại
