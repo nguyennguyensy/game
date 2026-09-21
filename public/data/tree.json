@@ -2776,20 +2776,20 @@
                 {
                   "id": "card-1789724833276",
                   "front": {
-                    "text": "(n)lime"
+                    "text": "(n)chanh xanh"
                   },
                   "back": {
-                    "text": "chanh xanh ",
+                    "text": "lime",
                     "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789723964123/card-1789724833276/back-1789726046575-oxq3ox.m4a"
                   }
                 },
                 {
                   "id": "card-1789724836941",
                   "front": {
-                    "text": "(n)lemon"
+                    "text": "(n)chanh vàng"
                   },
                   "back": {
-                    "text": "chanh vàng",
+                    "text": "lemon",
                     "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1789723964123/card-1789724836941/back-1789726045668-odsqnv.m4a"
                   }
                 }
