@@ -742,6 +742,7 @@ function Game({ file }: { file: FileNode }) {
   const [deck, setDeck] = useState<Card[]>([]);
   const [difficulty, setDifficulty] = useState<Difficulty | null>(null);
   const INITIAL_LIVES = Math.max(1, Math.floor((file.cards.length * 2) / 10));
+  const [lives, setLives] = useState(INITIAL_LIVES);
   const [result, setResult] = useState<GameResult | null>(null);
   const [wrong, setWrong] = useState(false);
   const [runId, setRunId] = useState(0);
@@ -826,6 +827,7 @@ function Game({ file }: { file: FileNode }) {
               missedLivesRef.current + fallenCount,
             );
             missedLivesRef.current = missedLives;
+            setLives(INITIAL_LIVES - missedLives);
             if (missedLives >= INITIAL_LIVES) finish("lost");
           }
           return moved.filter((item) => item.progress < 100);
@@ -921,6 +923,7 @@ function Game({ file }: { file: FileNode }) {
     missedLivesRef.current = 0;
     missedBoxIdsRef.current.clear();
     resultRef.current = null;
+    setLives(INITIAL_LIVES);
     setResult(null);
   };
   const beginGame = (nextDifficulty: Difficulty) => {
@@ -964,6 +967,15 @@ function Game({ file }: { file: FileNode }) {
           >
             {soundOn ? "♫ Nhạc: bật" : "♫ Nhạc: tắt"}
           </button>
+        </div>
+        <div className="game-hud">
+          <div>
+            <small>MẠNG</small>
+            <strong className="lives">
+              {"●".repeat(lives)}
+              <i>{"●".repeat(Math.max(0, INITIAL_LIVES - lives))}</i>
+            </strong>
+          </div>
         </div>
       </div>
       <div
