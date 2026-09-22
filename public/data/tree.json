@@ -1437,6 +1437,245 @@
                   }
                 }
               ]
+            },
+            {
+              "id": "file-1790058581342",
+              "type": "file",
+              "name": "Jobs and places of work",
+              "description": "Mô tả bộ từ",
+              "icon": "▤",
+              "cards": [
+                {
+                  "id": "file-1790058581342-card",
+                  "front": {
+                    "text": "một giáo viên"
+                  },
+                  "back": {
+                    "text": "a teacher",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1790058581342/file-1790058581342-card/back-1790059274081-r9jx7y.webm"
+                  }
+                },
+                {
+                  "id": "card-1790058611842",
+                  "front": {
+                    "text": "một bác sĩ"
+                  },
+                  "back": {
+                    "text": "a doctor",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1790058581342/card-1790058611842/back-1790059275269-isnyjd.webm"
+                  }
+                },
+                {
+                  "id": "card-1790058613308",
+                  "front": {
+                    "text": "một y tá"
+                  },
+                  "back": {
+                    "text": "a nurse",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1790058581342/card-1790058613308/back-1790059276278-f88roc.webm"
+                  }
+                },
+                {
+                  "id": "card-1790058614458",
+                  "front": {
+                    "text": "một nhà báo"
+                  },
+                  "back": {
+                    "text": "a journalist",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1790058581342/card-1790058614458/back-1790059276945-mg8xbb.webm"
+                  }
+                },
+                {
+                  "id": "card-1790058615292",
+                  "front": {
+                    "text": "nhân viên hỗ trợ cửa hàng"
+                  },
+                  "back": {
+                    "text": "a shop assistant",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1790058581342/card-1790058615292/back-1790059278454-qtr6uo.webm"
+                  }
+                },
+                {
+                  "id": "card-1790058617141",
+                  "front": {
+                    "text": "người lễ tân"
+                  },
+                  "back": {
+                    "text": "a receptionist",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1790058581342/card-1790058617141/back-1790059279409-8q783y.webm"
+                  }
+                },
+                {
+                  "id": "card-1790058618258",
+                  "front": {
+                    "text": "một nam cảnh sát"
+                  },
+                  "back": {
+                    "text": "a policeman",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1790058581342/card-1790058618258/back-1790059280471-2xx0fz.webm"
+                  }
+                },
+                {
+                  "id": "card-1790058619308",
+                  "front": {
+                    "text": "một nữ cảnh sát"
+                  },
+                  "back": {
+                    "text": "a policewoman",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1790058581342/card-1790058619308/back-1790059281960-zck0ty.webm"
+                  }
+                },
+                {
+                  "id": "card-1790058620625",
+                  "front": {
+                    "text": "một công nhân nhà máy"
+                  },
+                  "back": {
+                    "text": "a factory worker",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1790058581342/card-1790058620625/back-1790059282968-t2d0mf.webm"
+                  }
+                },
+                {
+                  "id": "card-1790058621608",
+                  "front": {
+                    "text": "một người lái tắc xi"
+                  },
+                  "back": {
+                    "text": "a taxi driver",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1790058581342/card-1790058621608/back-1790059284095-bcqc4a.webm"
+                  }
+                },
+                {
+                  "id": "card-1790058622375",
+                  "front": {
+                    "text": "một nhân viên tài chính"
+                  },
+                  "back": {
+                    "text": "a banker",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1790058581342/card-1790058622375/back-1790059284936-bz0u1k.webm"
+                  }
+                },
+                {
+                  "id": "card-1790058622559",
+                  "front": {
+                    "text": "một nhân viên pha chế"
+                  },
+                  "back": {
+                    "text": "a barman",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1790058581342/card-1790058622559/back-1790059286086-hvbjyz.webm"
+                  }
+                },
+                {
+                  "id": "card-1790058623191",
+                  "front": {
+                    "text": "ở bệnh việnt"
+                  },
+                  "back": {
+                    "text": "in a hospital",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1790058581342/card-1790058623191/back-1790059286678-54efny.webm"
+                  }
+                },
+                {
+                  "id": "card-1790058623375",
+                  "front": {
+                    "text": "ở cửa hàng"
+                  },
+                  "back": {
+                    "text": "in a shop",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1790058581342/card-1790058623375/back-1790059287717-k5tsys.webm"
+                  }
+                },
+                {
+                  "id": "card-1790058623592",
+                  "front": {
+                    "text": "ở nhà hàng"
+                  },
+                  "back": {
+                    "text": "in a restaurant",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1790058581342/card-1790058623592/back-1790059288762-23xkco.webm"
+                  }
+                },
+                {
+                  "id": "card-1790058624008",
+                  "front": {
+                    "text": "ở trường"
+                  },
+                  "back": {
+                    "text": "in a school",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1790058581342/card-1790058624008/back-1790059290302-he6i8w.webm"
+                  }
+                },
+                {
+                  "id": "card-1790058624209",
+                  "front": {
+                    "text": "ở nhà máy"
+                  },
+                  "back": {
+                    "text": "in a factory",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1790058581342/card-1790058624209/back-1790059292028-lhdo8e.webm"
+                  }
+                },
+                {
+                  "id": "card-1790058624409",
+                  "front": {
+                    "text": "ở nhà"
+                  },
+                  "back": {
+                    "text": "at home",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1790058581342/card-1790058624409/back-1790059293075-cmjgg5.webm"
+                  }
+                },
+                {
+                  "id": "card-1790058624625",
+                  "front": {
+                    "text": "một công ty đa quốc gia"
+                  },
+                  "back": {
+                    "text": "a multinational company",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1790058581342/card-1790058624625/back-1790059293719-ouy9o9.webm"
+                  }
+                },
+                {
+                  "id": "card-1790058625025",
+                  "front": {
+                    "text": "thất nghiệp"
+                  },
+                  "back": {
+                    "text": "unemployed",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1790058581342/card-1790058625025/back-1790059294919-ewrlhn.webm"
+                  }
+                },
+                {
+                  "id": "card-1790058801159",
+                  "front": {
+                    "text": "nghỉ hưu"
+                  },
+                  "back": {
+                    "text": "retired",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1790058581342/card-1790058801159/back-1790059296143-5o4mt1.webm"
+                  }
+                },
+                {
+                  "id": "card-1790058846526",
+                  "front": {
+                    "text": "ly hôn"
+                  },
+                  "back": {
+                    "text": "divorced",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1790058581342/card-1790058846526/back-1790059297204-n1argw.webm"
+                  }
+                },
+                {
+                  "id": "card-1790058920676",
+                  "front": {
+                    "text": "hiện tại"
+                  },
+                  "back": {
+                    "text": "at the moment",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1790058581342/card-1790058920676/back-1790059298517-kxzi3u.webm"
+                  }
+                }
+              ]
             }
           ]
         }
