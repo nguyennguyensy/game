@@ -1676,6 +1676,255 @@
                   }
                 }
               ]
+            },
+            {
+              "id": "file-1790312389015",
+              "type": "file",
+              "name": "A Typical Day ",
+              "description": "Mô tả bộ từ",
+              "icon": "▤",
+              "cards": [
+                {
+                  "id": "file-1790312389015-card",
+                  "front": {
+                    "text": "vào buổi sáng"
+                  },
+                  "back": {
+                    "text": "in the morning",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1790312389015/file-1790312389015-card/back-1790313146896-unssci.webm"
+                  }
+                },
+                {
+                  "id": "card-1790312422864",
+                  "front": {
+                    "text": "thức dậy"
+                  },
+                  "back": {
+                    "text": "get up",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1790312389015/card-1790312422864/back-1790313148249-nobs2j.webm"
+                  }
+                },
+                {
+                  "id": "card-1790312425248",
+                  "front": {
+                    "text": "ăn sáng"
+                  },
+                  "back": {
+                    "text": "have breakfast",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1790312389015/card-1790312425248/back-1790313148834-fatwi0.webm"
+                  }
+                },
+                {
+                  "id": "card-1790312426448",
+                  "front": {
+                    "text": "tắm vòi hoa sen"
+                  },
+                  "back": {
+                    "text": "have a shower",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1790312389015/card-1790312426448/back-1790313149843-rkk3v0.webm"
+                  }
+                },
+                {
+                  "id": "card-1790312428198",
+                  "front": {
+                    "text": "đi làm"
+                  },
+                  "back": {
+                    "text": "go to work",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1790312389015/card-1790312428198/back-1790313150710-73qpsa.webm"
+                  }
+                },
+                {
+                  "id": "card-1790312429947",
+                  "front": {
+                    "text": "uống một cốc cà phê"
+                  },
+                  "back": {
+                    "text": "have a coffee",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1790312389015/card-1790312429947/back-1790313151322-jdv0ak.webm"
+                  }
+                },
+                {
+                  "id": "card-1790312431697",
+                  "front": {
+                    "text": "vào buổi chiều"
+                  },
+                  "back": {
+                    "text": "in the afternoon",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1790312389015/card-1790312431697/back-1790313152075-iomh9b.webm"
+                  }
+                },
+                {
+                  "id": "card-1790312434930",
+                  "front": {
+                    "text": "ăn trưa"
+                  },
+                  "back": {
+                    "text": "have lunch",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1790312389015/card-1790312434930/back-1790313152922-ylcws0.webm"
+                  }
+                },
+                {
+                  "id": "card-1790312436264",
+                  "front": {
+                    "text": "hoàn thành công việc"
+                  },
+                  "back": {
+                    "text": "finish work",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1790312389015/card-1790312436264/back-1790313154077-9dfpwa.webm"
+                  }
+                },
+                {
+                  "id": "card-1790312437830",
+                  "front": {
+                    "text": "đi về nhà"
+                  },
+                  "back": {
+                    "text": "go home",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1790312389015/card-1790312437830/back-1790313154922-bvgyr4.webm"
+                  }
+                },
+                {
+                  "id": "card-1790312439097",
+                  "front": {
+                    "text": "đi mua sắm"
+                  },
+                  "back": {
+                    "text": "go shopping ",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1790312389015/card-1790312439097/back-1790313155724-5tur2b.webm"
+                  }
+                },
+                {
+                  "id": "card-1790312442714",
+                  "front": {
+                    "text": "đi đến phòng gym"
+                  },
+                  "back": {
+                    "text": "go to the gym",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1790312389015/card-1790312442714/back-1790313156540-hmefap.webm"
+                  }
+                },
+                {
+                  "id": "card-1790312443398",
+                  "front": {
+                    "text": "vào buổi tối"
+                  },
+                  "back": {
+                    "text": "in the evening",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1790312389015/card-1790312443398/back-1790313157169-sh0mgw.webm"
+                  }
+                },
+                {
+                  "id": "card-1790312445281",
+                  "front": {
+                    "text": "nấu bữa tối"
+                  },
+                  "back": {
+                    "text": "make dinner",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1790312389015/card-1790312445281/back-1790313157984-wn3eye.webm"
+                  }
+                },
+                {
+                  "id": "card-1790312447631",
+                  "front": {
+                    "text": "ăn tối"
+                  },
+                  "back": {
+                    "text": "have dinner",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1790312389015/card-1790312447631/back-1790313159126-hz4txe.webm"
+                  }
+                },
+                {
+                  "id": "card-1790312448099",
+                  "front": {
+                    "text": "Làm việc nhà"
+                  },
+                  "back": {
+                    "text": "do housework",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1790312389015/card-1790312448099/back-1790313159717-5tgyi6.webm"
+                  }
+                },
+                {
+                  "id": "card-1790312448332",
+                  "front": {
+                    "text": "xem TiVi"
+                  },
+                  "back": {
+                    "text": "watch TV",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1790312389015/card-1790312448332/back-1790313160461-mouns1.webm"
+                  }
+                },
+                {
+                  "id": "card-1790312448566",
+                  "front": {
+                    "text": "tắm bồn "
+                  },
+                  "back": {
+                    "text": "have a bath",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1790312389015/card-1790312448566/back-1790313161253-4ziask.webm"
+                  }
+                },
+                {
+                  "id": "card-1790312448931",
+                  "front": {
+                    "text": "đi ngủ"
+                  },
+                  "back": {
+                    "text": "go to bed",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1790312389015/card-1790312448931/back-1790313162462-wnv2x5.webm"
+                  }
+                },
+                {
+                  "id": "card-1790312449316",
+                  "front": {
+                    "text": "luôn luôn"
+                  },
+                  "back": {
+                    "text": "always",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1790312389015/card-1790312449316/back-1790313163093-p3exjz.webm"
+                  }
+                },
+                {
+                  "id": "card-1790312598767",
+                  "front": {
+                    "text": "thường xuyên"
+                  },
+                  "back": {
+                    "text": "usually",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1790312389015/card-1790312598767/back-1790313163852-rznz0d.webm"
+                  }
+                },
+                {
+                  "id": "card-1790312599783",
+                  "front": {
+                    "text": "thường"
+                  },
+                  "back": {
+                    "text": "often",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1790312389015/card-1790312599783/back-1790313164793-262cg5.webm"
+                  }
+                },
+                {
+                  "id": "card-1790312606617",
+                  "front": {
+                    "text": "đôi khi "
+                  },
+                  "back": {
+                    "text": "sometimes",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1790312389015/card-1790312606617/back-1790313165348-wy05pq.webm"
+                  }
+                },
+                {
+                  "id": "card-1790312609249",
+                  "front": {
+                    "text": "Không bao giờ"
+                  },
+                  "back": {
+                    "text": "never",
+                    "audio": "https://raw.githubusercontent.com/nguyennguyensy/game/main/public/audio/file-1790312389015/card-1790312609249/back-1790313166250-6g5ubn.webm"
+                  }
+                }
+              ]
             }
           ]
         }
